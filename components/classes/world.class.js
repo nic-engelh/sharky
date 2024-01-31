@@ -1,6 +1,6 @@
 class World {
     ctx;
-    constructor () {
+    constructor (canvas) {
         this.ctx = canvas.getContext('2d');
         this.draw();
     }
@@ -11,9 +11,8 @@ class World {
         new Jellyfish(),
         new Jellyfish()
     ];
-    
+
     draw() {
-        this.ctx.drawImage(this.hero.img, this.hero.x, this.hero.y, 100, 100 );
-        return true
-    };
+        this.ctx.drawImage(this.hero.img, this.hero.x, this.hero.y, this.hero.height, this.hero.width);
+    }
 }
