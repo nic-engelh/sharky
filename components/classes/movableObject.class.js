@@ -6,7 +6,10 @@ class MovableObject {
     constructor () {
 
     }
-
+    loadImage (path) {
+        this.image = new Image();
+        this.image.src = path;
+    }
     moveRight(){
         return true
     };
