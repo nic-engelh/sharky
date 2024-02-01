@@ -21,17 +21,19 @@ class World {
 
     this.addToMap(this.light);
 
-    this.enemies.forEach((enemy) => {
-      this.addToMap(enemy);
-    });
-
-    this.backgrounds.forEach((backgroundObject) =>{
-        this.addToMap(backgroundObject);
-    } )
-
+    this.addObjectsToMaps(this.enemies);
+    
+    this.addObjectsToMaps(this.backgrounds);
+   
     self = this;
     requestAnimationFrame(function () {
       self.draw();
+    });
+  }
+
+  addObjectsToMaps(objects) {
+    objects.forEach((object) => {
+      this.addToMap(object);
     });
   }
 
