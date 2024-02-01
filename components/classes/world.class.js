@@ -5,7 +5,7 @@ class World {
   enemies = [new Pufferfish(), new Pufferfish(), new Pufferfish()];
   light = new Light();
   backgrounds = [
-    new BackgroundObject("/assets/img/3. Background/Layers/2. Floor/D1.png"),
+    new BackgroundObject('assets/img/3. Background/Layers/2. Floor/D1.png'),
   ];
 
   constructor(canvas) {
@@ -19,7 +19,7 @@ class World {
 
     this.addToMap(this.hero);
 
-    this.addToMap(this.light);
+    //this.addToMap(this.light);
 
     this.addObjectsToMaps(this.enemies);
     
@@ -43,7 +43,7 @@ class World {
       movableObject.x,
       movableObject.y,
       movableObject.width,
-      movableObject.heigth
+      movableObject.height
     );
   }
 }
