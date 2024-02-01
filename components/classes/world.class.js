@@ -5,13 +5,14 @@ class World {
         new Pufferfish(),
         new Pufferfish()
     ];
+    light = new Light();
     canvas;
     ctx;
     constructor (canvas) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.draw();
-    }
+    };
 
     draw(){
         this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
@@ -22,9 +23,11 @@ class World {
             this.ctx.drawImage(enemy.image, enemy.x, enemy.y, enemy.width, enemy.height);
         });
 
+        this.ctx.drawImage(this.light.image, this.light.x, this.light.y, this.light.width, this.light.heigth);
+
         self = this;
         requestAnimationFrame( function () {
             self.draw();
         });
-    }
-}
+    };
+};
