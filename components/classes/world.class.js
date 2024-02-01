@@ -1,33 +1,47 @@
 class World {
-    hero = new Hero();
-    enemies = [
-        new Pufferfish(),
-        new Pufferfish(),
-        new Pufferfish()
-    ];
-    light = new Light();
-    canvas;
-    ctx;
-    constructor (canvas) {
-        this.ctx = canvas.getContext('2d');
-        this.canvas = canvas;
-        this.draw();
-    };
+  canvas;
+  ctx;
+  hero = new Hero();
+  enemies = [new Pufferfish(), new Pufferfish(), new Pufferfish()];
+  light = new Light();
+  backgrounds = [
+    new BackgroundObject("/assets/img/3. Background/Layers/2. Floor/D1.png"),
+  ];
 
-    draw(){
-        this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height);
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext("2d");
+    this.draw();
+  }
 
-        this.ctx.drawImage(this.hero.image, this.hero.x, this.hero.y, this.hero.width, this.hero.height);
+  draw() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.enemies.forEach(enemy => {
-            this.ctx.drawImage(enemy.image, enemy.x, enemy.y, enemy.width, enemy.height);
-        });
+    this.addToMap(this.hero);
 
-        this.ctx.drawImage(this.light.image, this.light.x, this.light.y, this.light.width, this.light.heigth);
+    this.addToMap(this.light);
 
-        self = this;
-        requestAnimationFrame( function () {
-            self.draw();
-        });
-    };
-};
+    this.enemies.forEach((enemy) => {
+      this.addToMap(enemy);
+    });
+
+    this.backgrounds.forEach((backgroundObject) =>{
+        this.addToMap(backgroundObject);
+    } )
+
+    self = this;
+    requestAnimationFrame(function () {
+      self.draw();
+    });
+  }
+
+  addToMap(movableObject) {
+    this.ctx.drawImage(
+      movableObject.image,
+      movableObject.x,
+      movableObject.y,
+      movableObject.width,
+      movableObject.heigth
+    );
+  }
+}
