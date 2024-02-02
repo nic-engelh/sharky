@@ -3,6 +3,7 @@ class MovableObject {
     y = 200;
     height = 245;
     width = 300;
+    speed = 0.15;
     image;
     imageCache = new Map();
     currentImage = 0;
@@ -21,9 +22,15 @@ class MovableObject {
     }
 
     moveRight(){
-        return true
+        setInterval(() => {
+            this.x += this.speed;
+ 
+         }, 1000/60);
     };
     moveLeft() {
-        return true
+        setInterval(() => {
+           this.x -= this.speed;
+
+        }, 1000/60);
     }
 }
