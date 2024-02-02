@@ -1,3 +1,3 @@
 let canvas;
 let ocean;
-let keyboard;
+let keyboard = new Keyboard();

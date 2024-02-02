@@ -1,35 +1,34 @@
 
+
 function init () {
     canvas = document.getElementById('canvas');
-    ocean = new World(canvas);
-    keyboard = new Keyboard();
-    
+    ocean = new World(canvas, keyboard);
+
 } 
 
 window.addEventListener("keydown", (event) => {
     console.log(event);
     pressedKey = event.code;
     if (pressedKey == "ArrowDown") {
-        this.keyboard.reset();
-        this.keyboard.down = true;
+        keyboard.down = true;
     } 
     if (pressedKey == "ArrowRight") {
-        this.keyboard.right = true;
+        keyboard.right = true;
     }
     if (pressedKey == "ArrowLeft") {
-        this.keyboard.left = true;
+        keyboard.left = true;
     }
     if (pressedKey == "ArrowUp") {
-        this.keyboard.up = true;
+        keyboard.up = true;
     }
     if (pressedKey == "Enter") {
-        this.keyboard.enter = true;
+        keyboard.enter = true;
     }
     if (pressedKey == "Space") {
-        this.keyboard.space = true;
+        keyboard.space = true;
     }
     if (pressedKey == "Escape") {
-        this.keyboard.escape = true;
+        keyboard.escape = true;
     }
 } );
 
@@ -37,24 +36,24 @@ window.addEventListener("keyup", (event) => {
     console.log(event);
     pressedKey = event.code;
     if (pressedKey == "ArrowDown") {
-        this.keyboard.down = false;
+        keyboard.down = false;
     } 
     if (pressedKey == "ArrowRight") {
-        this.keyboard.right = false;
+        keyboard.right = false;
     }
     if (pressedKey == "ArrowLeft") {
-        this.keyboard.left = false;
+        keyboard.left = false;
     }
     if (pressedKey == "ArrowUp") {
-        this.keyboard.up = false;
+        keyboard.up = false;
     }
     if (pressedKey == "Enter") {
-        this.keyboard.enter = false;
+        keyboard.enter = false;
     }
     if (pressedKey == "Space") {
-        this.keyboard.space = false;
+        keyboard.space = false;
     }
     if (pressedKey == "Escape") {
-        this.keyboard.escape = false;
+        keyboard.escape = false;
     }
 } );

@@ -1,4 +1,5 @@
 class World {
+  keyboard;
   canvas;
   ctx;
   hero = new Hero();
@@ -11,10 +12,16 @@ class World {
     new BackgroundObject('/assets/img/3. Background/Layers/2. Floor/D1.png', 0, 80, 400, 720 ),
   ];
    
-  constructor(canvas) {
+  constructor(canvas, keyboard) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
     this.draw();
+    this.keyboard = keyboard;
+    this.setWorld();
+  }
+
+  setWorld() {
+    this.hero.world = this;
   }
 
   draw() {
