@@ -3,11 +3,14 @@ class World {
   ctx;
   hero = new Hero();
   enemies = [new Pufferfish(), new Pufferfish(), new Pufferfish()];
-  light = new Light();
   backgrounds = [
-    new BackgroundObject('assets/img/3. Background/Layers/2. Floor/D1.png'),
+    new BackgroundObject('/assets/img/3. Background/Layers/5. Water/D1.png', 0, 0, 480, 720 ),
+    new BackgroundObject('assets/img/3. Background/Layers/1. Light/1.png', 0, 0, 480, 720 ),
+    new BackgroundObject('/assets/img/3. Background/Layers/4.Fondo 2/D1.png', 0, 80, 400, 720 ),
+    new BackgroundObject('/assets/img/3. Background/Layers/3.Fondo 1/D1.png', 0, 80, 400, 720 ),
+    new BackgroundObject('/assets/img/3. Background/Layers/2. Floor/D1.png', 0, 80, 400, 720 ),
   ];
-
+   
   constructor(canvas) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
@@ -17,14 +20,12 @@ class World {
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.addToMap(this.hero);
+    this.addObjectsToMaps(this.backgrounds);
 
-    //this.addToMap(this.light);
+    this.addToMap(this.hero);
 
     this.addObjectsToMaps(this.enemies);
     
-    this.addObjectsToMaps(this.backgrounds);
-   
     self = this;
     requestAnimationFrame(function () {
       self.draw();
