@@ -1,5 +1,4 @@
 class Hero extends MovableObject {
-    currentImage = 0;
     imagesWalking = [
         '/assets/img/1.Sharkie/3.Swim/1.png',
         '/assets/img/1.Sharkie/3.Swim/2.png',
