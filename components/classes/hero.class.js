@@ -17,11 +17,11 @@ class Hero extends MovableObject {
 
     animate() {
         setInterval(() => {
-            let path = this.imagesWalking[this.currentImage];
-            this.image = this.imageCache[path];
+            let i = this.currentImage % this.imagesWalking.length;
+            let path = this.imagesWalking[i];
+            this.image = this.imageCache.get(path);
             this.currentImage++;
-        }, 1000);
-       
+        }, 200); 
     }
 
 
