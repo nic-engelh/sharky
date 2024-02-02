@@ -10,6 +10,7 @@ window.addEventListener("keydown", (event) => {
     console.log(event);
     pressedKey = event.code;
     if (pressedKey == "ArrowDown") {
+        this.keyboard.reset();
         this.keyboard.down = true;
     } 
     if (pressedKey == "ArrowRight") {
@@ -29,5 +30,31 @@ window.addEventListener("keydown", (event) => {
     }
     if (pressedKey == "Escape") {
         this.keyboard.escape = true;
+    }
+} );
+
+window.addEventListener("keyup", (event) => {
+    console.log(event);
+    pressedKey = event.code;
+    if (pressedKey == "ArrowDown") {
+        this.keyboard.down = false;
+    } 
+    if (pressedKey == "ArrowRight") {
+        this.keyboard.right = false;
+    }
+    if (pressedKey == "ArrowLeft") {
+        this.keyboard.left = false;
+    }
+    if (pressedKey == "ArrowUp") {
+        this.keyboard.up = false;
+    }
+    if (pressedKey == "Enter") {
+        this.keyboard.enter = false;
+    }
+    if (pressedKey == "Space") {
+        this.keyboard.space = false;
+    }
+    if (pressedKey == "Escape") {
+        this.keyboard.escape = false;
     }
 } );
