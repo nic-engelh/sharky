@@ -23,7 +23,6 @@ class Hero extends MovableObject {
         }, 200); 
     }
 
-
     jump () {
         return true
     }
