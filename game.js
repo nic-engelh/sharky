@@ -2,6 +2,7 @@
 
 function init () {
     canvas = document.getElementById('canvas');
+    keyboard = new Keyboard();
     ocean = new World(canvas, keyboard);
 
 } 
