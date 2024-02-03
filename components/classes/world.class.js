@@ -2,6 +2,7 @@ class World {
   keyboard;
   canvas;
   ctx;
+  cameraX = -100;
   hero = new Hero();
   enemies = [new Pufferfish(), new Pufferfish(), new Pufferfish()];
   backgrounds = [
@@ -27,12 +28,16 @@ class World {
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+    this.ctx.translate(this.cameraX, 0);
+
     this.addObjectsToMaps(this.backgrounds);
 
     this.addToMap(this.hero);
 
     this.addObjectsToMaps(this.enemies);
     
+    this.ctx.translate( - this.cameraX, 0);
+
     self = this;
     requestAnimationFrame(function () {
       self.draw();
@@ -48,10 +53,7 @@ class World {
   addToMap(movableObject) {
 
     if(movableObject.otherDirection){
-      this.ctx.save();
-      this.ctx.translate(movableObject.width, 0);
-      this.ctx.scale(-1,1);
-      movableObject.x = movableObject.x * -1; 
+      this.flipImage(movableObject);
     }
     this.ctx.drawImage(
       movableObject.image,
@@ -61,8 +63,20 @@ class World {
       movableObject.height
     );
     if (movableObject.otherDirection) {
-      movableObject.x = movableObject.x * -1; 
-      this.ctx.restore();
+      this.resetFlipImage(movableObject);
     }
   }
+
+  flipImage(movableObject){
+    this.ctx.save();
+    this.ctx.translate(movableObject.width, 0);
+    this.ctx.scale(-1,1);
+    movableObject.x = movableObject.x * -1; 
+  }
+  
+  resetFlipImage(movableObject) {
+    movableObject.x = movableObject.x * -1; 
+    this.ctx.restore();
+  }
+
 }
