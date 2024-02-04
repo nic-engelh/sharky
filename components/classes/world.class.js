@@ -2,16 +2,10 @@ class World {
   keyboard;
   canvas;
   ctx;
-  cameraX = -100;
+  cameraX = 0;
   hero = new Hero();
-  enemies = [new Pufferfish(), new Pufferfish(), new Pufferfish()];
-  backgrounds = [
-    new BackgroundObject('/assets/img/3. Background/Layers/5. Water/D1.png', 0, 0, 480, 720 ),
-    new BackgroundObject('assets/img/3. Background/Layers/1. Light/1.png', 0, 0, 480, 720 ),
-    new BackgroundObject('/assets/img/3. Background/Layers/4.Fondo 2/D1.png', 0, 80, 400, 720 ),
-    new BackgroundObject('/assets/img/3. Background/Layers/3.Fondo 1/D1.png', 0, 80, 400, 720 ),
-    new BackgroundObject('/assets/img/3. Background/Layers/2. Floor/D1.png', 0, 80, 400, 720 ),
-  ];
+  enemies = level1.enemies;
+  backgrounds = level1.backgrounds;
    
   constructor(canvas, keyboard) {
     this.canvas = canvas;
