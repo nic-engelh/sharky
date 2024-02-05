@@ -39,4 +39,6 @@ class MovableObject {
         this.image = this.imageCache.get(path);
         this.currentImage++;
     }
+
+    
 }

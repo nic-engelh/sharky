@@ -21,7 +21,7 @@ class Hero extends MovableObject {
 
         setInterval(() => {
             this.swimmingSounds.pause();
-            if (this.world.keyboard.right && this.world.level.levelEndX) {
+            if (this.world.keyboard.right && this.x < this.world.level.levelEndX) {
                 this.x += this.speed ; 
                 this.otherDirection = false;
                 this.swimmingSounds.play(); 

@@ -1,5 +1,6 @@
 class Endboss extends MovableObject {
-
+    height = 520;
+    width = 608;
     imagesWalking = [
         '/assets/img/2.Enemy/3 Final Enemy/2.floating/1.png',
         '/assets/img/2.Enemy/3 Final Enemy/2.floating/2.png',
@@ -19,14 +20,16 @@ class Endboss extends MovableObject {
     constructor () {
         super().loadImage('/assets/img/2.Enemy/3 Final Enemy/2.floating/1.png');
         this.loadImages(this.imagesWalking);
-        this.x = 2100;
-        this.y = 300;
-        this.height = 520;
-        this.width = 608;
+        this.x = 2300;
+        this.y = -150;
+        //this.height = 520;
+        //this.width = 608;
         this.animate();
     }
 
     animate () {
-        this.playAnimation(this.imagesWalking);
+        setInterval(() => {
+            this.playAnimation(this.imagesWalking);
+        }, 200); 
     }
 }
