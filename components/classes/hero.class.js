@@ -9,6 +9,7 @@ class Hero extends MovableObject {
     ]
     world;
     speed = 10;
+    swimmingSounds = new Audio('assets/sounds/Undwater_Backgroundsounds.mp3');
 
     constructor () {
         super().loadImage('/assets/img/1.Sharkie/3.Swim/1.png');
@@ -19,24 +20,24 @@ class Hero extends MovableObject {
     animate() {
 
         setInterval(() => {
-            if (this.world.keyboard.right) {
+            this.swimmingSounds.pause();
+            if (this.world.keyboard.right && this.world.level.levelEndX) {
                 this.x += this.speed ; 
-                this.otherDirection = false; 
+                this.otherDirection = false;
+                this.swimmingSounds.play(); 
             }
 
-            if (this.world.keyboard.left) {
+            if (this.world.keyboard.left && this.x > 0 ) {
                 this.x -= this.speed ; 
                 this.otherDirection = true; 
+                this.swimmingSounds.play(); 
             }
-            this.world.cameraX = - this.x;
+            this.world.cameraX = - this.x + 100;
         }, 1000 / 60);
 
         setInterval(() => {
             if (this.world.keyboard.right || this.world.keyboard.left ) {
-                let i = this.currentImage % this.imagesWalking.length;
-                let path = this.imagesWalking[i];
-                this.image = this.imageCache.get(path);
-                this.currentImage++;
+               this.playAnimation(this.imagesWalking);
             }
         }, 200); 
     }
