@@ -40,6 +40,22 @@ class Hero extends MovableObject {
         '/assets/img/1.Sharkie/4.Attack/Fin slap/8.png',
     ];
 
+    imagesSleeping = [
+        '/assets/img/1.Sharkie/2.Long_IDLE/i1.png',
+        '/assets/img/1.Sharkie/2.Long_IDLE/i2.png',
+        '/assets/img/1.Sharkie/2.Long_IDLE/i3.png',
+        '/assets/img/1.Sharkie/2.Long_IDLE/i4.png',
+        '/assets/img/1.Sharkie/2.Long_IDLE/i5.png',
+        '/assets/img/1.Sharkie/2.Long_IDLE/i6.png',
+        '/assets/img/1.Sharkie/2.Long_IDLE/i7.png',
+        '/assets/img/1.Sharkie/2.Long_IDLE/i8.png',
+        '/assets/img/1.Sharkie/2.Long_IDLE/i9.png',
+        '/assets/img/1.Sharkie/2.Long_IDLE/i10.png',
+        '/assets/img/1.Sharkie/2.Long_IDLE/i11.png',
+        '/assets/img/1.Sharkie/2.Long_IDLE/i12.png',
+        '/assets/img/1.Sharkie/2.Long_IDLE/i13.png',
+        '/assets/img/1.Sharkie/2.Long_IDLE/i14.png'
+    ];
 
     world;
     speed = 10;
@@ -48,6 +64,8 @@ class Hero extends MovableObject {
     constructor () {
         super().loadImage('/assets/img/1.Sharkie/3.Swim/1.png');
         this.loadImages(this.imagesWalking);
+        this.loadImages(this.imagesWaiting);
+        this.loadImages(this.imagesFinAttacking);
         this.animate();
     }
 
@@ -66,14 +84,26 @@ class Hero extends MovableObject {
                 this.otherDirection = true; 
                 this.swimmingSounds.play(); 
             }
+
+            if (this.world.keyboard.up && this.y > -100) {
+                this.y -= this.speed;
+            }
+
+            if (this.world.keyboard.down && this.y < 300) {
+                this.y += this.speed;
+            }
+
             this.world.cameraX = - this.x + 100;
         }, 1000 / 60);
 
         setInterval(() => {
+            this.playAnimation(this.imagesWaiting);
+
             if (this.world.keyboard.right || this.world.keyboard.left ) {
                this.playAnimation(this.imagesWalking);
             }
         }, 200); 
+
     }
 
     jump () {
