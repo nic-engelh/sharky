@@ -27,6 +27,8 @@ class World {
 
     this.addToMap(this.hero);
 
+    this.addObjectsToMaps(this.level.coins);
+
     this.addObjectsToMaps(this.level.enemies);
     
     this.ctx.translate( - this.cameraX, 0);
