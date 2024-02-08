@@ -4,8 +4,7 @@ class World {
   ctx;
   cameraX = 0;
   hero = new Hero();
-  enemies = level1.enemies;
-  backgrounds = level1.backgrounds;
+  level = level1;
    
   constructor(canvas, keyboard) {
     this.canvas = canvas;
@@ -13,10 +12,21 @@ class World {
     this.draw();
     this.keyboard = keyboard;
     this.setWorld();
+    this.checkCollisions();
   }
 
   setWorld() {
     this.hero.world = this;
+  }
+
+  checkCollisions() {
+    setInterval(() => {
+      this.level.enemies.forEach((enemy)=> {
+        if(this.hero.isColliding(enemy)) {
+          console.log('Collision with Hero', enemy);
+        }
+      })
+    }, 1000/30);
   }
 
   draw() {
@@ -24,11 +34,13 @@ class World {
 
     this.ctx.translate(this.cameraX, 0);
 
-    this.addObjectsToMaps(this.backgrounds);
+    this.addObjectsToMaps(this.level.backgrounds);
 
     this.addToMap(this.hero);
 
-    this.addObjectsToMaps(this.enemies);
+    this.addObjectsToMaps(this.level.coins);
+
+    this.addObjectsToMaps(this.level.enemies);
     
     this.ctx.translate( - this.cameraX, 0);
 
@@ -48,14 +60,10 @@ class World {
 
     if(movableObject.otherDirection){
       this.flipImage(movableObject);
-    }
-    this.ctx.drawImage(
-      movableObject.image,
-      movableObject.x,
-      movableObject.y,
-      movableObject.width,
-      movableObject.height
-    );
+    };
+    movableObject.draw(this.ctx);
+    movableObject.drawFrame(this.ctx);
+   
     if (movableObject.otherDirection) {
       this.resetFlipImage(movableObject);
     }
