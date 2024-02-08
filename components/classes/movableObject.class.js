@@ -67,7 +67,7 @@ class MovableObject {
     ) {
       ctx.beginPath();
       ctx.lineWidth = "5";
-      ctx.strokeStyle = "red";
+      ctx.strokeStyle = "blue";
       ctx.rect(this.image, this.x, this.y, this.width, this.height);
       ctx.stroke();
     }

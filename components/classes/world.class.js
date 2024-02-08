@@ -25,7 +25,7 @@ class World {
         if(this.hero.isColliding(enemy)) {
           console.log('Collision with Hero', enemy);
         }
-      })
+      });
     }, 1000/30);
   }
 
