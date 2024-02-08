@@ -10,6 +10,9 @@ class MovableObject {
   otherDirection = false;
   speedY = 0;
   acceleration = 2.5;
+  offSetY = 0;
+  offSetX = 200;
+  energy = 100;
 
   loadImage(path) {
     this.image = new Image();
@@ -60,23 +63,34 @@ class MovableObject {
   }
 
   drawFrame(ctx) {
+  
     if (
       this instanceof Hero ||
       this instanceof Jellyfish ||
       this instanceof Pufferfish
     ) {
       ctx.beginPath();
-      ctx.lineWidth = "5";
-      ctx.strokeStyle = "blue";
-      ctx.rect(this.image, this.x, this.y, this.width, this.height);
+      ctx.lineWidth = '5';
+      ctx.strokeStyle = 'red';
+      ctx.rect(this.x, this.y, this.width, this.height);
       ctx.stroke();
     }
   }
 
   isColliding(object) {
     return  (this.x + this.width) >= object.x && this.x <=(object.x + object.width) &&
-            (this.y + this.height + this.offsetY) >= object.y &&
-            (this.y + this.offsetY) <= (object.y + object.height) &&
-            object.OnCollisionCourse; 
+            (this.y + this.height + this.offSetY) >= object.y &&
+            (this.y + this.offSetY) <= (object.y + object.height) 
+            //&&
+            //object.OnCollisionCourse; 
+  }
+
+  hit() {
+
+    this.energy -= 5;
+    if (this.energy < 0) {
+      this.energy = 0;
+    }
+
   }
 }

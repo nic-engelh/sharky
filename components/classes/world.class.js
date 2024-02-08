@@ -22,11 +22,15 @@ class World {
   checkCollisions() {
     setInterval(() => {
       this.level.enemies.forEach((enemy)=> {
+        console.log(this.hero.isColliding(enemy));
         if(this.hero.isColliding(enemy)) {
           console.log('Collision with Hero', enemy);
+          // hero loses health
+          this.hero.hit();
+          // hero shows animation of beening hit
         }
       });
-    }, 1000/30);
+    }, 1000/10);
   }
 
   draw() {
