@@ -13,6 +13,7 @@ class MovableObject {
   offSetY = 0;
   offSetX = 200;
   energy = 100;
+  lastHit = 0;
 
   loadImage(path) {
     this.image = new Image();
@@ -86,11 +87,21 @@ class MovableObject {
   }
 
   hit() {
-
     this.energy -= 5;
     if (this.energy < 0) {
       this.energy = 0;
+    } else {
+      this.lastHit = newDate().getTime();
     }
+  }
 
+  isDead() {
+    return this.energy == 0;
+  }
+
+  isHurt() {
+    let timePassed = new Date().getTime() - this.lastHit; // difference in millisec
+    timePassed = timePassed / 1000; // difference in sec
+    return timePassed < 1;
   }
 }

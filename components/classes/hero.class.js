@@ -57,6 +57,35 @@ class Hero extends MovableObject {
         '/assets/img/1.Sharkie/2.Long_IDLE/i14.png'
     ];
 
+    imagesDead = [
+        '/assets/img/1.Sharkie/6.dead/1.Poisoned/1.png',
+        '/assets/img/1.Sharkie/6.dead/1.Poisoned/2.png',
+        '/assets/img/1.Sharkie/6.dead/1.Poisoned/3.png',
+        '/assets/img/1.Sharkie/6.dead/1.Poisoned/4.png',
+        '/assets/img/1.Sharkie/6.dead/1.Poisoned/5.png',
+        '/assets/img/1.Sharkie/6.dead/1.Poisoned/6.png',
+        '/assets/img/1.Sharkie/6.dead/1.Poisoned/7.png',
+        '/assets/img/1.Sharkie/6.dead/1.Poisoned/8.png',
+        '/assets/img/1.Sharkie/6.dead/1.Poisoned/9.png',
+        '/assets/img/1.Sharkie/6.dead/1.Poisoned/10.png',
+        '/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png',
+        '/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png'
+    ];
+
+    imagesPoisoning = [
+        '/assets/img/1.Sharkie/5.Hurt/1.Poisoned/1.png',
+        '/assets/img/1.Sharkie/5.Hurt/1.Poisoned/2.png',
+        '/assets/img/1.Sharkie/5.Hurt/1.Poisoned/3.png',
+        '/assets/img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
+        '/assets/img/1.Sharkie/5.Hurt/1.Poisoned/5.png',
+    ];
+
+    imagesShocking = [
+        '/assets/img/1.Sharkie/5.Hurt/2.Electric shock/1.png',
+        '/assets/img/1.Sharkie/5.Hurt/2.Electric shock/2.png',
+        '/assets/img/1.Sharkie/5.Hurt/2.Electric shock/3.png',
+    ];
+
     world;
     speed = 10;
     swimmingSounds = new Audio('assets/sounds/Undwater_Backgroundsounds.mp3');
@@ -98,6 +127,14 @@ class Hero extends MovableObject {
 
         setInterval(() => {
             this.playAnimation(this.imagesWaiting);
+
+            if (this.isDead()) {
+                this.playAnimation(this.imagesDead);
+            }
+
+            if (this.isHurt()){
+                this.playAnimation(this.imagesPoisoning);
+            }
 
             if (this.world.keyboard.right || this.world.keyboard.left ) {
                this.playAnimation(this.imagesWalking);
