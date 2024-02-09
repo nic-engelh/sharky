@@ -57,7 +57,7 @@ class Hero extends MovableObject {
         '/assets/img/1.Sharkie/2.Long_IDLE/i14.png'
     ];
 
-    imagesDead = [
+    imagesDying = [
         '/assets/img/1.Sharkie/6.dead/1.Poisoned/1.png',
         '/assets/img/1.Sharkie/6.dead/1.Poisoned/2.png',
         '/assets/img/1.Sharkie/6.dead/1.Poisoned/3.png',
@@ -95,6 +95,10 @@ class Hero extends MovableObject {
         this.loadImages(this.imagesWalking);
         this.loadImages(this.imagesWaiting);
         this.loadImages(this.imagesFinAttacking);
+        this.loadImages(this.imagesSleeping);
+        this.loadImages(this.imagesPoisoning);
+        this.loadImages(this.imagesShocking);
+        this.loadImages(this.imagesDying);
         this.animate();
     }
 
@@ -129,10 +133,12 @@ class Hero extends MovableObject {
             this.playAnimation(this.imagesWaiting);
 
             if (this.isDead()) {
-                this.playAnimation(this.imagesDead);
+                console.log('dead')
+                this.playAnimation(this.imagesDying);
             }
 
             if (this.isHurt()){
+                console.log('hurt')
                 this.playAnimation(this.imagesPoisoning);
             }
 

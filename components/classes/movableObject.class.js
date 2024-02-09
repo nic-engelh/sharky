@@ -1,17 +1,13 @@
 class MovableObject extends DrawableObject {
   speed = 0.15;
-  currentImage = 0;
   otherDirection = false;
   speedY = 0;
   acceleration = 2.5;
-  offSetY = 0;
+  offSetY = 200;
   offSetX = 200;
   energy = 100;
   lastHit = 0;
 
-  constructor () {
-    super();
-  }
 
   moveRight() {
     setInterval(() => {
@@ -44,8 +40,6 @@ class MovableObject extends DrawableObject {
     return this.y < 180;
   }
 
-
-
   isColliding(object) {
     return  (this.x + this.width) >= object.x && this.x <=(object.x + object.width) &&
             (this.y + this.height + this.offSetY) >= object.y &&
@@ -56,10 +50,11 @@ class MovableObject extends DrawableObject {
 
   hit() {
     this.energy -= 5;
+    
     if (this.energy < 0) {
       this.energy = 0;
     } else {
-      this.lastHit = newDate().getTime();
+      this.lastHit = new Date().getTime();
     }
   }
 
@@ -69,7 +64,8 @@ class MovableObject extends DrawableObject {
 
   isHurt() {
     let timePassed = new Date().getTime() - this.lastHit; // difference in millisec
-    timePassed = timePassed / 1000; // difference in sec
+    timePassed = (timePassed / 1000); // difference in sec
+    console.log(timePassed);
     return timePassed < 1;
   }
 }
