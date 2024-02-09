@@ -1,11 +1,5 @@
-class MovableObject {
-  x = 120;
-  y = 200;
-  height = 245;
-  width = 300;
+class MovableObject extends DrawableObject {
   speed = 0.15;
-  image;
-  imageCache = new Map();
   currentImage = 0;
   otherDirection = false;
   speedY = 0;
@@ -15,17 +9,8 @@ class MovableObject {
   energy = 100;
   lastHit = 0;
 
-  loadImage(path) {
-    this.image = new Image();
-    this.image.src = path;
-  }
-
-  loadImages(images) {
-    images.forEach((imagePath) => {
-      let img = new Image();
-      img.src = imagePath;
-      this.imageCache.set(imagePath, img);
-    });
+  constructor () {
+    super();
   }
 
   moveRight() {
@@ -59,24 +44,7 @@ class MovableObject {
     return this.y < 180;
   }
 
-  draw(ctx) {
-    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-  }
 
-  drawFrame(ctx) {
-  
-    if (
-      this instanceof Hero ||
-      this instanceof Jellyfish ||
-      this instanceof Pufferfish
-    ) {
-      ctx.beginPath();
-      ctx.lineWidth = '5';
-      ctx.strokeStyle = 'red';
-      ctx.rect(this.x, this.y, this.width, this.height);
-      ctx.stroke();
-    }
-  }
 
   isColliding(object) {
     return  (this.x + this.width) >= object.x && this.x <=(object.x + object.width) &&
