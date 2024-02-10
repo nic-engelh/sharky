@@ -34,7 +34,7 @@ class Endboss extends MovableObject {
 
 
     constructor () {
-        super().loadImage('/assets/img/2.Enemy/3 Final Enemy/2.floating/1.png');
+        super().loadImage('assets/img/2.Enemy/3 Final Enemy/1.Introduce/1.png');
         this.loadImages(this.imagesWalking);
         this.loadImages(this.imagesSpawing);
         this.x = 2300;
@@ -44,23 +44,21 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
-    
-
     animate () {
         let i = 0;
 
         setInterval(() => {
-            if ( this.world.hero.x > 2000 && !this.hadFirstHeroContact) {
-                debugger;
+            if ( this.world.hero.x > 1900 && !this.hadFirstHeroContact) {
                 this.playAnimation(this.imagesSpawing);
                 i++;
                 if ( i > 10) {
                     this.hadFirstHeroContact = true;
                 }
-            } else {
+            } if (this.hadFirstHeroContact) {
                 this.playAnimation(this.imagesWalking);
+            } else { 
+                
             }
-            
             
         }, 200);
 
