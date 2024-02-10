@@ -3,7 +3,8 @@ class MovableObject extends DrawableObject {
   otherDirection = false;
   speedY = 0;
   acceleration = 2.5;
-  offSetY = 0;
+  offSetTop = 150;
+  offSetBottom = -50;
   offSetX = 200;
   energy = 100;
   lastHit = 0;
@@ -44,8 +45,8 @@ class MovableObject extends DrawableObject {
     return (
       this.x + this.width >= object.x &&
       this.x <= object.x + object.width &&
-      this.y + this.height + this.offSetY >= object.y &&
-      this.y + this.offSetY <= object.y + object.height
+      this.y + this.height + this.offSetBottom >= object.y &&
+      this.y + this.offSetTop  <= object.y + object.height
     );
   }
 
@@ -54,6 +55,7 @@ class MovableObject extends DrawableObject {
 
     if (this.energy < 0) {
       this.energy = 0;
+      this.deathState = true;
     } else {
       this.lastHit = new Date().getTime();
     }

@@ -99,7 +99,6 @@ class Hero extends MovableObject {
         this.loadImages(this.imagesPoisoning);
         this.loadImages(this.imagesShocking);
         this.loadImages(this.imagesDying);
-        this.offSetY = 0;
         this.animate();
     }
 
