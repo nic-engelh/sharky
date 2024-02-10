@@ -3,11 +3,11 @@ class MovableObject extends DrawableObject {
   otherDirection = false;
   speedY = 0;
   acceleration = 2.5;
-  offSetY = 200;
+  offSetY = 0;
   offSetX = 200;
   energy = 100;
   lastHit = 0;
-
+  deathState = false;
 
   moveRight() {
     setInterval(() => {
@@ -41,16 +41,17 @@ class MovableObject extends DrawableObject {
   }
 
   isColliding(object) {
-    return  (this.x + this.width) >= object.x && this.x <=(object.x + object.width) &&
-            (this.y + this.height + this.offSetY) >= object.y &&
-            (this.y + this.offSetY) <= (object.y + object.height) 
-            //&&
-            //object.OnCollisionCourse; 
+    return (
+      this.x + this.width >= object.x &&
+      this.x <= object.x + object.width &&
+      this.y + this.height + this.offSetY >= object.y &&
+      this.y + this.offSetY <= object.y + object.height
+    );
   }
 
   hit() {
     this.energy -= 5;
-    
+
     if (this.energy < 0) {
       this.energy = 0;
     } else {
@@ -64,7 +65,7 @@ class MovableObject extends DrawableObject {
 
   isHurt() {
     let timePassed = new Date().getTime() - this.lastHit; // difference in millisec
-    timePassed = (timePassed / 1000); // difference in sec
+    timePassed = timePassed / 1000; // difference in sec
     console.log(timePassed);
     return timePassed < 1;
   }

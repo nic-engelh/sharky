@@ -17,6 +17,7 @@ class World {
 
   setWorld() {
     this.hero.world = this;
+    this.level.enemies[5].world = this;
   }
 
   checkCollisions() {

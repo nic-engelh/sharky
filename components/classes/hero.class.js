@@ -99,11 +99,12 @@ class Hero extends MovableObject {
         this.loadImages(this.imagesPoisoning);
         this.loadImages(this.imagesShocking);
         this.loadImages(this.imagesDying);
+        this.offSetY = 0;
         this.animate();
     }
 
     animate() {
-
+    
         setInterval(() => {
             this.swimmingSounds.pause();
             if (this.world.keyboard.right && this.x < this.world.level.levelEndX) {
