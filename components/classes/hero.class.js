@@ -106,23 +106,23 @@ class Hero extends MovableObject {
     
         setInterval(() => {
             this.swimmingSounds.pause();
-            if (this.world.keyboard.right && this.x < this.world.level.levelEndX) {
+            if (this.canHeroMoveRight()) {
                 this.x += this.speed ; 
                 this.otherDirection = false;
                 this.swimmingSounds.play(); 
             }
 
-            if (this.world.keyboard.left && this.x > 0 ) {
+            if (this.canHeroMoveLeft()) {
                 this.x -= this.speed ; 
                 this.otherDirection = true; 
                 this.swimmingSounds.play(); 
             }
 
-            if (this.world.keyboard.up && this.y > -100) {
+            if (this.canHeroMoveUp()) {
                 this.y -= this.speed;
             }
 
-            if (this.world.keyboard.down && this.y < 300) {
+            if (this.canHeroMoveDown()) {
                 this.y += this.speed;
             }
 
@@ -142,7 +142,7 @@ class Hero extends MovableObject {
                 this.playAnimation(this.imagesPoisoning);
             }
 
-            if (this.world.keyboard.right || this.world.keyboard.left ) {
+            if (this.isMoving()) {
                this.playAnimation(this.imagesWalking);
             }
         }, 200); 
@@ -151,5 +151,25 @@ class Hero extends MovableObject {
 
     jump () {
         return true
+    }
+
+    isMoving() {
+        return this.world.keyboard.right || this.world.keyboard.left 
+    }
+
+    canHeroMoveLeft() {
+        return this.world.keyboard.left && this.x > 0 
+    }
+
+    canHeroMoveRight() {
+        return this.world.keyboard.right && this.x < this.world.level.levelEndX
+    }
+
+    canHeroMoveUp() {
+        return this.world.keyboard.up && this.y > -100
+    }
+
+    canHeroMoveDown() {
+        return this.world.keyboard.down && this.y < 300
     }
 }
