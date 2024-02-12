@@ -72,6 +72,16 @@ class Hero extends MovableObject {
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
   ];
 
+  imagesDead = [
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/9.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/10.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/10.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/9.png",
+  ];
+
   imagesPoisoning = [
     "/assets/img/1.Sharkie/5.Hurt/1.Poisoned/1.png",
     "/assets/img/1.Sharkie/5.Hurt/1.Poisoned/2.png",
@@ -86,6 +96,17 @@ class Hero extends MovableObject {
     "/assets/img/1.Sharkie/5.Hurt/2.Electric shock/3.png",
   ];
 
+  imagesBubbleAttacking = [
+    '/sharky/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
+    '/sharky/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
+    '/sharky/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
+    '/sharky/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png',
+    '/sharky/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
+    '/sharky/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
+    '/sharky/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
+    '/sharky/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png',
+  ];
+
   world;
   speed = 10;
   swimmingSounds = new Audio("assets/sounds/Undwater_Backgroundsounds.mp3");
@@ -95,14 +116,17 @@ class Hero extends MovableObject {
     this.loadImages(this.imagesWalking);
     this.loadImages(this.imagesWaiting);
     this.loadImages(this.imagesFinAttacking);
+    this.loadImages(this.imagesBubbleAttacking);
     this.loadImages(this.imagesSleeping);
     this.loadImages(this.imagesPoisoning);
     this.loadImages(this.imagesShocking);
     this.loadImages(this.imagesDying);
+    this.loadImages(this.imagesDead);
     this.animate();
   }
 
   animate() {
+    let i = 0;
     setInterval(() => {
       this.swimmingSounds.pause();
       if (this.canHeroMoveRight()) {
@@ -124,22 +148,39 @@ class Hero extends MovableObject {
       this.world.cameraX = -this.x + 100;
     }, 1000 / 60);
 
-    setInterval(() => {
-      this.playAnimation(this.imagesWaiting);
 
-      if (this.isDead()) {
+    setInterval(() => {
+      if (this.isDead && i > 12) {
+        this.playAnimation(this.imagesDead);
+      }
+
+      if (this.isDead() && i <= 12) {
         console.log("dead");
         this.playAnimation(this.imagesDying);
+        i++;
+        if (i > 11) {
+          // stop game
+        }
       }
+      
+    }, 400);
 
-      if (this.isHurt()) {
-        console.log("hurt");
-        this.playAnimation(this.imagesPoisoning);
-      }
 
-      if (this.isMoving()) {
-        this.playAnimation(this.imagesWalking);
+    setInterval(() => {
+  
+      if (!this.isDead()) {
+        this.playAnimation(this.imagesWaiting);
+
+        if (this.isHurt()) {
+          console.log("hurt");
+          this.playAnimation(this.imagesPoisoning);
+        }
+
+        if (this.isMoving()) {
+          this.playAnimation(this.imagesWalking);
+        }
       }
+      
     }, 200);
   }
 
