@@ -5,6 +5,7 @@ class World {
   cameraX = 0;
   hero = new Hero();
   level = level1;
+  statusBar = new StatusBar();
    
   constructor(canvas, keyboard) {
     this.canvas = canvas;
@@ -42,6 +43,8 @@ class World {
     this.addObjectsToMaps(this.level.backgrounds);
 
     this.addToMap(this.hero);
+
+    this.addToMap(this.statusBar);
 
     this.addObjectsToMaps(this.level.coins);
 

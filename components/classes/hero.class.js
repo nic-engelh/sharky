@@ -163,7 +163,7 @@ class Hero extends MovableObject {
         }
       }
       
-    }, 400);
+    }, 1000/5);
 
 
     setInterval(() => {
