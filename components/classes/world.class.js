@@ -5,7 +5,7 @@ class World {
   cameraX = 0;
   hero = new Hero();
   level = level1;
-  statusBar = new StatusBar();
+  statusBar = new StatusBar("health");
    
   constructor(canvas, keyboard) {
     this.canvas = canvas;
@@ -29,10 +29,19 @@ class World {
           console.log('Collision with Hero', enemy);
           // hero loses health
           this.hero.hit();
+          this.statusBar.setPercentage(this.hero.energy);
           // hero shows animation of beening hit
         }
       });
+      this.level.coins.forEach((coin)=> {
+        // collision with coin
+        // get coin
+        // update coin status bar
+        return true
+      })
     }, 1000/10);
+
+  
   }
 
   draw() {
@@ -42,9 +51,13 @@ class World {
 
     this.addObjectsToMaps(this.level.backgrounds);
 
-    this.addToMap(this.hero);
-
+    // fixed objects with reseting coordination system
+    this.ctx.translate( - this.cameraX, 0);
     this.addToMap(this.statusBar);
+    this.ctx.translate(this.cameraX, 0);
+    
+    // movable objects
+    this.addToMap(this.hero);
 
     this.addObjectsToMaps(this.level.coins);
 
