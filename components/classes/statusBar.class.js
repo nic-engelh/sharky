@@ -27,9 +27,6 @@ class StatusBar extends DrawableObject {
         '/assets/img/4. Marcadores/green/poisoned bubbles/100_ copia 3.png',
     ];
 
-
-
-
     percentage = 100;
 
     constructor(type) {
@@ -62,7 +59,7 @@ class StatusBar extends DrawableObject {
     setPercentage (percentage, images) {
         this.percentage = percentage; 
         let path = images[this.resolveImageIndex()];
-        this.img = this.imageCache.get(path);
+        this.image = this.imageCache.get(path);
     }
 
 

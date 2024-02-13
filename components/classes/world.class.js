@@ -5,7 +5,9 @@ class World {
   cameraX = 0;
   hero = new Hero();
   level = level1;
-  statusBar = new StatusBar("health");
+  healthStatusBar = new StatusBar("health");
+  coinStatusBar = new StatusBar("coin");
+  poisonStatusBar = new StatusBar("poison");
    
   constructor(canvas, keyboard) {
     this.canvas = canvas;
@@ -29,8 +31,7 @@ class World {
           console.log('Collision with Hero', enemy);
           // hero loses health
           this.hero.hit();
-          debugger;
-          this.statusBar.setPercentage(this.hero.energy, this.statusBar.imagesHealth);
+          this.healthStatusBar.setPercentage(this.hero.energy, this.healthStatusBar.imagesHealth);
           // hero shows animation of beening hit
         }
       });
@@ -39,6 +40,8 @@ class World {
         // get coin
         // update coin status bar
         if (this.hero.isColliding(coin)) {
+          // update coin status bar
+          this.coinStatusBar.setPercentage(10, this.coinStatusBar.imagesCoin);
 
         }
         return true
