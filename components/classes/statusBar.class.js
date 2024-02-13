@@ -19,12 +19,12 @@ class StatusBar extends DrawableObject {
     ];
 
     imagesPoison = [
-        'assets/img/4. Marcadores/green/poisoned bubbles/0_ copia 2.png',
-        'assets/img/4. Marcadores/green/poisoned bubbles/20_ copia 3.png',
-        'assets/img/4. Marcadores/green/poisoned bubbles/40_ copia 2.png',
-        'assets/img/4. Marcadores/green/poisoned bubbles/60_ copia 2.png',
-        'assets/img/4. Marcadores/green/poisoned bubbles/80_ copia 2.png',
-        'assets/img/4. Marcadores/green/poisoned bubbles/100_ copia 3.png',
+        '/assets/img/4. Marcadores/green/poisoned bubbles/0_ copia 2.png',
+        '/assets/img/4. Marcadores/green/poisoned bubbles/20_ copia 3.png',
+        '/assets/img/4. Marcadores/green/poisoned bubbles/40_ copia 2.png',
+        '/assets/img/4. Marcadores/green/poisoned bubbles/60_ copia 2.png',
+        '/assets/img/4. Marcadores/green/poisoned bubbles/80_ copia 2.png',
+        '/assets/img/4. Marcadores/green/poisoned bubbles/100_ copia 3.png',
     ];
 
 
@@ -33,35 +33,36 @@ class StatusBar extends DrawableObject {
     percentage = 100;
 
     constructor(type) {
-        super();
         if(type == "health") {
-            loadImage('/assets/img/4. Marcadores/green/Life/100_  copia 2.png');
+            super().loadImage('/assets/img/4. Marcadores/green/Life/100_  copia 2.png');
             this.loadImages(this.imagesHealth);
             this.x = 30;
             this.y = 0;
+            this.setPercentage(100, this.imagesHealth);
         }
         if(type == "poison") {
-            loadImage('assets/img/4. Marcadores/green/poisoned bubbles/0_ copia 2.png');
+            super().loadImage('/assets/img/4. Marcadores/green/poisoned bubbles/0_ copia 2.png');
             this.loadImages(this.imagesPoison);
             this.x = 30;
             this.y = -30;
+            this.setPercentage(100, this.imagesCoin);
         }
         if(type == "coin") {
-            loadImage('assets/img/4. Marcadores/green/Coin/0_  copia 4.png');
+            super().loadImage('/assets/img/4. Marcadores/green/Coin/0_  copia 4.png');
             this.loadImages(this.imagesCoin);
             this.x = 30;
             this.y = -60;
+            this.setPercentage(100, this.imagesPoison);
         }
 
         this.height = 60;
         this.width= 200
-        this.setPercentage(100);
     } 
 
-    setPercentage (percentage) {
+    setPercentage (percentage, images) {
         this.percentage = percentage; 
-        let path = this.image[this.resolveImageIndex()];
-        this.img = this.imageCache[path];
+        let path = images[this.resolveImageIndex()];
+        this.img = this.imageCache.get(path);
     }
 
 

@@ -29,7 +29,8 @@ class World {
           console.log('Collision with Hero', enemy);
           // hero loses health
           this.hero.hit();
-          this.statusBar.setPercentage(this.hero.energy);
+          debugger;
+          this.statusBar.setPercentage(this.hero.energy, this.statusBar.imagesHealth);
           // hero shows animation of beening hit
         }
       });
@@ -37,6 +38,9 @@ class World {
         // collision with coin
         // get coin
         // update coin status bar
+        if (this.hero.isColliding(coin)) {
+
+        }
         return true
       })
     }, 1000/10);

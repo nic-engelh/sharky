@@ -97,14 +97,14 @@ class Hero extends MovableObject {
   ];
 
   imagesBubbleAttacking = [
-    '/sharky/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
-    '/sharky/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
-    '/sharky/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
-    '/sharky/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png',
-    '/sharky/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
-    '/sharky/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
-    '/sharky/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
-    '/sharky/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png',
+    '/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
+    '/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
+    '/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
+    '/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png',
+    '/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
+    '/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
+    '/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
+    '/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png',
   ];
 
   world;
