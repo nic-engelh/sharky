@@ -17,6 +17,7 @@ class World {
     this.keyboard = keyboard;
     this.setWorld();
     this.checkCollisions();
+    this.run();
   }
 
   setWorld() {
@@ -27,7 +28,16 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollisions();
+      this.checkThrownObjects();
     }, 1000 / 10);
+  }
+
+  checkThrownObjects() {
+    
+    if (this.keyboard.d) {
+      let bubble = new ThrowableObject(this.hero.x + this.hero.width - 100, this.hero.y + 150);
+      this.throwableObjects.push(bubble);
+    }
   }
 
   checkCollisions() {
