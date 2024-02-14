@@ -60,7 +60,7 @@ class World {
 
     // fixed objects with reseting coordination system
     this.ctx.translate( - this.cameraX, 0);
-    this.addToMap(this.statusBar);
+    this.addToMap(this.healthStatusBar);
     this.ctx.translate(this.cameraX, 0);
     
     // movable objects

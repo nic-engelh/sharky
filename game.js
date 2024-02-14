@@ -31,6 +31,9 @@ window.addEventListener("keydown", (event) => {
     if (pressedKey == "Escape") {
         keyboard.escape = true;
     }
+    if (pressedKey == "D") {
+        keyboard.d = true;
+    }
 } );
 
 window.addEventListener("keyup", (event) => {
@@ -56,5 +59,8 @@ window.addEventListener("keyup", (event) => {
     }
     if (pressedKey == "Escape") {
         keyboard.escape = false;
+    }
+    if (pressedKey == "D") {
+        keyboard.d = false;
     }
 } );
