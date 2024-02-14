@@ -21,6 +21,7 @@ class MovableObject extends DrawableObject {
     }, 1000 / 60);
   }
 
+
   playAnimation(images) {
     let i = this.currentImage % images.length;
     let path = images[i];
@@ -30,7 +31,7 @@ class MovableObject extends DrawableObject {
 
   applyGravity() {
     setInterval(() => {
-      if (isAboveGround) {
+      if (isAboveGround || this.speedY > 0) {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
       }
@@ -38,6 +39,9 @@ class MovableObject extends DrawableObject {
   }
 
   isAboveGround() {
+    if (this instanceof ThrowableObject) 
+      return true;
+    
     return this.y < 180;
   }
 
