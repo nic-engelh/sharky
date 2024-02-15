@@ -9,6 +9,10 @@ class ThrowableObject extends MovableObject {
     this.y = y;
     this.x = x
     this.acceleration = 0.05;
+    this.offSetTop = 0;
+    this.offsetBottom = 0;
+    this.offsetRight = 0;
+    this.offsetleft = 0;
     this.throw();
   }
 
