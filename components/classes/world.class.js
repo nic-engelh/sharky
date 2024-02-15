@@ -49,10 +49,13 @@ class World {
       }});
     
     this.throwableObjects.forEach((bubble) => {
-      
       this.level.enemies.forEach ((enemy) => {
         if (bubble.isColliding(enemy)) {
-          console.log('bubble hits:',enemy)
+          console.log('bubble hits:',enemy);
+          enemy.deathState = true;
+          console.log(enemy.deathState);
+          // remove enemy from canvas --> delete from array level.enemy
+          // change picture of bubble into enemy-type locked in bubble
         }
       }) 
     });

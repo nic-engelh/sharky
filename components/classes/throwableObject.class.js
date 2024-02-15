@@ -21,6 +21,7 @@ class ThrowableObject extends MovableObject {
       this.x += this.speedX;
       this.y -= this.speedY;
       this.speedY += this.acceleration;
+      this.speedX -= this.acceleration;
     }, 1000 / 40);
   }
 
