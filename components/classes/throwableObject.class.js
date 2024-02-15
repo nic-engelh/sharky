@@ -18,12 +18,15 @@ class ThrowableObject extends MovableObject {
   throw() {
     this.speedY = 0.01;
     setInterval(() => {
-      this.x += this.speedX;
-      this.y -= this.speedY;
-      this.speedY += this.acceleration;
-      this.speedX -= this.acceleration;
+      this.floatingUpwards();
     }, 1000 / 40);
   }
 
+  changeImage() {
+    this.loadImage('/assets/img/2.Enemy/2 Jelly fish/Dead/Yellow/y1.png');
+  }
 
+  
+
+  
 }

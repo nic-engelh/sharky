@@ -12,13 +12,17 @@ class MovableObject extends DrawableObject {
   deathState = false;
 
   moveRight() {
-    setInterval(() => {
-      this.x += this.speed;
+     setInterval(() => {
+      if(!this.isDead()){
+        this.x += this.speed;
+      }
     }, 1000 / 60);
   }
   moveLeft() {
     setInterval(() => {
-      this.x -= this.speed;
+      if(!this.isDead()){
+        this.x -= this.speed;
+      }
     }, 1000 / 60);
   }
 
@@ -70,7 +74,13 @@ class MovableObject extends DrawableObject {
   }
 
   isDead() {
+    this.deathState == true;
     return this.energy == 0;
+  }
+
+  eliminated() {
+    this.deathState = true;
+    this.energy = 0;
   }
 
   isHurt() {
@@ -78,4 +88,13 @@ class MovableObject extends DrawableObject {
     timePassed = timePassed / 1000; // difference in sec
     return timePassed < 1;
   }
+
+  floatingUpwards(){
+    this.x += this.speedX;
+    this.y -= this.speedY;
+    this.speedY += this.acceleration;
+    this.speedX -= this.acceleration;
+  }
+
+  
 }
