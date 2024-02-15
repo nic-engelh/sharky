@@ -9,12 +9,10 @@ class ThrowableObject extends MovableObject {
     this.y = y;
     this.x = x
     this.acceleration = 0.05;
-    this.throw(x, y);
+    this.throw();
   }
 
-  throw(x,y) {
-        this.x = x;
-        this.y = y;
+  throw() {
         this.speedY = 0.01;
 
         setInterval(() => {
