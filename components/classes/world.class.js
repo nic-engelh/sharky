@@ -43,9 +43,9 @@ class World {
   }
 
   checkCollisions() {
-    checkingEnemyColiision();
-    checkingBubbleCollision();
-    checkingCoinCollision();
+    this.checkingEnemyCollision();
+    this.checkingBubbleCollision();
+    this.checkingCoinCollision();
   }
 
   draw() {
