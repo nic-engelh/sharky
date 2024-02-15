@@ -4,8 +4,9 @@ class MovableObject extends DrawableObject {
   speedY = 0;
   acceleration = 2.5;
   offSetTop = 150;
-  offSetBottom = -50;
-  offSetX = 200;
+  offsetBottom = 50;
+  offsetRight = 50;
+  offsetleft = 50;
   energy = 100;
   lastHit = 0;
   deathState = false;
@@ -47,10 +48,14 @@ class MovableObject extends DrawableObject {
 
   isColliding(object) {
     return (
-      this.x + this.width >= object.x &&
-      this.x <= object.x + object.width &&
-      this.y + this.height + this.offSetBottom >= object.y &&
-      this.y + this.offSetTop  <= object.y + object.height
+      // checking right with left
+      this.x + this.width - this.offsetRight >= object.x + object.offsetleft &&
+      // checking Left with right
+      this.x + this.offsetleft <= object.x + object.width - this.offsetRight &&
+      // checking top with bottom
+      this.y + this.height - this.offsetBottom >= object.y + object.offSetTop &&
+      // checking bottom with top
+      this.y + this.offsetTop  <= object.y + object.height - object.offsetBottom
     );
   }
 

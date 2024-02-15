@@ -33,7 +33,6 @@ class World {
   }
 
   checkThrownObjects() {
-    
     if (this.keyboard.d) {
       let bubble = new ThrowableObject(this.hero.x + this.hero.width - 100, this.hero.y + 150);
       this.throwableObjects.push(bubble);
@@ -42,15 +41,11 @@ class World {
 
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
-      console.log(this.hero.isColliding(enemy));
       if (this.hero.isColliding(enemy)) {
         console.log("Collision with Hero", enemy);
         // hero loses health
         this.hero.hit();
-        this.healthStatusBar.setPercentage(
-          this.hero.energy,
-          this.healthStatusBar.imagesHealth
-        );
+        this.changeHealthStatusbar();
         // hero shows animation of beening hit
       }
     });
@@ -65,6 +60,7 @@ class World {
     });
   }
 
+ 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -123,4 +119,13 @@ class World {
     movableObject.x = movableObject.x * -1;
     this.ctx.restore();
   }
+
+  changeHealthStatusbar () {
+    this.healthStatusBar.setPercentage(
+      this.hero.energy,
+      this.healthStatusBar.imagesHealth
+    );
+  }
+
+
 }
