@@ -23,7 +23,7 @@ class Jellyfish extends MovableObject {
         this.height = 200;
         this.width = 140;
         this.speed = 0.15 + Math.random() * 0.25;
-        this.offSetTop = 0;
+        this.offsetTop = 0;
         this.offsetBottom = 0;
         this.offsetRight = 0;
         this.offsetleft = 0;

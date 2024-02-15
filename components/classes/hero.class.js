@@ -97,14 +97,14 @@ class Hero extends MovableObject {
   ];
 
   imagesBubbleAttacking = [
-    '/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
-    '/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
-    '/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
-    '/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png',
-    '/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
-    '/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
-    '/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
-    '/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png',
+    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png",
+    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png",
+    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png",
+    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png",
+    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png",
+    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png",
+    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png",
+    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png",
   ];
 
   world;
@@ -122,6 +122,10 @@ class Hero extends MovableObject {
     this.loadImages(this.imagesShocking);
     this.loadImages(this.imagesDying);
     this.loadImages(this.imagesDead);
+    this.offsetTop = 150;
+    this.offsetBottom = 50;
+    this.offsetRight = 100;
+    this.offsetleft = 0;
     this.animate();
   }
 
@@ -142,12 +146,11 @@ class Hero extends MovableObject {
       }
 
       if (this.canHeroMoveDown()) {
-       this.moveDown();
+        this.moveDown();
       }
 
       this.world.cameraX = -this.x + 100;
     }, 1000 / 60);
-
 
     setInterval(() => {
       if (this.isDead && i > 12) {
@@ -162,12 +165,9 @@ class Hero extends MovableObject {
           // stop game
         }
       }
-      
-    }, 1000/5);
-
+    }, 1000 / 5);
 
     setInterval(() => {
-  
       if (!this.isDead()) {
         this.playAnimation(this.imagesWaiting);
 
@@ -180,7 +180,6 @@ class Hero extends MovableObject {
           this.playAnimation(this.imagesWalking);
         }
       }
-      
     }, 200);
   }
 
@@ -204,7 +203,7 @@ class Hero extends MovableObject {
     this.y -= this.speed;
   }
 
-  moveDown(){
+  moveDown() {
     this.y += this.speed;
   }
 

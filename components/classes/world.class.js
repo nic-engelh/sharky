@@ -43,18 +43,25 @@ class World {
     this.level.enemies.forEach((enemy) => {
       if (this.hero.isColliding(enemy)) {
         console.log("Collision with Hero", enemy);
-        // hero loses health
         this.hero.hit();
         this.changeHealthStatusbar();
-        // hero shows animation of beening hit
-      }
+    
+      }});
+    
+    this.throwableObjects.forEach((bubble) => {
+      
+      this.level.enemies.forEach ((enemy) => {
+        if (bubble.isColliding(enemy)) {
+          console.log('bubble hits:',enemy)
+        }
+      }) 
     });
+
     this.level.coins.forEach((coin) => {
       // collision with coin
       // get coin
       // update coin status bar
       if (this.hero.isColliding(coin)) {
-        // update coin status bar
         this.coinStatusBar.setPercentage(10, this.coinStatusBar.imagesCoin);
       }
     });

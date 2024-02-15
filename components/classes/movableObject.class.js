@@ -3,10 +3,10 @@ class MovableObject extends DrawableObject {
   otherDirection = false;
   speedY = 0;
   acceleration = 2.5;
-  offSetTop = 150;
+  offsetTop = 150;
   offsetBottom = 50;
-  offsetRight = 50;
-  offsetleft = 50;
+  offsetRight = 0;
+  offsetleft = 0;
   energy = 100;
   lastHit = 0;
   deathState = false;
@@ -53,7 +53,7 @@ class MovableObject extends DrawableObject {
       // checking Left with right
       this.x + this.offsetleft <= object.x + object.width - this.offsetRight &&
       // checking top with bottom
-      this.y + this.height - this.offsetBottom >= object.y + object.offSetTop &&
+      this.y + this.height - this.offsetBottom >= object.y + object.offsetTop &&
       // checking bottom with top
       this.y + this.offsetTop  <= object.y + object.height - object.offsetBottom
     );
