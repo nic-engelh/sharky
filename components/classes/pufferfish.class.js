@@ -32,7 +32,11 @@ class Pufferfish extends MovableObject {
         this.height = 100;
         this.width = 122;
         this.speed = 0.15 + Math.random() * 0.25;
-        this.animate();  
+        this.animate();
+        this.offsetTop = 0;
+        this.offsetBottom = 0;
+        this.offsetRight = 0;
+        this.offsetleft = 0;
     }
 
     animate() {
