@@ -42,19 +42,19 @@ class Hero extends MovableObject {
 
   imagesSleeping = [
     "/assets/img/1.Sharkie/2.Long_IDLE/i1.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/i2.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/i3.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/i4.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/i5.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/i6.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/i7.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/i8.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/i9.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/i10.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/i11.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/i12.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/i13.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/i14.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I2.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I3.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I4.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I5.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I6.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I7.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I8.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I9.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I10.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I11.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I12.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I13.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I14.png",
   ];
 
   imagesDying = [
@@ -130,25 +130,18 @@ class Hero extends MovableObject {
   }
 
   animate() {
-    let i = 0;
+    let i = 0; 
+    let j = 0;
     setInterval(() => {
       this.swimmingSounds.pause();
-      if (this.canHeroMoveRight()) {
+      if (this.canHeroMoveRight()) 
         this.moveRight();
-      }
-
-      if (this.canHeroMoveLeft()) {
+      if (this.canHeroMoveLeft()) 
         this.moveLeft();
-      }
-
-      if (this.canHeroMoveUp()) {
+      if (this.canHeroMoveUp()) 
         this.moveUp();
-      }
-
-      if (this.canHeroMoveDown()) {
+      if (this.canHeroMoveDown()) 
         this.moveDown();
-      }
-
       this.world.cameraX = -this.x + 100;
     }, 1000 / 60);
 
@@ -156,32 +149,42 @@ class Hero extends MovableObject {
       if (this.isDead && i > 12) {
         this.playAnimation(this.imagesDead);
       }
-
       if (this.isDead() && i <= 12) {
-        console.log("dead");
+        //console.log("dead");
         this.playAnimation(this.imagesDying);
         i++;
-        if (i > 11) {
-          // stop game
-        }
+        // stop game i > 11
       }
-    }, 1000 / 5);
-
-    setInterval(() => {
+  
       if (!this.isDead()) {
-        this.playAnimation(this.imagesWaiting);
 
-        if (this.isHurt()) {
-          console.log("hurt");
-          this.playAnimation(this.imagesPoisoning);
-        }
+        if (this.isBlowAttacking()) {
+          this.playAnimation(this.imagesBubbleAttacking);
+          j = 0; 
+        } if (!this.isBlowAttacking()) {
+          if (j >= 54) {
+            this.playAnimation(this.imagesSleeping);
+          }
 
-        if (this.isMoving()) {
-          this.playAnimation(this.imagesWalking);
-        }
-      }
-    }, 200);
+          if (j < 54){ 
+            this.playAnimation(this.imagesWaiting);
+            j++;
+          }
+          if (this.isHurt()) {
+            //console.log("hurt");
+            this.playAnimation(this.imagesPoisoning);
+            j = 0;
+          }
+          if (this.isMoving()) {
+            this.playAnimation(this.imagesWalking);
+            j = 0;
+          }
+        }; 
+    }
+    }, 1000 / 5);
   }
+
+ 
 
   jump() {
     return true;
@@ -209,6 +212,10 @@ class Hero extends MovableObject {
 
   isMoving() {
     return this.world.keyboard.right || this.world.keyboard.left;
+  }
+
+  isBlowAttacking() {
+    return this.world.keyboard.d;
   }
 
   canHeroMoveLeft() {

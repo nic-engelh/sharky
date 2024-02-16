@@ -28,17 +28,18 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollisions();
+      
+      
+      
       this.checkThrownObjects();
     }, 1000 / 10);
   }
 
   checkThrownObjects() {
     if (this.keyboard.d) {
-      let bubble = new ThrowableObject(
-        this.hero.x + this.hero.width - 100,
-        this.hero.y + 150
-      );
-      this.throwableObjects.push(bubble);
+      setTimeout( () => {
+        // waiting bubble attack animation finishing
+        this.throwingBubble()}, 1000)
     }
   }
 
@@ -109,7 +110,7 @@ class World {
     this.throwableObjects.forEach((bubble) => {
       this.level.enemies.forEach((enemy) => {
         if (bubble.isColliding(enemy)) {
-          console.log("bubble hits:", enemy);
+          //console.log("bubble hits:", enemy);
           enemy.eliminated();
           eraseObjectFromCanvas(this.throwableObjects, bubble);
         }
@@ -120,11 +121,19 @@ class World {
   checkingEnemyCollision() {
     this.level.enemies.forEach((enemy) => {
       if (this.hero.isColliding(enemy)) {
-        console.log("Collision with Hero", enemy);
+        //console.log("Collision with Hero", enemy);
         this.hero.hit();
         this.changeHealthStatusbar();
       }
     });
+  }
+
+  throwingBubble() {
+    let bubble = new ThrowableObject(
+      this.hero.x + this.hero.width - 100,
+      this.hero.y + 150
+    );
+    this.throwableObjects.push(bubble);
   }
 
   checkingCoinCollision() {

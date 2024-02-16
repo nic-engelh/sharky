@@ -74,8 +74,7 @@ class MovableObject extends DrawableObject {
   }
 
   isDead() {
-    this.deathState == true;
-    return this.energy == 0;
+    return (this.energy == 0 || this.deathState == true);
   }
 
   eliminated() {
