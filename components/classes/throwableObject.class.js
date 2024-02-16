@@ -21,12 +21,8 @@ class ThrowableObject extends MovableObject {
       this.floatingUpwards();
     }, 1000 / 40);
   }
-
+  
   changeImage() {
     this.loadImage('/assets/img/2.Enemy/2 Jelly fish/Dead/Yellow/y1.png');
-  }
-
-  
-
-  
+  }  
 }

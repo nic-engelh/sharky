@@ -61,6 +61,9 @@ window.addEventListener("keyup", (event) => {
         keyboard.escape = false;
     }
     if (pressedKey == "KeyD") {
-        keyboard.d = false;
+        setTimeout(() => {
+            keyboard.d = false;
+        }, 2000);
+        
     }
 } );

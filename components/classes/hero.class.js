@@ -110,6 +110,7 @@ class Hero extends MovableObject {
   world;
   speed = 10;
   swimmingSounds = new Audio("assets/sounds/Undwater_Backgroundsounds.mp3");
+  isShooting = false;
 
   constructor() {
     super().loadImage("/assets/img/1.Sharkie/3.Swim/1.png");
@@ -157,11 +158,7 @@ class Hero extends MovableObject {
       }
   
       if (!this.isDead()) {
-
-        if (this.isBlowAttacking()) {
-          this.playAnimation(this.imagesBubbleAttacking);
-          j = 0; 
-        } if (!this.isBlowAttacking()) {
+         if (!this.isBlowAttacking()) {
           if (j >= 54) {
             this.playAnimation(this.imagesSleeping);
           }
@@ -179,9 +176,16 @@ class Hero extends MovableObject {
             this.playAnimation(this.imagesWalking);
             j = 0;
           }
-        }; 
-    }
+        } 
+      }
     }, 1000 / 5);
+
+    setInterval(() => {
+      if (this.isBlowAttacking()) {
+        this.playAnimation(this.imagesBubbleAttacking);
+        j = 0; 
+      }
+    }, 1000/20);
   }
 
  

@@ -28,18 +28,15 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollisions();
-      
-      
-      
       this.checkThrownObjects();
     }, 1000 / 10);
   }
 
   checkThrownObjects() {
-    if (this.keyboard.d) {
+    if (this.keyboard.d && this.throwableObjects.length <= 2) {
       setTimeout( () => {
         // waiting bubble attack animation finishing
-        this.throwingBubble()}, 1000)
+        this.throwingBubble()}, 3000)
     }
   }
 
@@ -134,6 +131,9 @@ class World {
       this.hero.y + 150
     );
     this.throwableObjects.push(bubble);
+    setTimeout(() => {
+      this.throwableObjects.pop();
+    }, 5000);
   }
 
   checkingCoinCollision() {
