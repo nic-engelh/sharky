@@ -131,64 +131,82 @@ class Hero extends MovableObject {
   }
 
   animate() {
-    let i = 0; 
+    let i = 0;
     let j = 0;
     setInterval(() => {
       this.swimmingSounds.pause();
-      if (this.canHeroMoveRight()) 
-        this.moveRight();
-      if (this.canHeroMoveLeft()) 
-        this.moveLeft();
-      if (this.canHeroMoveUp()) 
-        this.moveUp();
-      if (this.canHeroMoveDown()) 
-        this.moveDown();
+      this.swimming();
       this.world.cameraX = -this.x + 100;
     }, 1000 / 60);
 
     setInterval(() => {
-      if (this.isDead && i > 12) {
-        this.playAnimation(this.imagesDead);
-      }
-      if (this.isDead() && i <= 12) {
-        //console.log("dead");
-        this.playAnimation(this.imagesDying);
-        i++;
-        // stop game i > 11
-      }
-  
-      if (!this.isDead()) {
-         if (!this.isBlowAttacking()) {
-          if (j >= 54) {
-            this.playAnimation(this.imagesSleeping);
-          }
-
-          if (j < 54){ 
-            this.playAnimation(this.imagesWaiting);
-            j++;
-          }
-          if (this.isHurt()) {
-            //console.log("hurt");
-            this.playAnimation(this.imagesPoisoning);
-            j = 0;
-          }
-          if (this.isMoving()) {
-            this.playAnimation(this.imagesWalking);
-            j = 0;
-          }
-        } 
-      }
+      this.dying(i);
+      this.moving(j);
+      this.attacking();
     }, 1000 / 5);
-
-    setInterval(() => {
-      if (this.isBlowAttacking()) {
-        this.playAnimation(this.imagesBubbleAttacking);
-        j = 0; 
-      }
-    }, 1000/20);
   }
 
- 
+  swimming() {
+    if (this.canHeroMoveRight()) this.moveRight();
+    if (this.canHeroMoveLeft()) this.moveLeft();
+    if (this.canHeroMoveUp()) this.moveUp();
+    if (this.canHeroMoveDown()) this.moveDown();
+  }
+
+  dying(i) {
+    if (this.isDead && i > 12) {
+      this.playAnimation(this.imagesDead);
+    }
+    if (this.isDead() && i <= 12) {
+      //console.log("dead");
+      this.playAnimation(this.imagesDying);
+      i++;
+      // stop game i > 11
+    }
+    return i
+  }
+
+  /**
+   * The function controlls the attack animation of the hero
+   * 
+   */
+  attacking() {
+    if (this.isShooting) {
+      console.log(this.currentImage);
+      this.playAnimation(this.imagesBubbleAttacking);
+      if (this.currentImage >= 8) {
+        this.currentImage = 0;
+        this.throwingBubble();
+        this.isShooting = false;
+      }
+    }
+  }
+
+  /**
+   * Function controlls the moving animation state of the hero
+   * 
+   */
+  moving(j) {
+    if (!this.isDead() || !this.isShooting) {
+      if (j >= 54) {
+        this.playAnimation(this.imagesSleeping);
+      }
+      if (j < 54) {
+        this.playAnimation(this.imagesWaiting);
+        j++;
+      }
+      if (this.isHurt()) {
+        //console.log("hurt");
+        this.playAnimation(this.imagesPoisoning);
+        j = 0;
+      }
+      if (this.isMoving()) {
+        this.playAnimation(this.imagesWalking);
+        j = 0;
+      }
+    }
+    return j
+  }
 
   jump() {
     return true;
@@ -218,10 +236,6 @@ class Hero extends MovableObject {
     return this.world.keyboard.right || this.world.keyboard.left;
   }
 
-  isBlowAttacking() {
-    return this.world.keyboard.d;
-  }
-
   canHeroMoveLeft() {
     return this.world.keyboard.left && this.x > 0;
   }
@@ -236,5 +250,13 @@ class Hero extends MovableObject {
 
   canHeroMoveDown() {
     return this.world.keyboard.down && this.y < 300;
+  }
+
+  throwingBubble() {
+    let bubble = new ThrowableObject(this.x + this.width - 100, this.y + 150);
+    this.world.throwableObjects.push(bubble);
+    setTimeout(() => {
+      this.world.throwableObjects.shift();
+    }, 5000);
   }
 }

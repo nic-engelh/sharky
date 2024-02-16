@@ -33,10 +33,8 @@ class World {
   }
 
   checkThrownObjects() {
-    if (this.keyboard.d && this.throwableObjects.length <= 2) {
-      setTimeout( () => {
-        // waiting bubble attack animation finishing
-        this.throwingBubble()}, 3000)
+    if (this.keyboard.d && !this.hero.isShooting) {
+        this.hero.isShooting = true;
     }
   }
 
@@ -123,17 +121,6 @@ class World {
         this.changeHealthStatusbar();
       }
     });
-  }
-
-  throwingBubble() {
-    let bubble = new ThrowableObject(
-      this.hero.x + this.hero.width - 100,
-      this.hero.y + 150
-    );
-    this.throwableObjects.push(bubble);
-    setTimeout(() => {
-      this.throwableObjects.pop();
-    }, 5000);
   }
 
   checkingCoinCollision() {
