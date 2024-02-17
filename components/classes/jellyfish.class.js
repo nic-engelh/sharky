@@ -21,8 +21,6 @@ class Jellyfish extends MovableObject {
         '/assets/img/2.Enemy/2 Jelly fish/Dead/Yellow/y4.png',
     ];
     
-    isAggressive = false;
-    
     constructor () {
         super().loadImage('/assets/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png');
         this.loadImages(this.imagesWalking);
