@@ -142,9 +142,12 @@ class Hero extends MovableObject {
 
     setInterval(() => {
       // if dead is need , function is not async, functions are not waiting
-      if (this.isDead()) i = this.dying(i);
-      if (this.isAttacking || this.isShooting) this.attacking();
-      j = this.moving(j);
+      if (this.isDead()) 
+        i = this.dying(i);
+      if (this.isAttacking || this.isShooting) 
+        this.attacking();
+      if (!this.isDead() && !this.isShooting && !this.isAttacking)
+        j = this.moving(j);
     }, 1000 / 5);
   }
 
@@ -156,6 +159,7 @@ class Hero extends MovableObject {
   }
 
   dying(i) {
+    debugger;
     if (i > 12) {
       this.playAnimation(this.imagesDead);
     }
@@ -188,7 +192,7 @@ class Hero extends MovableObject {
    *
    */
   moving(j) {
-    if (!this.isDead() || !this.isShooting) {
+     {
       if (j >= 54) {
         this.playAnimation(this.imagesSleeping);
       }
