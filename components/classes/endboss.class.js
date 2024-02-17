@@ -63,6 +63,7 @@ class Endboss extends MovableObject {
   isHeroNear() {
     return this.world.hero.x > 1900 && !this.hadFirstHeroContact;
   }
+  
   spawningEndboss(i) {
     this.playAnimation(this.imagesSpawing);
     i++;

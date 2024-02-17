@@ -10,6 +10,7 @@ class MovableObject extends DrawableObject {
   energy = 100;
   lastHit = 0;
   deathState = false;
+  heroIsClose = false;
 
   /**
    * Function raises the x value and the objects moves right if the object is not eleminated
@@ -142,5 +143,10 @@ class MovableObject extends DrawableObject {
     this.y -= this.speedY;
     this.speedY += this.acceleration;
     this.speedX -= this.acceleration;
+  }
+
+  isCloseTo (object) {
+    let distance = object.x - this.x;
+    return distance <= 200;
   }
 }

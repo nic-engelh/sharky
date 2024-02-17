@@ -37,7 +37,7 @@ window.addEventListener("keydown", (event) => {
 } );
 
 window.addEventListener("keyup", (event) => {
-    console.log(event);
+    //console.log(event);
     pressedKey = event.code;
     if (pressedKey == "ArrowDown") {
         keyboard.down = false;

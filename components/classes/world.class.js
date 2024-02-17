@@ -29,13 +29,22 @@ class World {
     this.level.enemies[5].world = this;
   }
 
+  /**
+   * Function checks for collisions of objects
+   * 
+   */
   run() {
     setInterval(() => {
       this.checkCollisions();
       this.checkThrownObjects();
+      this.checkDistances();
     }, 1000 / 10);
   }
 
+  /**
+   * Functions checks if a thrown key is pressed and if the hero is not shooting. If not, it will activate the shooting status.
+   * 
+   */
   checkThrownObjects() {
     if (this.keyboard.d && !this.hero.isShooting) {
       this.hero.isShooting = true;
@@ -46,6 +55,15 @@ class World {
     this.checkingEnemyCollision();
     this.checkingBubbleCollision();
     this.checkingCoinCollision();
+  }
+
+  checkDistances() {
+    this.level.enemies.forEach( (enemy) => {
+      if (this.hero.isCloseTo(enemy)){
+        enemy.HeroIsClose = true;
+        console.log(enemy.HeroIsClose );
+      }
+    })
   }
 
   /**

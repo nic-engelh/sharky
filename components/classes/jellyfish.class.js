@@ -26,6 +26,7 @@ class Jellyfish extends MovableObject {
         super().loadImage('/assets/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png');
         this.loadImages(this.imagesWalking);
         this.loadImages(this.imagesBubbled);
+        this.loadImages(this.imagesAttacking);
         this.x = 1500 + Math.random() * 500;
         this.y = 300 - Math.random() * 300;
         this.height = 200;
@@ -41,15 +42,27 @@ class Jellyfish extends MovableObject {
     }
 
     animate() {
-        this.moveLeft();
+
+        // überprüfe ob held in der nähe ist
+        // wenn held in der nähe dann shock modus
+        // sonst normaler modus
+        
+        if(!this.isDead()){
+            this.moveLeft();
+        }
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.imagesBubbled);
                 this.floatingUpwards();
-
-            } else if (!this.isDead()) {
+            } else if (this.heroIsClose){
+                this.transform();
+            } else if (!this.isDead() && !this.heroIsClose) {
                 this.playAnimation(this.imagesWalking);
-            } 
+            }
         }, 200); 
+    }
+
+    transform() {
+        this.playAnimation(this.imagesAttacking);
     }
 }

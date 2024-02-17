@@ -111,6 +111,7 @@ class Hero extends MovableObject {
   speed = 10;
   swimmingSounds = new Audio("assets/sounds/Undwater_Backgroundsounds.mp3");
   isShooting = false;
+  isAttacking = false;
 
   constructor() {
     super().loadImage("/assets/img/1.Sharkie/3.Swim/1.png");
@@ -140,9 +141,10 @@ class Hero extends MovableObject {
     }, 1000 / 60);
 
     setInterval(() => {
-      this.dying(i);
-      this.moving(j);
-      this.attacking();
+      // if dead is need , function is not async, functions are not waiting
+      if (this.isDead()) i = this.dying(i);
+      if (this.isAttacking || this.isShooting) this.attacking();
+      j = this.moving(j);
     }, 1000 / 5);
   }
 
@@ -154,25 +156,24 @@ class Hero extends MovableObject {
   }
 
   dying(i) {
-    if (this.isDead && i > 12) {
+    if (i > 12) {
       this.playAnimation(this.imagesDead);
     }
-    if (this.isDead() && i <= 12) {
+    if (i <= 12) {
       //console.log("dead");
       this.playAnimation(this.imagesDying);
       i++;
       // stop game i > 11
     }
-    return i
+    return i;
   }
 
   /**
-   * The function controlls the attack animation of the hero
-   * 
+   * The function controlls the attack animation of the hero. If the heros starts a shooting attack, the bubble attack animation will be activated. Afterwards the bubble will be created related to the last image of the animation.
+   *
    */
   attacking() {
     if (this.isShooting) {
-      console.log(this.currentImage);
       this.playAnimation(this.imagesBubbleAttacking);
       if (this.currentImage >= 8) {
         this.currentImage = 0;
@@ -184,7 +185,7 @@ class Hero extends MovableObject {
 
   /**
    * Function controlls the moving animation state of the hero
-   * 
+   *
    */
   moving(j) {
     if (!this.isDead() || !this.isShooting) {
@@ -205,7 +206,7 @@ class Hero extends MovableObject {
         j = 0;
       }
     }
-    return j
+    return j;
   }
 
   jump() {
