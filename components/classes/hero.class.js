@@ -72,6 +72,12 @@ class Hero extends MovableObject {
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
   ];
 
+  imagesElectrifying = [
+    '/assets/img/1.Sharkie/5.Hurt/2.Electric shock/1.png',
+    '/assets/img/1.Sharkie/5.Hurt/2.Electric shock/2.png',
+    '/assets/img/1.Sharkie/5.Hurt/2.Electric shock/3.png',
+  ];
+
   imagesDead = [
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/9.png",
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/10.png",
@@ -112,6 +118,8 @@ class Hero extends MovableObject {
   swimmingSounds = new Audio("assets/sounds/Undwater_Backgroundsounds.mp3");
   isShooting = false;
   isAttacking = false;
+  isShocked = false;
+  isPoisoned = false;
 
   constructor() {
     super().loadImage("/assets/img/1.Sharkie/3.Swim/1.png");
@@ -124,6 +132,7 @@ class Hero extends MovableObject {
     this.loadImages(this.imagesShocking);
     this.loadImages(this.imagesDying);
     this.loadImages(this.imagesDead);
+    this.loadImages(this.imagesElectrifying);
     this.offsetTop = 150;
     this.offsetBottom = 50;
     this.offsetRight = 100;
@@ -160,7 +169,6 @@ class Hero extends MovableObject {
   }
 
   dying(i) {
-    debugger;
     if (i > 12) {
       this.playAnimation(this.imagesDead);
     }
@@ -193,7 +201,7 @@ class Hero extends MovableObject {
    *
    */
   moving(j) {
-     {
+     
       if (j >= 54) {
         this.playAnimation(this.imagesSleeping);
       }
@@ -202,15 +210,19 @@ class Hero extends MovableObject {
         j++;
       }
       if (this.isHurt()) {
-        //console.log("hurt");
-        this.playAnimation(this.imagesPoisoning);
         j = 0;
+        if (this.isShocked) {
+          this.playAnimation(this.imagesElectrifying);
+          return j;
+        }
+        else {
+          this.playAnimation(this.imagesPoisoning);
+        } 
       }
       if (this.isMoving()) {
         this.playAnimation(this.imagesWalking);
         j = 0;
       }
-    }
     return j;
   }
 

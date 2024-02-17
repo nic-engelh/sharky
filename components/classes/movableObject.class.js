@@ -146,7 +146,7 @@ class MovableObject extends DrawableObject {
   }
 
   isCloseTo (object) {
-    let distance = this.x - object.x ;
-    return (distance <= 300);
+    let distance =  object.x - this.x ;
+    return (distance <= 350);
   }
 }

@@ -21,6 +21,7 @@ class Jellyfish extends MovableObject {
         '/assets/img/2.Enemy/2 Jelly fish/Dead/Yellow/y4.png',
     ];
     
+    isAggressive = false;
     
     constructor () {
         super().loadImage('/assets/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png');
@@ -52,7 +53,6 @@ class Jellyfish extends MovableObject {
             this.moveLeft();
         }
         setInterval(() => {
-            console.log(this.heroIsClose);
             if (this.isDead()) {
                 this.playAnimation(this.imagesBubbled);
                 this.floatingUpwards();
@@ -65,6 +65,7 @@ class Jellyfish extends MovableObject {
     }
 
     transform() {
+        this.isAggressive = true;
         this.playAnimation(this.imagesAttacking);
     }
 }

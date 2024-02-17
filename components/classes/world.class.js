@@ -31,7 +31,7 @@ class World {
 
   /**
    * Function checks for collisions of objects
-   * 
+   *
    */
   run() {
     setInterval(() => {
@@ -43,7 +43,7 @@ class World {
 
   /**
    * Functions checks if a thrown key is pressed and if the hero is not shooting. If not, it will activate the shooting status.
-   * 
+   *
    */
   checkThrownObjects() {
     if (this.keyboard.d && !this.hero.isShooting) {
@@ -58,11 +58,11 @@ class World {
   }
 
   checkDistances() {
-    this.level.enemies.forEach( (enemy) => {
-      if (this.hero.isCloseTo(enemy)){
+    this.level.enemies.forEach((enemy) => {
+      if (this.hero.isCloseTo(enemy)) {
         enemy.heroIsClose = true;
       }
-    })
+    });
   }
 
   /**
@@ -154,7 +154,6 @@ class World {
     this.throwableObjects.forEach((bubble) => {
       this.level.enemies.forEach((enemy) => {
         if (bubble.isColliding(enemy)) {
-          //console.log("bubble hits:", enemy);
           enemy.eliminated();
           eraseObjectFromCanvas(this.throwableObjects, bubble);
         }
@@ -169,9 +168,9 @@ class World {
   checkingEnemyCollision() {
     this.level.enemies.forEach((enemy) => {
       if (this.hero.isColliding(enemy)) {
-        //console.log("Collision with Hero", enemy);
         this.hero.hit();
         this.changeHealthStatusbar();
+        if (enemy instanceof Jellyfish) this.hero.isShocked = true;
       }
     });
   }
