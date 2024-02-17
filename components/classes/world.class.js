@@ -20,6 +20,10 @@ class World {
     this.run();
   }
 
+  /**
+   * Function will add a world instance to given object
+   *
+   */
   setWorld() {
     this.hero.world = this;
     this.level.enemies[5].world = this;
@@ -34,7 +38,7 @@ class World {
 
   checkThrownObjects() {
     if (this.keyboard.d && !this.hero.isShooting) {
-        this.hero.isShooting = true;
+      this.hero.isShooting = true;
     }
   }
 
@@ -44,6 +48,10 @@ class World {
     this.checkingCoinCollision();
   }
 
+  /**
+   * Function draws given objects to the canvas as often as the computer has the capability. The canvas is cleared at each function activation
+   *
+   */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.cameraX, 0);
@@ -64,12 +72,22 @@ class World {
     });
   }
 
+  /**
+   * Function iterates through an object and adds each element to the map/canvas
+   *
+   * @param {Object} objects
+   */
   addObjectsToMaps(objects) {
     objects.forEach((object) => {
       this.addToMap(object);
     });
   }
 
+  /**
+   * Functions draws given object to the canvas. According to the left or right direction status, the image is horizontally flipped.
+   *
+   * @param {movableObject} movableObject
+   */
   addToMap(movableObject) {
     if (movableObject.otherDirection) {
       this.flipImage(movableObject);
@@ -82,6 +100,11 @@ class World {
     }
   }
 
+  /**
+   * Function mirrores the object image on the canvas horizontally to the oppesite direction
+   *
+   * @param {object} movableObject
+   */
   flipImage(movableObject) {
     this.ctx.save();
     this.ctx.translate(movableObject.width, 0);
@@ -89,6 +112,11 @@ class World {
     movableObject.x = movableObject.x * -1;
   }
 
+  /**
+   * Function resets the mirrored image on the canvas to the normal image direction
+   *
+   * @param {Object} movableObject
+   */
   resetFlipImage(movableObject) {
     movableObject.x = movableObject.x * -1;
     this.ctx.restore();
@@ -101,6 +129,10 @@ class World {
     );
   }
 
+  /**
+   * Function iterates through all thrown objects and checks if one is colliding with any enemy object from an enemies array. If so it elemintes the hitted enemy and erases the enemy from the canvas and enemy array
+   *
+   */
   checkingBubbleCollision() {
     this.throwableObjects.forEach((bubble) => {
       this.level.enemies.forEach((enemy) => {
@@ -113,6 +145,10 @@ class World {
     });
   }
 
+  /**
+   * Function iterates throuh all enemies and check if one object is colliding with the hero object. if so, it reduces the health by the hit function and changes the status bar
+   *
+   */
   checkingEnemyCollision() {
     this.level.enemies.forEach((enemy) => {
       if (this.hero.isColliding(enemy)) {
