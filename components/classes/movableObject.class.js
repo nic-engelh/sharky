@@ -110,8 +110,7 @@ class MovableObject extends DrawableObject {
    * @returns boolean
    */
   isDead() {
-    
-    return (this.energy == 0);
+    return ((this.energy == 0)|| (this.deathState == true));
   }
 
   /**
@@ -147,7 +146,7 @@ class MovableObject extends DrawableObject {
   }
 
   isCloseTo (object) {
-    let distance = object.x - this.x;
-    return distance <= 200;
+    let distance = this.x - object.x ;
+    return (distance <= 300);
   }
 }
