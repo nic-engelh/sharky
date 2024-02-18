@@ -62,8 +62,6 @@ class Pufferfish extends MovableObject {
                 this.playAnimation(this.imagesDead);
                 this.floatingUpwards();
                 if (this.currentImage > 2){
-                    
-
                 }
             }
         }, 200);

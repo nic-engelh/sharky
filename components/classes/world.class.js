@@ -68,7 +68,6 @@ class World {
   checkDistances() {
     this.level.enemies.forEach((enemy) => {
       if (this.hero.isCloseTo(enemy)) {
-        enemy.currentImage = 0;
         enemy.heroIsClose = true;
       }
     });
@@ -184,7 +183,6 @@ class World {
         // start pufferfish dead animation
         // image moves with negativ accelration out of the canvas
           enemy.eliminated();
-          enemy.currentImage = 0;
         }
         // if hero is not attacking:
         this.hero.hit();

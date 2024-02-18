@@ -43,10 +43,15 @@ class MovableObject extends DrawableObject {
    * @param {image} images
    */
   playAnimation(images) {
+    this.resetCurrentImage(images);
     let i = this.currentImage % images.length;
     let path = images[i];
     this.image = this.imageCache.get(path);
     this.currentImage++;
+  }
+
+  resetCurrentImage(images) {
+    if (this.currentImage > images.length) this.currentImage = 0;
   }
 
   /**

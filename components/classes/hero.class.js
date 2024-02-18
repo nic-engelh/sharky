@@ -70,6 +70,7 @@ class Hero extends MovableObject {
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/10.png",
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
+   
   ];
 
   imagesElectrifying = [
@@ -79,13 +80,8 @@ class Hero extends MovableObject {
   ];
 
   imagesDead = [
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/9.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/10.png",
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/10.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/9.png",
   ];
 
   imagesPoisoning = [
@@ -170,10 +166,11 @@ class Hero extends MovableObject {
 
   dying(i) {
     if (i > 12) {
+      console.log("dead image", this.currentImage)
       this.playAnimation(this.imagesDead);
     }
     if (i <= 12) {
-      //console.log("dead");
+      console.log("dying", this.currentImage);
       this.playAnimation(this.imagesDying);
       i++;
       // stop game i > 11
