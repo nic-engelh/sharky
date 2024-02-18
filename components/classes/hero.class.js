@@ -194,6 +194,16 @@ class Hero extends MovableObject {
         this.isShooting = false;
       }
     }
+    if (this.isAttacking) {
+      this.playAnimation(this.imagesFinAttacking);
+      if (this.currentImage>= 8) {
+        this.currentImage = 0;
+        // hero collides with enemy while attacking -> enemy dying by meele
+        // if enemy is hit
+        this.isAttacking = false;
+
+      }
+    }
   }
 
   /**
@@ -201,7 +211,6 @@ class Hero extends MovableObject {
    *
    */
   moving(j) {
-     
       if (j >= 54) {
         this.playAnimation(this.imagesSleeping);
       }
@@ -273,6 +282,7 @@ class Hero extends MovableObject {
   throwingBubble() {
     let bubble = new ThrowableObject(this.x + this.width - 100, this.y + 150);
     this.world.throwableObjects.push(bubble);
+    // Timer for deleting bubble object from array
     setTimeout(() => {
       this.world.throwableObjects.shift();
     }, 5000);

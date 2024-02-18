@@ -47,7 +47,15 @@ class World {
    */
   checkThrownObjects() {
     if (this.keyboard.d && !this.hero.isShooting) {
+      this.hero.currentImage = 0;
       this.hero.isShooting = true;
+    }
+  }
+
+  checkMeleeAttack() {
+    if (this.keyboard.space && !this.hero.isAttacking) {
+      this.hero.currentImage = 0;
+      this.hero.isAttacking = true;
     }
   }
 
@@ -60,6 +68,7 @@ class World {
   checkDistances() {
     this.level.enemies.forEach((enemy) => {
       if (this.hero.isCloseTo(enemy)) {
+        enemy.currentImage = 0;
         enemy.heroIsClose = true;
       }
     });

@@ -23,6 +23,12 @@ class Pufferfish extends MovableObject {
         '/assets/img/2.Enemy/1.Puffer fish (3 color options)/2.transition/3.transition5.png'
     ];
 
+    imagesDead = [
+        '/assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.2.png',
+        '/assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.3.png',
+        '/assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.png',
+    ];
+
     constructor () {
         super().loadImage('/assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim1.png');
         this.loadImages(this.imagesWalking);
@@ -44,14 +50,13 @@ class Pufferfish extends MovableObject {
         this.moveLeft();
         setInterval(() => {
             if (this.heroIsClose) {
-                this.playAnimation(this.imagesBubbling);
                 this.isAggressive = true;
+                this.playAnimation(this.imagesBubbling);
             }
             if (this.isAggressive)
                 this.playAnimation(this.imagesBubbleSwimming);
             if (!this.isAggressive)
                 this.playAnimation(this.imagesWalking);
         }, 200);
-
     }
 }
