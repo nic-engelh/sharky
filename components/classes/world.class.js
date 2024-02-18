@@ -177,6 +177,16 @@ class World {
   checkingEnemyCollision() {
     this.level.enemies.forEach((enemy) => {
       if (this.hero.isColliding(enemy)) {
+
+        if (this.hero.isAttacking && enemy instanceof Pufferfish){
+          // if hero is attacking and enemy instance of pufferish
+        // pufferfish is then eleminated
+        // start pufferfish dead animation
+        // image moves with negativ accelration out of the canvas
+          enemy.eliminated();
+          enemy.currentImage = 0;
+        }
+        // if hero is not attacking:
         this.hero.hit();
         this.changeHealthStatusbar();
         if (enemy instanceof Jellyfish) this.hero.isShocked = true;
