@@ -80,6 +80,9 @@ class Hero extends MovableObject {
   ];
 
   imagesDead = [
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/10.png",
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
   ];
@@ -165,12 +168,11 @@ class Hero extends MovableObject {
   }
 
   dying(i) {
-    if (i > 12) {
-      console.log("dead image", this.currentImage)
+    if (i > 11) {
       this.playAnimation(this.imagesDead);
     }
-    if (i <= 12) {
-      console.log("dying", this.currentImage);
+    if (i <= 11) {
+      if(i == 0) this.currentImage = 0;
       this.playAnimation(this.imagesDying);
       i++;
       // stop game i > 11
