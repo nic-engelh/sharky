@@ -179,7 +179,6 @@ class World {
   checkingEnemyCollision() {
     this.level.enemies.forEach((enemy) => {
       if (this.hero.isColliding(enemy)) {
-
         if (this.hero.isAttacking && enemy instanceof Pufferfish){
           // hero collides with enemy while attacking than the enemy is dying by meele attack
           this.hero.isCollidingWith.push(enemy);  

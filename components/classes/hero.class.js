@@ -244,22 +244,26 @@ class Hero extends MovableObject {
   }
 
   moveRight() {
+    if(this.isDead()) return false;
     this.x += this.speed;
     this.otherDirection = false;
     this.swimmingSounds.play();
   }
 
   moveLeft() {
+    if(this.isDead()) return false;
     this.x -= this.speed;
     this.otherDirection = true;
     this.swimmingSounds.play();
   }
 
   moveUp() {
+    if(this.isDead()) return false;
     this.y -= this.speed;
   }
 
   moveDown() {
+    if(this.isDead()) return false;
     this.y += this.speed;
   }
 
