@@ -157,7 +157,7 @@ class Hero extends MovableObject {
         this.attacking();
       if (!this.isDead() && !this.isShooting && !this.isAttacking)
         j = this.moving(j);
-    }, 1000 / 5);
+    }, 1000 / 6);
   }
 
   swimming() {
@@ -195,12 +195,11 @@ class Hero extends MovableObject {
     }
     if (this.isAttacking) {
       this.playAnimation(this.imagesFinAttacking);
-      if (this.currentImage>= 8) {
+      if (this.currentImage >= 8) {
         this.currentImage = 0;
         // hero collides with enemy while attacking -> enemy dying by meele
         // if enemy is hit
         this.isAttacking = false;
-
       }
     }
   }

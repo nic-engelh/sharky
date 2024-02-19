@@ -59,9 +59,10 @@ class Pufferfish extends MovableObject {
             if (!this.isAggressive)
                 this.playAnimation(this.imagesWalking);
             if (this.isDead()) {
+                console.log("currentImage for dead:",this.currentImage)
                 this.playAnimation(this.imagesDead);
-                this.floatingUpwards();
-                if (this.currentImage > 2){
+                if (this.currentImage > 3){
+                    this.floatingUpwards();
                 }
             }
         }, 200);

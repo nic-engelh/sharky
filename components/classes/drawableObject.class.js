@@ -20,6 +20,11 @@ class DrawableObject {
     });
   }
 
+  resetCurrentImage(images) {
+    if (this.currentImage > images.length) 
+      this.currentImage = 0;
+  }
+
   draw(ctx) {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }

@@ -50,10 +50,6 @@ class MovableObject extends DrawableObject {
     this.currentImage++;
   }
 
-  resetCurrentImage(images) {
-    if (this.currentImage > images.length) this.currentImage = 0;
-  }
-
   /**
    * Function reduces the y value of the object by the speed and acceleration variable if the object is above ground and has speed
    *

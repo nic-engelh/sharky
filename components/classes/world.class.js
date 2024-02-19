@@ -38,6 +38,7 @@ class World {
       this.checkCollisions();
       this.checkThrownObjects();
       this.checkDistances();
+      this.checkMeleeAttacks();
     }, 1000 / 10);
   }
 
@@ -52,7 +53,7 @@ class World {
     }
   }
 
-  checkMeleeAttack() {
+  checkMeleeAttacks() {
     if (this.keyboard.space && !this.hero.isAttacking) {
       this.hero.currentImage = 0;
       this.hero.isAttacking = true;
@@ -182,6 +183,7 @@ class World {
         // pufferfish is then eleminated
         // start pufferfish dead animation
         // image moves with negativ accelration out of the canvas
+        
           enemy.eliminated();
         }
         // if hero is not attacking:
