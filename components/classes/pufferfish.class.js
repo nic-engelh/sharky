@@ -52,6 +52,7 @@ class Pufferfish extends MovableObject {
         setInterval(() => {
             if (this.heroIsClose) {
                 this.isAggressive = true;
+                this.getsBigger();
                 this.playAnimation(this.imagesBubbling);
             }
             if (this.isAggressive)
@@ -59,12 +60,21 @@ class Pufferfish extends MovableObject {
             if (!this.isAggressive)
                 this.playAnimation(this.imagesWalking);
             if (this.isDead()) {
-                console.log("currentImage for dead:",this.currentImage)
                 this.playAnimation(this.imagesDead);
-                if (this.currentImage > 3){
-                    this.floatingUpwards();
-                }
+                this.y -= 10; 
             }
         }, 200);
     }
+
+    /**
+     * Enemy transform into bigger version. Function inceases collision radius of the enemy object.
+     * 
+     */
+    getsBigger() {
+        this.offsetTop = 0;
+        this.offsetBottom = 0;
+        this.offsetRight = 0;
+        this.offsetleft = 0;
+    }
+
 }

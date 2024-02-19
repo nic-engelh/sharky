@@ -171,7 +171,9 @@ class World {
   }
 
   /**
-   * Function iterates throuh all enemies and check if one object is colliding with the hero object. if so, it reduces the health by the hit function and changes the status bar
+   * Function iterates throuh all enemies and check if one object is colliding with the hero object. 
+   * If so, it reduces the health by the hit function and changes the status bar.
+   * If the hero object is colliding while attacking with a enemy object, it gets destroyed.
    *
    */
   checkingEnemyCollision() {
@@ -179,17 +181,15 @@ class World {
       if (this.hero.isColliding(enemy)) {
 
         if (this.hero.isAttacking && enemy instanceof Pufferfish){
-          // if hero is attacking and enemy instance of pufferish
-        // pufferfish is then eleminated
-        // start pufferfish dead animation
-        // image moves with negativ accelration out of the canvas
-        
-          enemy.eliminated();
+          // hero collides with enemy while attacking than the enemy is dying by meele attack
+          this.hero.isCollidingWith.push(enemy);  
         }
         // if hero is not attacking:
-        this.hero.hit();
-        this.changeHealthStatusbar();
-        if (enemy instanceof Jellyfish) this.hero.isShocked = true;
+        if(!this.hero.isAttacking) {
+          this.hero.hit();
+          this.changeHealthStatusbar();
+          if (enemy instanceof Jellyfish) this.hero.isShocked = true;
+        }
       }
     });
   }

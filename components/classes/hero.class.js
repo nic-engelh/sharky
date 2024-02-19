@@ -119,6 +119,7 @@ class Hero extends MovableObject {
   isAttacking = false;
   isShocked = false;
   isPoisoned = false;
+  isCollidingWith = [];
 
   constructor() {
     super().loadImage("/assets/img/1.Sharkie/3.Swim/1.png");
@@ -194,12 +195,16 @@ class Hero extends MovableObject {
       }
     }
     if (this.isAttacking) {
+      this.increaseAttackRange();
       this.playAnimation(this.imagesFinAttacking);
       if (this.currentImage >= 8) {
+        if(this.isCollidingWith.length > 0) 
+          this.isCollidingWith[0].eliminated();
         this.currentImage = 0;
-        // hero collides with enemy while attacking -> enemy dying by meele
         // if enemy is hit
         this.isAttacking = false;
+        this.decreaseAttackRange();
+        this.isCollidingWith.shift();
       }
     }
   }
@@ -211,6 +216,7 @@ class Hero extends MovableObject {
   moving(j) {
       if (j >= 54) {
         this.playAnimation(this.imagesSleeping);
+        this.playAnimation(this.imagesSleeping.reverse());
       }
       if (j < 54) {
         this.playAnimation(this.imagesWaiting);
@@ -284,5 +290,15 @@ class Hero extends MovableObject {
     setTimeout(() => {
       this.world.throwableObjects.shift();
     }, 5000);
+  }
+
+  increaseAttackRange(){
+    this.offsetRight = -100;
+    this.offsetleft = 0;
+  }
+
+  decreaseAttackRange(){
+    this.offsetRight = 100;
+    this.offsetleft = 0;
   }
 }
