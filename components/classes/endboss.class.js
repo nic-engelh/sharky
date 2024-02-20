@@ -32,10 +32,37 @@ class Endboss extends MovableObject {
     "/assets/img/2.Enemy/3 Final Enemy/1.Introduce/10.png",
   ];
 
+  imagesDying = [
+    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 8.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 6.png',
+  ];
+
+  imagesWounding = [
+    '/assets/img/2.Enemy/3 Final Enemy/Hurt/1.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Hurt/2.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Hurt/3.png',
+  ];
+
+  imagesAttacking = [
+    '/assets/img/2.Enemy/3 Final Enemy/Attack/1.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Attack/2.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Attack/3.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Attack/4.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Attack/5.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Attack/6.png',
+  ];
+
   constructor() {
     super().loadImage("assets/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
     this.loadImages(this.imagesWalking);
     this.loadImages(this.imagesSpawing);
+    this.loadImages(this.imagesDying);
+    this.loadImages(this.imagesAttacking);
+    this.loadImages(this.imagesWounding);
     this.x = 2300;
     this.y = -150;
     //this.height = 520;
@@ -54,10 +81,21 @@ class Endboss extends MovableObject {
       if (this.isHeroNear()) {
         i = this.spawningEndboss(i);
       }
-      if (this.hadFirstHeroContact) {
-        this.playAnimation(this.imagesWalking);
+      if(this.isAttacking){
+        this.attacking(); 
+        // mehr Zeit einbauen
+        if (this.currentImage >= 6)
+        this.isAttacking = false;
+      // Rückzug function hier einbauen.
       }
-    }, 1000 / 8);
+      if (this.hadFirstHeroContact && !this.isAttacking) {
+        this.playAnimation(this.imagesWalking);
+        i++;
+        if(this.currentImage >= 13) {
+          this.isAttacking = true;
+        }
+      }
+    }, 1000 / 7);
   }
 
   isHeroNear() {
@@ -71,5 +109,16 @@ class Endboss extends MovableObject {
       this.hadFirstHeroContact = true;
     }
     return i;
+  }
+
+  attacking() {
+    this.offsetleft = -300;
+    this.x = 1900; 
+    console.log("boss x:", this.x);
+    this.playAnimation(this.imagesAttacking);
+  }
+  withdrawing() {
+    this.offsetleft = 0;
+    this.x = 2300;
   }
 }

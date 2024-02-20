@@ -116,7 +116,6 @@ class Hero extends MovableObject {
   speed = 10;
   swimmingSounds = new Audio("assets/sounds/Undwater_Backgroundsounds.mp3");
   isShooting = false;
-  isAttacking = false;
   isShocked = false;
   isPoisoned = false;
   isCollidingWith = [];
