@@ -3,6 +3,7 @@ class Endboss extends MovableObject {
   width = 608;
   world;
   hadFirstHeroContact = false;
+  attackIndex = 0;
 
   imagesWalking = [
     "/assets/img/2.Enemy/3 Final Enemy/2.floating/1.png",
@@ -76,27 +77,18 @@ class Endboss extends MovableObject {
 
   animate() {
     let i = 0;
-    let attackIndex = 0;
-
     setInterval(() => {
       if (this.isHeroNear()) {
         i = this.spawningEndboss(i);
       }
       if(this.isAttacking){
         this.attacking(); 
-        // mehr Zeit einbauen
-        i++;
-        if (this.currentImage >= 6)
-        this.isAttacking = false;
-      // Rückzug function hier einbauen.
+      }
+      if (this.isAttacking && this.attackIndex > 6){
+        this.withdrawing();
       }
       if (this.hadFirstHeroContact && !this.isAttacking) {
-        this.playAnimation(this.imagesWalking);
-        i++;
-        if(this.currentImage >= 13) {
-          // angriff evtl erst bei i modulo (13*2)
-          this.isAttacking = true;
-        }
+        i = this.swimming(i);
       }
     }, 1000 / 7);
   }
@@ -115,13 +107,26 @@ class Endboss extends MovableObject {
   }
 
   attacking() {
-    this.offsetleft = -300;
-    this.x = 2000; 
+    this.offsetleft = -100;
+    this.x = 2100; 
     this.playAnimation(this.imagesAttacking);
+    this.attackIndex++;
   }
 
-  withdrawing() {
+  withdrawing() {   
+    this.isAttacking = false;
     this.offsetleft = 0;
     this.x = 2300;
+    this.attackIndex = 0;
+  }
+
+  swimming(i) {
+    this.playAnimation(this.imagesWalking);
+        i++;
+        if(this.currentImage >= 13) {
+          // angriff evtl erst bei i modulo (13*2)
+          this.isAttacking = true;
+        }
+    return i
   }
 }
