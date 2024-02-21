@@ -152,4 +152,6 @@ class MovableObject extends DrawableObject {
     let distance =  object.x - this.x ;
     return (distance <= 350);
   }
+
+  
 }

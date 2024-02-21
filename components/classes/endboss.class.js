@@ -76,6 +76,7 @@ class Endboss extends MovableObject {
 
   animate() {
     let i = 0;
+    let attackIndex = 0;
 
     setInterval(() => {
       if (this.isHeroNear()) {
@@ -84,6 +85,7 @@ class Endboss extends MovableObject {
       if(this.isAttacking){
         this.attacking(); 
         // mehr Zeit einbauen
+        i++;
         if (this.currentImage >= 6)
         this.isAttacking = false;
       // Rückzug function hier einbauen.
@@ -92,6 +94,7 @@ class Endboss extends MovableObject {
         this.playAnimation(this.imagesWalking);
         i++;
         if(this.currentImage >= 13) {
+          // angriff evtl erst bei i modulo (13*2)
           this.isAttacking = true;
         }
       }
@@ -113,10 +116,10 @@ class Endboss extends MovableObject {
 
   attacking() {
     this.offsetleft = -300;
-    this.x = 1900; 
-    console.log("boss x:", this.x);
+    this.x = 2000; 
     this.playAnimation(this.imagesAttacking);
   }
+
   withdrawing() {
     this.offsetleft = 0;
     this.x = 2300;

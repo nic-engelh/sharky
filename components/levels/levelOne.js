@@ -1,6 +1,7 @@
 const level1 = new Level(
     [new Pufferfish(), new Pufferfish(), new Pufferfish(), new Jellyfish(), new Jellyfish(), new Endboss()],
     [new Coin(), new Coin(), new Coin()],
+    [new Bottle(), new Bottle(), new Bottle()],
     [
         new BackgroundObject(
             "/assets/img/3. Background/Layers/5. Water/D2.png",
