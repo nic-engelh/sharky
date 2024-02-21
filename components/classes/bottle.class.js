@@ -1,4 +1,4 @@
-class Bottle extends MovableObjects {
+class Bottle extends MovableObject {
 
     imagesMoving = [
         '/assets/img/4. Marcadores/Posiขn/Animada/1.png',
@@ -10,6 +10,7 @@ class Bottle extends MovableObjects {
         '/assets/img/4. Marcadores/Posiขn/Animada/7.png',
         '/assets/img/4. Marcadores/Posiขn/Animada/8.png',
     ];
+    
     constructor () {
         super().loadImage('/assets/img/4. Marcadores/Posiขn/Animada/1.png');
         this.loadImages(this.imagesMoving);
@@ -17,6 +18,10 @@ class Bottle extends MovableObjects {
         this.heigt = 120;
         this.x = 500 + Math.random() * 2000;
         this.y = 300 - Math.random() * 300;
+        this.offSetTop = 0;
+        this.offsetBottom = 0;
+        this.offsetRight = 0;
+        this.offsetleft = 0;
         this.animate();
     }
 
