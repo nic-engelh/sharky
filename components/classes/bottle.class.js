@@ -8,16 +8,16 @@ class Bottle extends MovableObject {
         '/assets/img/4. Marcadores/Posion/Animada/5.png',
         '/assets/img/4. Marcadores/Posion/Animada/6.png',
         '/assets/img/4. Marcadores/Posion/Animada/7.png',
-        '/assets/img/4. Marcadores/Posion/Animada/8.png'
+        '/assets/img/4. Marcadores/Posion/Animada/8.png',
     ];
     
     constructor () {
         super().loadImage('/assets/img/4. Marcadores/Posion/Animada/1.png');
         this.loadImages(this.imagesMoving);
-        this.width = 90;
-        this.height = 120;
         this.x = 400 + Math.random() * 2000;
         this.y = 300 - Math.random() * 300;
+        this.height= 90;
+        this.width= 60;
         this.offSetTop = 0;
         this.offsetBottom = 0;
         this.offsetRight = 0;

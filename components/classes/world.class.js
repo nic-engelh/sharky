@@ -89,6 +89,7 @@ class World {
     // movable objects
     this.addToMap(this.hero);
     this.addObjectsToMaps(this.level.coins);
+    this.addObjectsToMaps(this.level.bottles);
     this.addObjectsToMaps(this.level.enemies);
     this.addObjectsToMaps(this.throwableObjects);
     this.ctx.translate(-this.cameraX, 0);
