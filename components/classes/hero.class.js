@@ -120,6 +120,7 @@ class Hero extends MovableObject {
   isPoisoned = false;
   isCollidingWith = [];
   poisonAmmunition = 0;
+  coins = 0;
 
   constructor() {
     super().loadImage("/assets/img/1.Sharkie/3.Swim/1.png");
@@ -141,7 +142,6 @@ class Hero extends MovableObject {
   }
 
   animate() {
-    this.currentImage = 0;
     let i = 0;
     let j = 0;
     setInterval(() => {
@@ -217,8 +217,15 @@ class Hero extends MovableObject {
 
   rangeAttack() {
     this.currentImage = 0;
-    this.throwingBubble();
+    if (this.isEndbossNear())
+      this.throwingBubble(true);
+    if (!this.isEndbossNear())
+      this.throwingBubble(false);
     this.isShooting = false;
+  }
+
+  isEndbossNear() {
+    return (this.world.level.enemies[5].x - this.x < 500)
   }
 
   /**
@@ -248,10 +255,6 @@ class Hero extends MovableObject {
         j = 0;
       }
     return j;
-  }
-
-  jump() {
-    return true;
   }
 
   moveRight() {
@@ -298,8 +301,8 @@ class Hero extends MovableObject {
     return this.world.keyboard.down && this.y < 300;
   }
 
-  throwingBubble() {
-    let bubble = new ThrowableObject(this.x + this.width - 100, this.y + 150);
+  throwingBubble(poison) {
+    let bubble = new ThrowableObject(this.x + this.width - 100, this.y + 150, poison);
     this.world.throwableObjects.push(bubble);
     // Timer for deleting bubble object from array
     setTimeout(() => {
@@ -317,11 +320,16 @@ class Hero extends MovableObject {
     this.offsetleft = 0;
   }
 
-  changeAmmunition(increase, decrease) {
+  changeAmmunitionAmount(increase, decrease) {
     let baseAmount = this.world.level.bottles.length;
     if (increase)
       this.poisonAmmunition += (1/baseAmount);
     if (decrease)
       this.poisonAmmunition -= (1/baseAmount);
-  } 
+  }
+
+  
+
+
+
 }
