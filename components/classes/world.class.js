@@ -211,4 +211,19 @@ class World {
       }
     });
   }
+
+
+  checkingBottleCollision() {
+    this.level.bottles.forEach((bottle) => {
+      // collision with coin
+      // get coin
+      // update coin status bar
+      if (this.hero.isColliding(bottle)) {
+        this.coinStatusBar.setPercentage(10, this.coinStatusBar.imagesCoin);
+        this.hero.changeAmmunition(true, false);
+        this.poisonStatusBarStatusBar.setPercentage(this.hero.poisonAmmunition, this.poisonStatusBar.imagesPoison);
+      }
+      this.bottle.eraseObjectFromCanvas();
+    });
+  }
 }

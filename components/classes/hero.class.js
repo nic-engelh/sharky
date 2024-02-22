@@ -221,7 +221,6 @@ class Hero extends MovableObject {
     this.isShooting = false;
   }
 
-
   /**
    * Function controlls the moving animation state of the hero
    *
@@ -323,6 +322,6 @@ class Hero extends MovableObject {
     if (increase)
       this.poisonAmmunition += (1/baseAmount);
     if (decrease)
-      this.poisonAmmunition -= (1/baseAmount)
+      this.poisonAmmunition -= (1/baseAmount);
   } 
 }
