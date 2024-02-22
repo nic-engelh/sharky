@@ -119,6 +119,7 @@ class Hero extends MovableObject {
   isShocked = false;
   isPoisoned = false;
   isCollidingWith = [];
+  poisonAmmunition = 0;
 
   constructor() {
     super().loadImage("/assets/img/1.Sharkie/3.Swim/1.png");
@@ -188,25 +189,38 @@ class Hero extends MovableObject {
     if (this.isShooting) {
       this.playAnimation(this.imagesBubbleAttacking);
       if (this.currentImage >= 8) {
-        this.currentImage = 0;
-        this.throwingBubble();
-        this.isShooting = false;
+        this.rangeAttack();
       }
     }
     if (this.isAttacking) {
       this.increaseAttackRange();
       this.playAnimation(this.imagesFinAttacking);
       if (this.currentImage >= 8) {
-        if(this.isCollidingWith.length > 0) 
-          this.isCollidingWith[0].eliminated();
-        this.currentImage = 0;
-        // if enemy is hit
-        this.isAttacking = false;
-        this.decreaseAttackRange();
-        this.isCollidingWith.shift();
+        this.killByCollision();
+        this.disengage();
       }
     }
   }
+
+  killByCollision(){
+    if(this.isCollidingWith.length > 0) 
+      this.isCollidingWith[0].eliminated();
+  } 
+
+  disengage() {
+    this.currentImage = 0;
+        // if enemy is hit
+    this.isAttacking = false;
+    this.decreaseAttackRange();
+    this.isCollidingWith.shift();
+  }
+
+  rangeAttack() {
+    this.currentImage = 0;
+    this.throwingBubble();
+    this.isShooting = false;
+  }
+
 
   /**
    * Function controlls the moving animation state of the hero
@@ -215,7 +229,6 @@ class Hero extends MovableObject {
   moving(j) {
       if (j >= 54) {
         this.playAnimation(this.imagesSleeping);
-        this.playAnimation(this.imagesSleeping.reverse());
       }
       if (j < 54) {
         this.playAnimation(this.imagesWaiting);
@@ -304,4 +317,12 @@ class Hero extends MovableObject {
     this.offsetRight = 100;
     this.offsetleft = 0;
   }
+
+  changeAmmunition(increase, decrease) {
+    let baseAmount = this.world.level.bottles.length;
+    if (increase)
+      this.poisonAmmunition += (1/baseAmount);
+    if (decrease)
+      this.poisonAmmunition -= (1/baseAmount)
+  } 
 }

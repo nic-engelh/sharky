@@ -156,6 +156,13 @@ class World {
     );
   }
 
+  changePoisonStatusbar() {
+    this.poisonStatusBar.setPercentage(
+      this.hero.poisonAmmunition,
+      this.poisonStatusBar. imagesPoison
+    );
+  }
+
   /**
    * Function iterates through all thrown objects and checks if one is colliding with any enemy object from an enemies array. If so it elemintes the hitted enemy and erases the enemy from the canvas and enemy array
    *
