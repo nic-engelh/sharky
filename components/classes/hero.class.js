@@ -321,10 +321,10 @@ class Hero extends MovableObject {
   }
 
   changeAmmunitionAmount(increase, decrease) {
-    let baseAmount = this.world.level.bottles.length;
+    // baseAmount = this.world.level.bottles.length
     if (increase)
-      this.poisonAmmunition += (1/baseAmount);
+      this.poisonAmmunition += 30;
     if (decrease)
-      this.poisonAmmunition -= (1/baseAmount);
+      this.poisonAmmunition -= 30;
   }
 }

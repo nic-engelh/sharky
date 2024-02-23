@@ -210,19 +210,21 @@ class World {
   checkingCoinCollision() {
     this.level.coins.forEach((coin) => {
       if (this.hero.isColliding(coin)) {
-        this.hero.coins += 30;
+        this.hero.coins += 33;
         this.coinStatusBar.setPercentage(this.hero.coins, this.coinStatusBar.imagesCoin);
-        coin.eraseObjectFromCanvas();
+        eraseObjectFromCanvas(this.level.coins, coin);
       }
     });
   }
 
   checkingBottleCollision() {
     this.level.bottles.forEach((bottle) => {
+      /*
       console.log("hero left bottle:",this.hero.isCollidingRightwithLeft(bottle));
       console.log("hero right bottle:",this.hero.isCollidingLeftwithRight(bottle));
       console.log("hero top bottle:",this.hero.isCollidingTopwithBottom(bottle));
-      console.log("hero bottom bottle:",this.hero.isCollidingBottomWithTop(bottle));
+      console.log("hero bottom bottle:",this.hero.isCollidingBottomWithTop(bottle)); 
+      */
       if (this.hero.isColliding(bottle)) {
         this.hero.changeAmmunitionAmount(true, false);
         this.poisonStatusBar.setPercentage(this.hero.poisonAmmunition, this.poisonStatusBar.imagesPoison);

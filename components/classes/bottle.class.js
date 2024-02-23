@@ -30,12 +30,4 @@ class Bottle extends MovableObject {
     }, 200);
   }
 
-  isCollidingWithTarget(object) {
-    return (
-      this.isCollidingLeftwithRight(object) &&
-      this.isCollidingLeftwithRight(object) &&
-      (this.isCollidingTopwithBottom(object) ||
-        this.isCollidingBottomWithTop(object))
-    );
-  }
 }

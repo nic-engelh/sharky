@@ -3,8 +3,8 @@ class MovableObject extends DrawableObject {
   otherDirection = false;
   speedY = 0;
   acceleration = 2.5;
-  offsetTop = 150;
-  offsetBottom = 50;
+  offsetTop = 0;
+  offsetBottom = 0;
   offsetRight = 0;
   offsetleft = 0;
   energy = 100;
@@ -82,16 +82,23 @@ class MovableObject extends DrawableObject {
    */
   isColliding(object) {
     return (
-      // checking right with left
+      // checking right with left; Top Right Corner Point; offset to shorten it; object top left corner point; Offset to shorten top
       (this.x + this.width - this.offsetRight) >= (object.x + object.offsetleft) &&
-      // checking Left with right
+      // checking Left with right; top left corner point; offset to set it more to the right; object top right corner; offset to set x to the left
       (this.x + this.offsetleft) <= (object.x + object.width - object.offsetRight) &&
-      // checking top with bottom
+      // checking top with bottom; bottom left 
       (this.y + this.height - this.offsetBottom) >= (object.y + object.offsetTop) &&
-      // checking bottom with top
-      (this.y + this.offsetTop) <= (object.y + object.height - object.offsetBottom)
+      // checking top poin with bottom point; top left corner point; offsettop sets y more down; object bottom corner point; offset sets y even more down
+      (this.y + this.offsetTop) <= (object.y + object.height + object.offsetBottom)
     );
   }
+
+  /*
+  (this.X + this.width) >= obj.X && 
+  this.X <= (obj.X + obj.width) && 
+                (this.Y + this.offsetY + this.height) >= obj.Y &&
+                (this.Y + this.offsetY) <= (obj.Y + obj.height) */
+
 
   isCollidingRightwithLeft (object) {
     return (this.x + this.width - this.offsetRight >= object.x + object.offsetleft);
