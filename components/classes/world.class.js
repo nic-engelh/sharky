@@ -36,6 +36,7 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollisions();
+      this.checkGathering()
       this.checkThrownObjects();
       this.checkDistances();
       this.checkMeleeAttacks();
@@ -58,11 +59,14 @@ class World {
       this.hero.currentImage = 0;
       this.hero.isAttacking = true;
     }
-  }
+  }   
 
   checkCollisions() {
     this.checkingEnemyCollision();
     this.checkingBubbleCollision();
+  }
+
+  checkGathering() {
     this.checkingCoinCollision();
     this.checkingBottleCollision();
   }
@@ -215,11 +219,14 @@ class World {
 
   checkingBottleCollision() {
     this.level.bottles.forEach((bottle) => {
-
+      console.log("hero left bottle:",this.hero.isCollidingRightwithLeft(bottle));
+      console.log("hero right bottle:",this.hero.isCollidingLeftwithRight(bottle));
+      console.log("hero top bottle:",this.hero.isCollidingTopwithBottom(bottle));
+      console.log("hero bottom bottle:",this.hero.isCollidingBottomWithTop(bottle));
       if (this.hero.isColliding(bottle)) {
         this.hero.changeAmmunitionAmount(true, false);
         this.poisonStatusBar.setPercentage(this.hero.poisonAmmunition, this.poisonStatusBar.imagesPoison);
-        bottle.eraseObjectFromCanvas();
+        eraseObjectFromCanvas(this.level.bottles, bottle);
       }
     });
   }

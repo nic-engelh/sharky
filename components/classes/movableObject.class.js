@@ -83,15 +83,33 @@ class MovableObject extends DrawableObject {
   isColliding(object) {
     return (
       // checking right with left
-      this.x + this.width - this.offsetRight >= object.x + object.offsetleft &&
+      (this.x + this.width - this.offsetRight) >= (object.x + object.offsetleft) &&
       // checking Left with right
-      this.x + this.offsetleft <= object.x + object.width - this.offsetRight &&
+      (this.x + this.offsetleft) <= (object.x + object.width - object.offsetRight) &&
       // checking top with bottom
-      this.y + this.height - this.offsetBottom >= object.y + object.offsetTop &&
+      (this.y + this.height - this.offsetBottom) >= (object.y + object.offsetTop) &&
       // checking bottom with top
-      this.y + this.offsetTop <= object.y + object.height - object.offsetBottom
+      (this.y + this.offsetTop) <= (object.y + object.height - object.offsetBottom)
     );
   }
+
+  isCollidingRightwithLeft (object) {
+    return (this.x + this.width - this.offsetRight >= object.x + object.offsetleft);
+  }
+
+  isCollidingLeftwithRight (object) {
+    return (this.x + this.offsetleft <= object.x + object.width - this.offsetRight);
+  }
+
+  isCollidingTopwithBottom (object) {
+    return (this.y + this.height - this.offsetBottom >= object.y + object.offsetTop);
+  }
+
+  isCollidingBottomWithTop (object) {
+    return (this.y + this.offsetTop <= object.y + object.height - object.offsetBottom);
+  }
+
+  
 
   /**
    * Function reduces the energy to zero in five point steps. It will stay at zero. It will create a date object from the last hit.

@@ -134,10 +134,10 @@ class Hero extends MovableObject {
     this.loadImages(this.imagesDying);
     this.loadImages(this.imagesDead);
     this.loadImages(this.imagesElectrifying);
-    this.offsetTop = 150;
+    this.offsetTop = 120;
     this.offsetBottom = 50;
-    this.offsetRight = 100;
-    this.offsetleft = 0;
+    this.offsetRight = 50;
+    this.offsetleft = 50;
     this.animate();
   }
 
