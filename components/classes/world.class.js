@@ -64,6 +64,7 @@ class World {
     this.checkingEnemyCollision();
     this.checkingBubbleCollision();
     this.checkingCoinCollision();
+    this.checkingBottleCollision();
   }
 
   checkDistances() {
@@ -85,6 +86,7 @@ class World {
     // fixed objects with reseting coordination system
     this.ctx.translate(-this.cameraX, 0);
     this.addToMap(this.healthStatusBar);
+    this.addToMap(this.poisonStatusBar);
     this.ctx.translate(this.cameraX, 0);
     // movable objects
     this.addToMap(this.hero);
@@ -203,22 +205,22 @@ class World {
 
   checkingCoinCollision() {
     this.level.coins.forEach((coin) => {
-      // collision with coin
-      // get coin
-      // update coin status bar
       if (this.hero.isColliding(coin)) {
-        this.coinStatusBar.setPercentage(10, this.coinStatusBar.imagesCoin);
+        this.hero.coins += 30;
+        this.coinStatusBar.setPercentage(this.hero.coins, this.coinStatusBar.imagesCoin);
+        coin.eraseObjectFromCanvas();
       }
     });
   }
 
   checkingBottleCollision() {
     this.level.bottles.forEach((bottle) => {
+
       if (this.hero.isColliding(bottle)) {
-        this.hero.changeAmmunition(true, false);
-        this.poisonStatusBarStatusBar.setPercentage(this.hero.poisonAmmunition, this.poisonStatusBar.imagesPoison);
+        this.hero.changeAmmunitionAmount(true, false);
+        this.poisonStatusBar.setPercentage(this.hero.poisonAmmunition, this.poisonStatusBar.imagesPoison);
+        bottle.eraseObjectFromCanvas();
       }
-      this.bottle.eraseObjectFromCanvas();
     });
   }
 }

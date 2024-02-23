@@ -209,9 +209,9 @@ class Hero extends MovableObject {
 
   disengage() {
     this.currentImage = 0;
-        // if enemy is hit
     this.isAttacking = false;
     this.decreaseAttackRange();
+    // deletes elements enemies from array and therefore from the canvas
     this.isCollidingWith.shift();
   }
 
@@ -327,9 +327,4 @@ class Hero extends MovableObject {
     if (decrease)
       this.poisonAmmunition -= (1/baseAmount);
   }
-
-  
-
-
-
 }

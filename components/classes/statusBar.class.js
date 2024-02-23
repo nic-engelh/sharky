@@ -42,18 +42,21 @@ class StatusBar extends DrawableObject {
             this.loadImages(this.imagesPoison);
             this.x = 30;
             this.y = -30;
-            this.setPercentage(100, this.imagesCoin);
+            this.setPercentage(0, this.imagesPoison);
         }
         if(type == "coin") {
             super().loadImage('/assets/img/4. Marcadores/green/Coin/0_  copia 4.png');
             this.loadImages(this.imagesCoin);
             this.x = 30;
             this.y = -60;
-            this.setPercentage(100, this.imagesPoison);
+            this.setPercentage(0, this.imagesCoin);
         }
-
         this.height = 60;
-        this.width= 200
+        this.width= 200;
+        this.offSetTop = 0;
+        this.offsetBottom = 0;
+        this.offsetRight = 0;
+        this.offsetleft = 0;
     } 
 
     setPercentage (percentage, images) {
