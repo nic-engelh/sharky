@@ -217,8 +217,9 @@ class Hero extends MovableObject {
 
   rangeAttack() {
     this.currentImage = 0;
-    if (this.isEndbossNear())
+    if (this.isEndbossNear() && this.poisonAmmunition > 0)
       this.throwingBubble(true);
+      this.world.changePoisonStatusbar();
     if (!this.isEndbossNear())
       this.throwingBubble(false);
     this.isShooting = false;
@@ -303,11 +304,13 @@ class Hero extends MovableObject {
 
   throwingBubble(poison) {
     let bubble = new ThrowableObject(this.x + this.width - 100, this.y + 150, poison);
+    if (poison)
+      this.changeAmmunitionAmount(false, true);
     this.world.throwableObjects.push(bubble);
     // Timer for deleting bubble object from array
     setTimeout(() => {
       this.world.throwableObjects.shift();
-    }, 5000);
+    }, 15000);
   }
 
   increaseAttackRange(){

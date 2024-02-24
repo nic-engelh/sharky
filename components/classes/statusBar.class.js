@@ -15,7 +15,7 @@ class StatusBar extends DrawableObject {
         'assets/img/4. Marcadores/green/Coin/40_  copia 4.png',
         'assets/img/4. Marcadores/green/Coin/60_  copia 4.png',
         'assets/img/4. Marcadores/green/Coin/80_  copia 4.png',
-        'assets/img/4. Marcadores/green/Coin/100_  copia 4.png',
+        '/assets/img/4. Marcadores/green/Coin/100_ copia 4.png',
     ];
 
     imagesPoison = [
