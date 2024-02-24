@@ -91,6 +91,7 @@ class World {
     this.ctx.translate(-this.cameraX, 0);
     this.addToMap(this.healthStatusBar);
     this.addToMap(this.poisonStatusBar);
+    this.addToMap(this.coinStatusBar);
     this.ctx.translate(this.cameraX, 0);
     // movable objects
     this.addToMap(this.hero);
@@ -210,7 +211,7 @@ class World {
   checkingCoinCollision() {
     this.level.coins.forEach((coin) => {
       if (this.hero.isColliding(coin)) {
-        this.hero.coins += 33;
+        this.hero.coins += 30;
         this.coinStatusBar.setPercentage(this.hero.coins, this.coinStatusBar.imagesCoin);
         eraseObjectFromCanvas(this.level.coins, coin);
       }

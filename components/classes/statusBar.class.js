@@ -40,15 +40,15 @@ class StatusBar extends DrawableObject {
         if(type == "poison") {
             super().loadImage('/assets/img/4. Marcadores/green/poisoned bubbles/0_ copia 2.png');
             this.loadImages(this.imagesPoison);
-            this.x = 30;
-            this.y = -30;
+            this.x = 240;
+            this.y = 0;
             this.setPercentage(0, this.imagesPoison);
         }
         if(type == "coin") {
             super().loadImage('/assets/img/4. Marcadores/green/Coin/0_  copia 4.png');
             this.loadImages(this.imagesCoin);
-            this.x = 30;
-            this.y = -60;
+            this.x = 450;
+            this.y = 0;
             this.setPercentage(0, this.imagesCoin);
         }
         this.height = 60;

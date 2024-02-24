@@ -65,11 +65,13 @@ class Endboss extends MovableObject {
     this.loadImages(this.imagesAttacking);
     this.loadImages(this.imagesWounding);
     this.x = 2300;
-    this.y = -150;
+    this.y = -100; // base -150
     //this.height = 520;
     //this.width = 608;
-    this.offSetTop = 0;
-    this.offsetBottom = 0;
+    // Setting the collision top line lower
+    this.offSetTop = 150;
+    // Setting the bottom collision line slightly higher
+    this.offsetBottom = -100;
     this.offsetRight = 0;
     this.offsetleft = 0;
     this.animate();
@@ -89,6 +91,8 @@ class Endboss extends MovableObject {
       }
       if (this.hadFirstHeroContact && !this.isAttacking) {
         i = this.swimming(i);
+        if (i % 20 === 0)
+          this.luring();
       }
     }, 1000 / 7);
   }
@@ -128,5 +132,16 @@ class Endboss extends MovableObject {
           this.isAttacking = true;
         }
     return i
+  }
+
+  /**
+   * function moves endboss randomly up and down. Range-Y -250 to  +50.
+   * 
+  */
+  luring() {
+    let topBorder = -250;
+    let rangeY = 300;
+    // 1500 + Math.random() * 500;
+    this.y = topBorder + Math.random() * rangeY;
   }
 }
