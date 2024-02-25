@@ -43,7 +43,8 @@ class MovableObject extends DrawableObject {
    *
    * @param {image} images
    */
-  playAnimation(images) {
+  playAnimation(images) { 
+    if(images == null) return;
     this.resetCurrentImage(images);
     let i = this.currentImage % images.length;
     let path = images[i];
@@ -81,6 +82,7 @@ class MovableObject extends DrawableObject {
    * @returns boolean
    */
   isColliding(object) {
+    if (object == null) return;
     return (
       // each x and y makes in kombination the cordinates for every of the 4 points of the object image frame: top right, top left, bottom right, bottom left.
       // zero point is top left corner; Y Axis is inverted; Y goes from top to bottom positiv
@@ -176,6 +178,7 @@ class MovableObject extends DrawableObject {
   }
 
   isCloseTo (object) {
+    if (object == null) return;
     let distance =  object.x - this.x ;
     return (distance <= 350);
   }

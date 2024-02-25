@@ -303,6 +303,7 @@ class Hero extends MovableObject {
   }
 
   throwingBubble(poison) {
+    if (poison == null) return;
     let bubble = new ThrowableObject(this.x + this.width - 100, this.y + 150, poison);
     if (poison)
       this.changeAmmunitionAmount(false, true);
@@ -324,6 +325,7 @@ class Hero extends MovableObject {
   }
 
   changeAmmunitionAmount(increase, decrease) {
+    if(increase == null || decrease == null) return;
     // baseAmount = this.world.level.bottles.length
     if (increase)
       this.poisonAmmunition += 30;

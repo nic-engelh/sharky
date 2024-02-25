@@ -73,6 +73,7 @@ class World {
 
   checkDistances() {
     this.level.enemies.forEach((enemy) => {
+      if (enemy == NULL) return
       if (this.hero.isCloseTo(enemy)) {
         enemy.heroIsClose = true;
       }
@@ -180,6 +181,13 @@ class World {
         if (bubble.isColliding(enemy)) {
           enemy.eliminated();
           eraseObjectFromCanvas(this.throwableObjects, bubble);
+        }
+        if (bubble.isColliding(enemy) && enemy instanceof Endboss) {
+          enemy.isHit = true;
+          enemy.energy -= 35; // TODO energy is reduced too much
+          // flag wounded true
+          // activate animation
+          // reduce energy
         }
       });
     });

@@ -1,10 +1,4 @@
 class Endboss extends MovableObject {
-  height = 520;
-  width = 608;
-  world;
-  hadFirstHeroContact = false;
-  attackIndex = 0;
-
   imagesWalking = [
     "/assets/img/2.Enemy/3 Final Enemy/2.floating/1.png",
     "/assets/img/2.Enemy/3 Final Enemy/2.floating/2.png",
@@ -57,6 +51,13 @@ class Endboss extends MovableObject {
     '/assets/img/2.Enemy/3 Final Enemy/Attack/6.png',
   ];
 
+  height = 520;
+  width = 608;
+  world;
+  hadFirstHeroContact = false;
+  attackIndex = 0;
+  isHit = false; 
+
   constructor() {
     super().loadImage("assets/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
     this.loadImages(this.imagesWalking);
@@ -83,13 +84,16 @@ class Endboss extends MovableObject {
       if (this.isHeroNear()) {
         i = this.spawningEndboss(i);
       }
+      if(this.isHit) {
+        this.takingDamage();
+      }
       if(this.isAttacking){
         this.attacking(); 
       }
       if (this.isAttacking && this.attackIndex > 6){
         this.withdrawing();
       }
-      if (this.hadFirstHeroContact && !this.isAttacking) {
+      if (this.hadFirstHeroContact && !this.isAttacking && !this.isHit) {
         i = this.swimming(i);
         if (i % 20 === 0)
           this.luring();
@@ -143,5 +147,9 @@ class Endboss extends MovableObject {
     let rangeY = 300;
     // 1500 + Math.random() * 500;
     this.y = topBorder + Math.random() * rangeY;
+  }
+
+  takingDamage() {
+    this.playAnimation(this.imagesWounding);
   }
 }
