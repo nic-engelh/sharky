@@ -81,22 +81,17 @@ class Endboss extends MovableObject {
   animate() {
     let i = 0;
     setInterval(() => {
-      if (this.isHeroNear()) {
+      if (this.isHeroNear()) 
         i = this.spawningEndboss(i);
-      }
-      if(this.isHit) {
+      if(this.isHit) 
         this.takingDamage();
-      }
-      if(this.isAttacking){
+      if(this.isAttacking)
         this.attacking(); 
-      }
-      if (this.isAttacking && this.attackIndex > 6){
+      if (this.isAttacking && this.attackIndex > 6)
         this.withdrawing();
-      }
       if (this.hadFirstHeroContact && !this.isAttacking && !this.isHit) {
         i = this.swimming(i);
-        if (i % 20 === 0)
-          this.luring();
+        if (i % 20 === 0) this.luring();
       }
     }, 1000 / 7);
   }
