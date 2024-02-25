@@ -73,7 +73,7 @@ class World {
 
   checkDistances() {
     this.level.enemies.forEach((enemy) => {
-      if (enemy == NULL) return
+      if (enemy == null) return
       if (this.hero.isCloseTo(enemy)) {
         enemy.heroIsClose = true;
       }

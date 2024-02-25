@@ -102,6 +102,7 @@ class Endboss extends MovableObject {
   }
 
   isHeroNear() {
+    if (this.world.hero.x == null) return;
     return this.world.hero.x > 1900 && !this.hadFirstHeroContact;
   }
   
