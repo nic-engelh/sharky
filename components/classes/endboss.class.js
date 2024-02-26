@@ -29,12 +29,16 @@ class Endboss extends MovableObject {
 
   imagesDying = [
     '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 8.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png',
     '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 6.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 8.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png',
   ];
+
+  imagesDead = [
+    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png',
+  ]
 
   imagesWounding = [
     '/assets/img/2.Enemy/3 Final Enemy/Hurt/1.png',
@@ -65,16 +69,19 @@ class Endboss extends MovableObject {
     this.loadImages(this.imagesDying);
     this.loadImages(this.imagesAttacking);
     this.loadImages(this.imagesWounding);
+    this.loadImages(this.imagesDead);
     this.x = 2300;
     this.y = -100; // base -150
     //this.height = 520;
     //this.width = 608;
     // Setting the collision top line lower
-    this.offSetTop = 150;
+    this.offSetTop = 250;
     // Setting the bottom collision line slightly higher
     this.offsetBottom = -100;
     this.offsetRight = 0;
     this.offsetleft = 0;
+    this.energy = 100;
+    this.deathState = false;
     this.animate();
   }
 
@@ -83,14 +90,15 @@ class Endboss extends MovableObject {
     setInterval(() => {
       if (this.isHeroNear()) 
         i = this.spawningEndboss(i);
+      if(this.isDead())
+        this.isDying();
       if(this.isHit) 
         this.takingDamage();
-        console.log("damage image:", this.currentImage);
       if(this.isAttacking)
         this.attacking(); 
       if (this.isAttacking && this.attackIndex > 6)
         this.withdrawing();
-      if (this.hadFirstHeroContact && !this.isAttacking && !this.isHit) {
+      if (this.hadFirstHeroContact && !this.isAttacking && !this.isHit && !this.isDead()) {
         i = this.swimming(i);
         if (i % 20 === 0) this.luring();
       }
@@ -102,11 +110,8 @@ class Endboss extends MovableObject {
     try { 
       return this.world.hero.x > 1900 && !this.hadFirstHeroContact;
     } catch (error) {
-
       return false;
     }
-
-    return this.world.hero.x > 1900 && !this.hadFirstHeroContact;
   }
   
   spawningEndboss(i) {
@@ -143,7 +148,7 @@ class Endboss extends MovableObject {
   }
 
   /**
-   * function moves endboss randomly up and down. Range-Y -250 to  +50.
+   * function moves endboss randomly up and down. Range-Y: -250 to +50.
    * 
   */
   luring() {
@@ -156,5 +161,15 @@ class Endboss extends MovableObject {
   takingDamage() {
     this.playAnimation(this.imagesWounding);
     if(this.currentImage == 4) this.isHit = false;
+  }
+
+  isDying() {
+    //TODO: extra  death counter otherwise will the animation always start again.
+    if (this.currentImage == 6) {
+      this.playAnimation(this.imagesDead);
+      this.y -= 5;
+    }
+    //TODO: Plays it every time. extra death counter?!
+    this.playAnimation(this.imagesDying);
   }
 }

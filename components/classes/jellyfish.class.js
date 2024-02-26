@@ -64,6 +64,6 @@ class Jellyfish extends MovableObject {
 
     transform() {
         this.isAggressive = true;
-        this.playAnimation(this.imagesAttacking);
+        this.playAnimation(this.imagesAttacking);s
     }
 }
