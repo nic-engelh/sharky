@@ -85,6 +85,7 @@ class Endboss extends MovableObject {
         i = this.spawningEndboss(i);
       if(this.isHit) 
         this.takingDamage();
+        console.log("damage image:", this.currentImage);
       if(this.isAttacking)
         this.attacking(); 
       if (this.isAttacking && this.attackIndex > 6)
@@ -97,7 +98,14 @@ class Endboss extends MovableObject {
   }
 
   isHeroNear() {
-    if (this.world.hero.x == null) return;
+    //TODO: undefined world.hero.x in guard clause 
+    try { 
+      return this.world.hero.x > 1900 && !this.hadFirstHeroContact;
+    } catch (error) {
+
+      return false;
+    }
+
     return this.world.hero.x > 1900 && !this.hadFirstHeroContact;
   }
   
@@ -147,5 +155,6 @@ class Endboss extends MovableObject {
 
   takingDamage() {
     this.playAnimation(this.imagesWounding);
+    if(this.currentImage == 4) this.isHit = false;
   }
 }
