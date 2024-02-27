@@ -138,6 +138,7 @@ class Hero extends MovableObject {
     this.offsetBottom = 50;
     this.offsetRight = 50;
     this.offsetleft = 50;
+    this.x = 50;
     this.animate();
   }
 

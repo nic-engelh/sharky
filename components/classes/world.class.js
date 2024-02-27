@@ -162,9 +162,17 @@ class World {
     this.ctx.restore();
   }
 
+
+/**
+ * Function rotates hero object by 45 degress upwards or downwards.
+ * 
+ * @param {MovoableObject} movableObject as Hero Object
+ * @param {boolean} up movement
+ * @param {boolean} down movement
+ */
   rotateImage(movableObject, up, down) {
     this.ctx.save();
-    this.ctx.translate(movableObject.x,  movableObject.y );
+    this.ctx.translate(movableObject.x,  movableObject.y);
     // up: -Math.PI / 4 down: Math.PI / 4
     if (up) { 
       this.ctx.rotate(-Math.PI / 4 );
@@ -174,8 +182,6 @@ class World {
       this.ctx.rotate(Math.PI / 4 );
       this.ctx.translate(-(movableObject.x - movableObject.width / 2), -(movableObject.y + (movableObject.height / 2)));
     }
-    
-
 }
 
   resetRotation() {

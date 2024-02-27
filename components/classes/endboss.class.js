@@ -75,7 +75,7 @@ class Endboss extends MovableObject {
     //this.height = 520;
     //this.width = 608;
     // Setting the collision top line lower
-    this.offSetTop = 250;
+    this.offSetTop = 400;
     // Setting the bottom collision line slightly higher
     this.offsetBottom = -100;
     this.offsetRight = 0;
@@ -124,7 +124,7 @@ class Endboss extends MovableObject {
   }
 
   attacking() {
-    this.offsetleft = -100;
+    this.offsetleft = 0;
     this.x = 2100; 
     this.playAnimation(this.imagesAttacking);
     this.attackIndex++;

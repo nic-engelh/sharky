@@ -35,7 +35,7 @@ class Pufferfish extends MovableObject {
         this.loadImages(this.imagesBubbling);
         this.loadImages(this.imagesBubbleSwimming);
         this.loadImages(this.imagesDead);
-        this.x = 200 + Math.random() * 500;
+        this.x = 400 + Math.random() * 500;
         this.y = 300 - Math.random() * 300;
         this.height = 100;
         this.width = 122;
