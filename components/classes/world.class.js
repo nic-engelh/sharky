@@ -124,15 +124,20 @@ class World {
    * @param {movableObject} movableObject
    */
   addToMap(movableObject) {
-    if (movableObject.otherDirection) {
+    if (movableObject.otherDirection) 
       this.flipImage(movableObject);
-    }
+    if (movableObject.upwards)
+      this.rotateImage(movableObject, true, false);
+    if (movableObject.downwards)
+      this.rotateImage(movableObject, false, true);
+
     movableObject.draw(this.ctx);
     movableObject.drawFrame(this.ctx);
 
-    if (movableObject.otherDirection) {
+    if (movableObject.otherDirection) 
       this.resetFlipImage(movableObject);
-    }
+    if (movableObject.upwards || movableObject.downwards)
+      this.resetRotation ();
   }
 
   /**
@@ -156,6 +161,21 @@ class World {
     movableObject.x = movableObject.x * -1;
     this.ctx.restore();
   }
+
+  rotateImage(movableObject, up, down) {
+    this.ctx.save();
+    this.ctx.translate(movableObject.x,  movableObject.y );
+    // up: -Math.PI / 4 down: Math.PI / 4
+    if (up) this.ctx.rotate(-Math.PI / 4 );
+    if (down) this.ctx.rotate(Math.PI / 4 );
+    this.ctx.translate(-(movableObject.x + movableObject.width / 2), -(movableObject.y - (movableObject.height / 2)));
+
+}
+
+  resetRotation() {
+    this.ctx.restore();
+  }
+
 
   changeHealthStatusbar() {
     this.healthStatusBar.setPercentage(
@@ -228,12 +248,6 @@ class World {
 
   checkingBottleCollision() {
     this.level.bottles.forEach((bottle) => {
-      /*
-      console.log("hero left bottle:",this.hero.isCollidingRightwithLeft(bottle));
-      console.log("hero right bottle:",this.hero.isCollidingLeftwithRight(bottle));
-      console.log("hero top bottle:",this.hero.isCollidingTopwithBottom(bottle));
-      console.log("hero bottom bottle:",this.hero.isCollidingBottomWithTop(bottle)); 
-      */
       if (this.hero.isColliding(bottle)) {
         this.hero.changeAmmunitionAmount(true, false);
         this.poisonStatusBar.setPercentage(this.hero.poisonAmmunition, this.poisonStatusBar.imagesPoison);

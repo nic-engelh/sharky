@@ -262,6 +262,8 @@ class Hero extends MovableObject {
     if(this.isDead()) return false;
     this.x += this.speed;
     this.otherDirection = false;
+    this.downwards = false;
+    this.upwards = false;
     this.swimmingSounds.play();
   }
 
@@ -269,16 +271,22 @@ class Hero extends MovableObject {
     if(this.isDead()) return false;
     this.x -= this.speed;
     this.otherDirection = true;
+    this.downwards = false;
+    this.upwards = false;
     this.swimmingSounds.play();
   }
 
   moveUp() {
     if(this.isDead()) return false;
+    this.upwards = true;
+    this.downwards = false;
     this.y -= this.speed;
   }
 
   moveDown() {
     if(this.isDead()) return false;
+    this.downwards = true;
+    this.upwards = false;
     this.y += this.speed;
   }
 

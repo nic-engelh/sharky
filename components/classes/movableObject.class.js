@@ -13,6 +13,8 @@ class MovableObject extends DrawableObject {
   heroIsClose = false;
   isAggressive = false;
   isAttacking = false;
+  upwards = false;
+  downwards = false;
 
   /**
    * Function raises the x value and the objects moves right if the object is not eleminated
