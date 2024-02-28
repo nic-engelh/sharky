@@ -170,6 +170,7 @@ class Endboss extends MovableObject {
       this.y -= 5;
     }
     //TODO: Plays it every time. extra death counter?!
+    // First animation should run through than it should only thow the 6th picture
     this.playAnimation(this.imagesDying);
   }
 }

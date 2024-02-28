@@ -99,13 +99,6 @@ class MovableObject extends DrawableObject {
     );
   }
 
-  /*
-  (this.X + this.width) >= obj.X && 
-  this.X <= (obj.X + obj.width) && 
-                (this.Y + this.offsetY + this.height) >= obj.Y &&
-                (this.Y + this.offsetY) <= (obj.Y + obj.height) */
-
-
   isCollidingRightwithLeft (object) {
     return (this.x + this.width - this.offsetRight >= object.x + object.offsetleft);
   }
