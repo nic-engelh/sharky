@@ -162,7 +162,6 @@ class World {
     this.ctx.restore();
   }
 
-
 /**
  * Function rotates hero object by 45 degress upwards or downwards.
  * 
@@ -209,16 +208,17 @@ class World {
   checkingBubbleCollision() {
     this.throwableObjects.forEach((bubble) => {
       this.level.enemies.forEach((enemy) => {
-        if (bubble.isColliding(enemy)) {
+        if (bubble.isColliding(enemy) && !(enemy instanceof Endboss)) {
           enemy.eliminated();
           eraseObjectFromCanvas(this.throwableObjects, bubble);
         }
         if (bubble.isColliding(enemy) && enemy instanceof Endboss) {
+          eraseObjectFromCanvas(this.throwableObjects, bubble);
           enemy.isHit = true;
-          enemy.energy = 0; // TODO energy is reduced too much
-          // flag wounded true
-          // activate animation
-          // reduce energy
+          console.log(enemy.isHit, enemy.deathState, enemy  );
+          console.log(this.level.enemies[5].energy)
+          this.level.enemies[5].reduceEnergy();
+          console.log(this.level.enemies[5].energy)
         }
       });
     });

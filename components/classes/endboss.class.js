@@ -33,7 +33,6 @@ class Endboss extends MovableObject {
     '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png',
     '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 8.png',
     '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png',
   ];
 
   imagesDead = [
@@ -41,6 +40,9 @@ class Endboss extends MovableObject {
   ]
 
   imagesWounding = [
+    '/assets/img/2.Enemy/3 Final Enemy/Hurt/1.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Hurt/2.png',
+    '/assets/img/2.Enemy/3 Final Enemy/Hurt/3.png',
     '/assets/img/2.Enemy/3 Final Enemy/Hurt/1.png',
     '/assets/img/2.Enemy/3 Final Enemy/Hurt/2.png',
     '/assets/img/2.Enemy/3 Final Enemy/Hurt/3.png',
@@ -60,7 +62,8 @@ class Endboss extends MovableObject {
   world;
   hadFirstHeroContact = false;
   attackIndex = 0;
-  isHit = false; 
+  isHit = false;
+  deathCounter = 0;
 
   constructor() {
     super().loadImage("assets/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
@@ -80,8 +83,6 @@ class Endboss extends MovableObject {
     this.offsetBottom = -100;
     this.offsetRight = 0;
     this.offsetleft = 0;
-    this.energy = 100;
-    this.deathState = false;
     this.animate();
   }
 
@@ -90,13 +91,13 @@ class Endboss extends MovableObject {
     setInterval(() => {
       if (this.isHeroNear()) 
         i = this.spawningEndboss(i);
+      if(this.isHit && !this.isDead()) 
+        this.takingDamage();
       if(this.isDead())
         this.isDying();
-      if(this.isHit) 
-        this.takingDamage();
-      if(this.isAttacking)
+      if(this.isAttacking && !this.isHit)
         this.attacking(); 
-      if (this.isAttacking && this.attackIndex > 6)
+      if (this.isAttacking && this.attackIndex > 6 && !this.isHit)
         this.withdrawing();
       if (this.hadFirstHeroContact && !this.isAttacking && !this.isHit && !this.isDead()) {
         i = this.swimming(i);
@@ -160,17 +161,20 @@ class Endboss extends MovableObject {
 
   takingDamage() {
     this.playAnimation(this.imagesWounding);
-    if(this.currentImage == 4) this.isHit = false;
+    if(this.currentImage == 6) this.isHit = false;
   }
 
   isDying() {
-    //TODO: extra  death counter otherwise will the animation always start again.
-    if (this.currentImage == 6) {
+    if (this.deathCounter > 18) {
       this.playAnimation(this.imagesDead);
       this.y -= 5;
+      return
     }
-    //TODO: Plays it every time. extra death counter?!
-    // First animation should run through than it should only thow the 6th picture
     this.playAnimation(this.imagesDying);
+    this.deathCounter++;
+  }
+
+  reduceEnergy () {
+    this.energy -= 35;
   }
 }
