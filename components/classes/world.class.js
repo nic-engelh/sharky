@@ -54,6 +54,10 @@ class World {
     }
   }
 
+  /**
+   * Functions checks if the melee key is pressed. If so it activates the attacking flag for the hero object.
+   * 
+   */
   checkMeleeAttacks() {
     if (this.keyboard.space && !this.hero.isAttacking) {
       this.hero.currentImage = 0;
@@ -71,6 +75,10 @@ class World {
     this.checkingBottleCollision();
   }
 
+  /**
+   * Functions checks distances for every enemy in the game. If the enemy object is close to the hero, it will activate a flag wihtin the enemy object scope.
+   * 
+   */
   checkDistances() {
     this.level.enemies.forEach((enemy) => {
       if (enemy == null) return
@@ -187,6 +195,10 @@ class World {
     this.ctx.restore();
   }
 
+  /**
+   * Function sets the health status bar up to the exact amount of the hero object energy variable.
+   * 
+   */
   changeHealthStatusbar() {
     this.healthStatusBar.setPercentage(
       this.hero.energy,
@@ -194,6 +206,10 @@ class World {
     );
   }
 
+  /**
+   * Function sets the poison status bar up to the exact amount of the hero object gathered poison bottles.
+   * 
+   */
   changePoisonStatusbar() {
     this.poisonStatusBar.setPercentage(
       this.hero.poisonAmmunition,
@@ -215,10 +231,7 @@ class World {
         if (bubble.isColliding(enemy) && enemy instanceof Endboss) {
           eraseObjectFromCanvas(this.throwableObjects, bubble);
           enemy.isHit = true;
-          console.log(enemy.isHit, enemy.deathState, enemy  );
-          console.log(this.level.enemies[5].energy)
           this.level.enemies[5].reduceEnergy();
-          console.log(this.level.enemies[5].energy)
         }
       });
     });
@@ -247,6 +260,11 @@ class World {
     });
   }
 
+
+  /**
+   * Function goes through every coin object an checks a possible collision with the hero object.  If so, the statusbar will be changed and the object will be erased from the game.
+   * 
+   */
   checkingCoinCollision() {
     this.level.coins.forEach((coin) => {
       if (this.hero.isColliding(coin)) {
@@ -257,6 +275,10 @@ class World {
     });
   }
 
+  /**
+   * Function goes through every poison bottle object an checks a possible collision with the hero object.  If so, the statusbar will be changed and the object will be erased from the game.
+   * 
+   */
   checkingBottleCollision() {
     this.level.bottles.forEach((bottle) => {
       if (this.hero.isColliding(bottle)) {

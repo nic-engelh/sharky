@@ -189,9 +189,8 @@ class Hero extends MovableObject {
   attacking() {
     if (this.isShooting) {
       this.playAnimation(this.imagesBubbleAttacking);
-      if (this.currentImage >= 8) {
+      if (this.currentImage >= 8) 
         this.rangeAttack();
-      }
     }
     if (this.isAttacking) {
       this.increaseAttackRange();
@@ -311,6 +310,12 @@ class Hero extends MovableObject {
     return this.world.keyboard.down && this.y < 300;
   }
 
+  /**
+   * Function creates a bubble to shoot for the hero object. If will reduce poisonenous bubble ammunition. The bubble will be released as a Throwable Object into the world object. It will be erased after a certain time.
+   * 
+   * @param {boolean} poison 
+   * @returns 
+   */
   throwingBubble(poison) {
     if (poison == null) return;
     let bubble = new ThrowableObject(this.x + this.width - 100, this.y + 150, poison);
@@ -333,6 +338,13 @@ class Hero extends MovableObject {
     this.offsetleft = 0;
   }
 
+  /**
+   * Function increases or decreases the ammount of poison bubbles of the hero object.
+   * 
+   * @param {boolean} increase 
+   * @param {boolean} decrease 
+   * @returns 
+   */
   changeAmmunitionAmount(increase, decrease) {
     if(increase == null || decrease == null) return;
     // baseAmount = this.world.level.bottles.length

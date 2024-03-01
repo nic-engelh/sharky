@@ -75,8 +75,6 @@ class Endboss extends MovableObject {
     this.loadImages(this.imagesDead);
     this.x = 2300;
     this.y = -100; // base -150
-    //this.height = 520;
-    //this.width = 608;
     // Setting the collision top line lower
     this.offSetTop = 400;
     // Setting the bottom collision line slightly higher
@@ -95,7 +93,7 @@ class Endboss extends MovableObject {
         this.takingDamage();
       if(this.isDead())
         this.isDying();
-      if(this.isAttacking && !this.isHit)
+      if(this.isAttacking && !this.isHit && !this.isHeroNear())
         this.attacking(); 
       if (this.isAttacking && this.attackIndex > 6 && !this.isHit)
         this.withdrawing();
@@ -107,7 +105,6 @@ class Endboss extends MovableObject {
   }
 
   isHeroNear() {
-    //TODO: undefined world.hero.x in guard clause 
     try { 
       return this.world.hero.x > 1900 && !this.hadFirstHeroContact;
     } catch (error) {
@@ -165,7 +162,7 @@ class Endboss extends MovableObject {
   }
 
   isDying() {
-    if (this.deathCounter > 18) {
+    if (this.deathCounter > 9) {
       this.playAnimation(this.imagesDead);
       this.y -= 5;
       return
