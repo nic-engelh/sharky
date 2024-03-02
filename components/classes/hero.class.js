@@ -140,7 +140,7 @@ class Hero extends MovableObject {
       this.swimmingSounds.pause();
       this.swimming();
       this.world.cameraX = -this.x + 100;
-    }, 1000 / 30);
+    }, 1000 / 45);
 
     setInterval(() => {
       // if dead is need , function is not async, functions are not waiting

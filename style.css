@@ -1,5 +1,6 @@
 html {
     height: 100%;
+    font-family: "Luckiest Guy Regular";
 }
 
 body {
@@ -14,8 +15,8 @@ body {
 
 canvas {
     background-color: black;
-    border-radius: 5%;
-    
+    border-radius: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;    
 }
 
 @font-face {
@@ -23,4 +24,13 @@ canvas {
     src: url('/assets/fonts/LuckiestGuy-Regular.ttf') format('truetype'); 
     font-weight: normal;
     font-style: normal;
+}
+
+#btn-start {
+    width: 30%;
+    cursor: pointer;
+}
+
+#img-instructions{
+    width: 50%;
 }

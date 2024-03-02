@@ -155,7 +155,7 @@ class World {
       this.rotateImage(movableObject, false, true);
 
     movableObject.draw(this.ctx);
-    movableObject.drawFrame(this.ctx);
+    movableObject.drawFrame(this.ctx); 
 
     if (movableObject.otherDirection) 
       this.resetFlipImage(movableObject);
@@ -240,9 +240,9 @@ class World {
     this.throwableObjects.forEach((bubble) => {
       this.level.enemies.forEach((enemy) => {
         if (bubble.isColliding(enemy) && !(enemy instanceof Endboss)) 
-          activateBubbleCollisionEffect (enemy, bubble);
+          this.activateBubbleCollisionEffect(enemy, bubble);
         if (bubble.isColliding(enemy) && enemy instanceof Endboss) 
-          activateBubbleCollisionEndbossEffect(enemy, bubble);
+          this.activateBubbleCollisionEndbossEffect(enemy, bubble);
       });
     });
   }
