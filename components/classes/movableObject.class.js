@@ -21,7 +21,7 @@ class MovableObject extends DrawableObject {
    *
    */
   moveRight() {
-    setStoppableInterval(this.stepRight(), 1000/60);
+    setStoppableInterval(this.stepRight.bind(this), 1000/60);
   }
 
   /**
@@ -29,7 +29,7 @@ class MovableObject extends DrawableObject {
    *
    */
   moveLeft() {
-    setStoppableInterval(this.stepLeft(), 1000/60);
+    setStoppableInterval(this.stepLeft.bind(this), 1000/60);
    }
 
   stepRight() {
@@ -43,8 +43,6 @@ class MovableObject extends DrawableObject {
       this.x -= this.speed;
     }
   }
-
-  
 
   /**
    * Function iterates through a array of images paths and saves the current image from an image cache

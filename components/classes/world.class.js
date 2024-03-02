@@ -34,7 +34,7 @@ class World {
    *
    */
   run() {
-    setStoppableInterval(this.runChecks(), 1000/10)
+    setInterval(this.runChecks.bind(this), 1000/10)
   }
 
   /**
