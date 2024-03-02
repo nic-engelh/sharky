@@ -50,20 +50,24 @@ class Jellyfish extends MovableObject {
         if(!this.isDead()){
             this.moveLeft();
         }
-        setInterval(() => {
-            if (this.isDead()) {
-                this.playAnimation(this.imagesBubbled);
-                this.floatingUpwards();
-            } else if (this.heroIsClose){
-                this.transform();
-            } else if (!this.isDead() && !this.heroIsClose) {
-                this.playAnimation(this.imagesWalking);
-            }
-        }, 200); 
+        setStoppableInterval(this.actionAnimation.bind(this), 200);
     }
 
     transform() {
         this.isAggressive = true;
         this.playAnimation(this.imagesAttacking);
     }
+
+    actionAnimation(){
+        if (this.isDead()) {
+            this.playAnimation(this.imagesBubbled);
+            this.floatingUpwards();
+        } else if (this.heroIsClose){
+            this.transform();
+        } else if (!this.isDead() && !this.heroIsClose) {
+            this.playAnimation(this.imagesWalking);
+        }
+    }
 }
+
+

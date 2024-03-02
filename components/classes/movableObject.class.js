@@ -16,28 +16,29 @@ class MovableObject extends DrawableObject {
   upwards = false;
   downwards = false;
 
-  /**
-   * Function raises the x value and the objects moves right if the object is not eleminated
-   *
-   */
+ 
   moveRight() {
     setStoppableInterval(this.stepRight.bind(this), 1000/60);
   }
 
-  /**
-   * Function reduces the x value and the objects moves left if the object is not eleminated
-   *
-   */
   moveLeft() {
     setStoppableInterval(this.stepLeft.bind(this), 1000/60);
    }
 
+   /**
+   * Function raises the x value and the objects moves right if the object is not eleminated
+   *
+   */
   stepRight() {
     if (!this.isDead()) {
       this.x += this.speed;
     }
   }
   
+  /**
+   * Function reduces the x value and the objects moves left if the object is not eleminated
+   *
+   */
   stepLeft() {
     if (!this.isDead()) {
       this.x -= this.speed;
