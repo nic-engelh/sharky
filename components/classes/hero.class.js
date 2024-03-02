@@ -142,15 +142,20 @@ class Hero extends MovableObject {
       this.world.cameraX = -this.x + 100;
     }, 1000 / 45);
 
-    setInterval(() => {
-      // if dead is need , function is not async, functions are not waiting
-      if (this.isDead()) 
-        deathIntervall = this.dying(deathIntervall);
-      if (this.isAttacking || this.isShooting) 
-        this.attacking();
-      if (!this.isDead() && !this.isShooting && !this.isAttacking)
+  
+    setStoppableInterval(this.deadAnimation(deathIntervall, movementIntervall), 1000/6);
+
+  }
+
+
+  deadAnimation (deathIntervall, movementIntervall) {
+    // if dead is need , function is not async, functions are not waiting
+    if (this.isDead()) deathIntervall = this.dying(deathIntervall);
+    if (this.isAttacking || this.isShooting) this.attacking();
+    if (!this.isDead() && !this.isShooting && !this.isAttacking)
       movementIntervall = this.moving(movementIntervall);
-    }, 1000 / 6);
+
+    // TODO return death- and movementintervall  
   }
 
   swimming() {

@@ -21,11 +21,7 @@ class MovableObject extends DrawableObject {
    *
    */
   moveRight() {
-    setInterval(() => {
-      if (!this.isDead()) {
-        this.x += this.speed;
-      }
-    }, 1000 / 60);
+    setStoppableInterval(this.stepRight(), 1000/60);
   }
 
   /**
@@ -33,12 +29,22 @@ class MovableObject extends DrawableObject {
    *
    */
   moveLeft() {
-    setInterval(() => {
-      if (!this.isDead()) {
-        this.x -= this.speed;
-      }
-    }, 1000 / 60);
+    setStoppableInterval(this.stepLeft(), 1000/60);
+   }
+
+  stepRight() {
+    if (!this.isDead()) {
+      this.x += this.speed;
+    }
   }
+  
+  stepLeft() {
+    if (!this.isDead()) {
+      this.x -= this.speed;
+    }
+  }
+
+  
 
   /**
    * Function iterates through a array of images paths and saves the current image from an image cache

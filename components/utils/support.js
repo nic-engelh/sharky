@@ -8,7 +8,7 @@ function stopGame () {
  * @param {number} time 
  */
 function setStoppableInterval (fn, time) {
-    let id = setInterval ( fn, time);
+    let id = setInterval (fn, time);
     intervalIds.set(id, id);
 }
 

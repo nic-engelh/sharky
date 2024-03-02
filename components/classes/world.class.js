@@ -30,17 +30,23 @@ class World {
   }
 
   /**
-   * Function checks for collisions of objects
+   * Function activates the intervall for all collision checking functions
    *
    */
   run() {
-    setInterval(() => {
-      this.checkCollisions();
-      this.checkGathering()
-      this.checkThrownObjects();
-      this.checkDistances();
-      this.checkMeleeAttacks();
-    }, 1000 / 10);
+    setStoppableInterval(this.runChecks(), 1000/10)
+  }
+
+  /**
+   * Function is used as callback in order to initiate all checks
+   * 
+   */
+  runChecks() {
+    this.checkCollisions();
+    this.checkGathering()
+    this.checkThrownObjects();
+    this.checkDistances();
+    this.checkMeleeAttacks();
   }
 
   /**
@@ -65,11 +71,19 @@ class World {
     }
   }   
 
+  /**
+   * Callback function for all collision checks.
+   * 
+   */
   checkCollisions() {
     this.checkingEnemyCollision();
     this.checkingBubbleCollision();
   }
 
+  /**
+   * Callback function for all coin and bottle collision checks.
+   * 
+   */
   checkGathering() {
     this.checkingCoinCollision();
     this.checkingBottleCollision();
