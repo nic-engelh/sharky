@@ -98,21 +98,36 @@ class World {
     this.addObjectsToMaps(this.level.backgrounds);
     // fixed objects with reseting coordination system
     this.ctx.translate(-this.cameraX, 0);
-    this.addToMap(this.healthStatusBar);
-    this.addToMap(this.poisonStatusBar);
-    this.addToMap(this.coinStatusBar);
+    this.addingGameUtilitiesToMap();
     this.ctx.translate(this.cameraX, 0);
-    // movable objects
-    this.addToMap(this.hero);
-    this.addObjectsToMaps(this.level.coins);
-    this.addObjectsToMaps(this.level.bottles);
-    this.addObjectsToMaps(this.level.enemies);
-    this.addObjectsToMaps(this.throwableObjects);
+    this.addingAllObjectsToMap();
     this.ctx.translate(-this.cameraX, 0);
     self = this;
     requestAnimationFrame(function () {
       self.draw();
     });
+  }
+
+  /**
+   * Function adds all status bars to the canvas.
+   * 
+   */
+  addingGameUtilitiesToMap() {
+    this.addToMap(this.healthStatusBar);
+    this.addToMap(this.poisonStatusBar);
+    this.addToMap(this.coinStatusBar);
+  }
+
+  /**
+   * Function adds all movable objects to the canvas.
+   * 
+   */
+  addingAllObjectsToMap () {
+    this.addToMap(this.hero);
+    this.addObjectsToMaps(this.level.coins);
+    this.addObjectsToMaps(this.level.bottles);
+    this.addObjectsToMaps(this.level.enemies);
+    this.addObjectsToMaps(this.throwableObjects);
   }
 
   /**
@@ -224,17 +239,23 @@ class World {
   checkingBubbleCollision() {
     this.throwableObjects.forEach((bubble) => {
       this.level.enemies.forEach((enemy) => {
-        if (bubble.isColliding(enemy) && !(enemy instanceof Endboss)) {
-          enemy.eliminated();
-          eraseObjectFromCanvas(this.throwableObjects, bubble);
-        }
-        if (bubble.isColliding(enemy) && enemy instanceof Endboss) {
-          eraseObjectFromCanvas(this.throwableObjects, bubble);
-          enemy.isHit = true;
-          this.level.enemies[5].reduceEnergy();
-        }
+        if (bubble.isColliding(enemy) && !(enemy instanceof Endboss)) 
+          activateBubbleCollisionEffect (enemy, bubble);
+        if (bubble.isColliding(enemy) && enemy instanceof Endboss) 
+          activateBubbleCollisionEndbossEffect(enemy, bubble);
       });
     });
+  }
+
+  activateBubbleCollisionEffect (enemy, bubble) {
+    enemy.eliminated();
+    eraseObjectFromCanvas(this.throwableObjects, bubble);
+  }
+
+  activateBubbleCollisionEndbossEffect(enemy, bubble) {
+    eraseObjectFromCanvas(this.throwableObjects, bubble);
+    enemy.isHit = true;
+    this.level.enemies[5].reduceEnergy();
   }
 
   /**

@@ -115,8 +115,6 @@ class MovableObject extends DrawableObject {
     return (this.y + this.offsetTop <= object.y + object.height - object.offsetBottom);
   }
 
-  
-
   /**
    * Function reduces the energy to zero in five point steps. It will stay at zero. It will create a date object from the last hit.
    *
@@ -177,6 +175,4 @@ class MovableObject extends DrawableObject {
     let distance =  object.x - this.x ;
     return (distance <= 350);
   }
-
-  
 }

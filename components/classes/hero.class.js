@@ -255,7 +255,7 @@ class Hero extends MovableObject {
     this.otherDirection = false;
     this.downwards = false;
     this.upwards = false;
-    this.swimmingSounds.play();
+    //this.swimmingSounds.play();
   }
 
   moveLeft() {
@@ -264,7 +264,7 @@ class Hero extends MovableObject {
     this.otherDirection = true;
     this.downwards = false;
     this.upwards = false;
-    this.swimmingSounds.play();
+    //this.swimmingSounds.play();
   }
 
   moveUp() {
