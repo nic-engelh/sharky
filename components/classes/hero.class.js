@@ -124,16 +124,7 @@ class Hero extends MovableObject {
 
   constructor() {
     super().loadImage("/assets/img/1.Sharkie/3.Swim/1.png");
-    this.loadImages(this.imagesWalking);
-    this.loadImages(this.imagesWaiting);
-    this.loadImages(this.imagesFinAttacking);
-    this.loadImages(this.imagesBubbleAttacking);
-    this.loadImages(this.imagesSleeping);
-    this.loadImages(this.imagesPoisoning);
-    this.loadImages(this.imagesShocking);
-    this.loadImages(this.imagesDying);
-    this.loadImages(this.imagesDead);
-    this.loadImages(this.imagesElectrifying);
+    this.loadingAllImages(); 
     this.offsetTop = 120;
     this.offsetBottom = 50;
     this.offsetRight = 50;
@@ -143,8 +134,8 @@ class Hero extends MovableObject {
   }
 
   animate() {
-    let i = 0;
-    let j = 0;
+    let deathIntervall = 0;
+    let movementIntervall = 0;
     setInterval(() => {
       this.swimmingSounds.pause();
       this.swimming();
@@ -154,11 +145,11 @@ class Hero extends MovableObject {
     setInterval(() => {
       // if dead is need , function is not async, functions are not waiting
       if (this.isDead()) 
-        i = this.dying(i);
+        deathIntervall = this.dying(deathIntervall);
       if (this.isAttacking || this.isShooting) 
         this.attacking();
       if (!this.isDead() && !this.isShooting && !this.isAttacking)
-        j = this.moving(j);
+      movementIntervall = this.moving(movementIntervall);
     }, 1000 / 6);
   }
 
@@ -169,17 +160,17 @@ class Hero extends MovableObject {
     if (this.canHeroMoveDown()) this.moveDown();
   }
 
-  dying(i) {
-    if (i > 11) {
+  dying(deathIntervall) {
+    if (deathIntervall > 11) {
       this.playAnimation(this.imagesDead);
     }
-    if (i <= 11) {
-      if(i == 0) this.currentImage = 0;
+    if (deathIntervall <= 11) {
+      if(deathIntervall == 0) this.currentImage = 0;
       this.playAnimation(this.imagesDying);
-      i++;
+      deathIntervall++;
       // stop game i > 11
     }
-    return i;
+    return deathIntervall;
   }
 
   /**
@@ -233,19 +224,19 @@ class Hero extends MovableObject {
    * Function controlls the moving animation state of the hero
    *
    */
-  moving(j) {
-      if (j >= 54) {
+  moving(movementIntervall) {
+      if (movementIntervall>= 54) {
         this.playAnimation(this.imagesSleeping);
       }
-      if (j < 54) {
+      if (movementIntervall < 54) {
         this.playAnimation(this.imagesWaiting);
-        j++;
+        movementIntervall++;
       }
       if (this.isHurt()) {
-        j = 0;
+        movementIntervall= 0;
         if (this.isShocked) {
           this.playAnimation(this.imagesElectrifying);
-          return j;
+          return movementIntervall;
         }
         else {
           this.playAnimation(this.imagesPoisoning);
@@ -253,9 +244,9 @@ class Hero extends MovableObject {
       }
       if (this.isMoving()) {
         this.playAnimation(this.imagesWalking);
-        j = 0;
+        movementIntervall = 0;
       }
-    return j;
+    return movementIntervall;
   }
 
   moveRight() {
@@ -352,5 +343,23 @@ class Hero extends MovableObject {
       this.poisonAmmunition += 30;
     if (decrease)
       this.poisonAmmunition -= 30;
+  }
+
+
+  /**
+   * Function buffers all image arrays for animation in the constructor.
+   * 
+   */
+  loadingAllImages() {
+    this.loadImages(this.imagesWalking);
+    this.loadImages(this.imagesWaiting);
+    this.loadImages(this.imagesFinAttacking);
+    this.loadImages(this.imagesBubbleAttacking);
+    this.loadImages(this.imagesSleeping);
+    this.loadImages(this.imagesPoisoning);
+    this.loadImages(this.imagesShocking);
+    this.loadImages(this.imagesDying);
+    this.loadImages(this.imagesDead);
+    this.loadImages(this.imagesElectrifying);
   }
 }

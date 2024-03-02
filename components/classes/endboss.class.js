@@ -137,11 +137,9 @@ class Endboss extends MovableObject {
 
   swimming(i) {
     this.playAnimation(this.imagesWalking);
-        i++;
-        if(this.currentImage >= 13) {
-          // angriff evtl erst bei i modulo (13*2)
-          this.isAttacking = true;
-        }
+      i++;
+      if(this.currentImage >= 13) 
+        this.isAttacking = true;
     return i
   }
 
