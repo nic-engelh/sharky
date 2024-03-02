@@ -160,7 +160,7 @@ class World {
     if (movableObject.otherDirection) 
       this.resetFlipImage(movableObject);
     if (movableObject.upwards || movableObject.downwards)
-      this.resetRotation ();
+      this.resetRotation();
   }
 
   /**

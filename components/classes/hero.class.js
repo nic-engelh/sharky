@@ -140,7 +140,7 @@ class Hero extends MovableObject {
       this.swimmingSounds.pause();
       this.swimming();
       this.world.cameraX = -this.x + 100;
-    }, 1000 / 60);
+    }, 1000 / 30);
 
     setInterval(() => {
       // if dead is need , function is not async, functions are not waiting
@@ -154,12 +154,29 @@ class Hero extends MovableObject {
   }
 
   swimming() {
+    this.resetVerticalAlignment();
     if (this.canHeroMoveRight()) this.moveRight();
     if (this.canHeroMoveLeft()) this.moveLeft();
     if (this.canHeroMoveUp()) this.moveUp();
     if (this.canHeroMoveDown()) this.moveDown();
   }
 
+  /**
+   * Function aligns hero to horizontal position in order to not stand/swimm in a vertical position.
+   * 
+   */
+  resetVerticalAlignment () {
+    this.downwards = false;
+    this.upwards = false;
+  }
+
+
+  /**
+   * Function controlls the death animation. It will play the dying animation (11 pictures) in the beginning and afterwards the death animation.
+   * 
+   * @param {number} deathIntervall 
+   * @returns 
+   */
   dying(deathIntervall) {
     if (deathIntervall > 11) {
       this.playAnimation(this.imagesDead);
@@ -281,6 +298,10 @@ class Hero extends MovableObject {
     this.y += this.speed;
   }
 
+  idle() {
+
+  }
+
   isMoving() {
     return this.world.keyboard.right || this.world.keyboard.left;
   }
@@ -300,7 +321,7 @@ class Hero extends MovableObject {
   canHeroMoveDown() {
     return this.world.keyboard.down && this.y < 300;
   }
-
+  
   /**
    * Function creates a bubble to shoot for the hero object. If will reduce poisonenous bubble ammunition. The bubble will be released as a Throwable Object into the world object. It will be erased after a certain time.
    * 
