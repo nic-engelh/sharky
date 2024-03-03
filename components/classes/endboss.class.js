@@ -66,6 +66,7 @@ class Endboss extends MovableObject {
   deathCounter = 0;
   introSound = new Audio("/assets/sounds/evil-laugh-45966.mp3");
   endbossMusic = new Audio("/assets/sounds/tribal-loop-azteca-154482.mp3");
+  biteSounds = new Audio("/assets/sounds/monster-bite-44538.mp3");
   
 
 
@@ -130,7 +131,8 @@ class Endboss extends MovableObject {
 
   attacking() {
     this.offsetleft = 0;
-    this.x = 2100; 
+    this.x = 2100;
+    this.biteSounds.play(); 
     this.playAnimation(this.imagesAttacking);
     this.attackIndex++;
   }

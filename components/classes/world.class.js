@@ -8,6 +8,8 @@ class World {
   healthStatusBar = new StatusBar("health");
   coinStatusBar = new StatusBar("coin");
   poisonStatusBar = new StatusBar("poison");
+  waterBackgroundSounds = new Audio ("/assets/sounds/underwater-loop-amb-6182.mp3")
+  ambientBackgroundMusik = new Audio("/assets/sounds/027210_39danger-and-beauty39-ukulele-loop-by-reamp3-71291.mp3");
   throwableObjects = [];
 
   constructor(canvas, keyboard) {
@@ -35,6 +37,8 @@ class World {
    */
   run() {
     setInterval(this.runChecks.bind(this), 1000 / 10);
+    this.waterBackgroundSounds.play();
+    this.ambientBackgroundMusik.play();
   }
 
   /**
