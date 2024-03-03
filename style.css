@@ -1,60 +1,71 @@
 html {
-    height: 100%;
-    font-family: "Luckiest Guy Regular";
+  height: 100%;
+  font-family: "Luckiest Guy Regular";
 }
 
 body {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-image:url("/assets/img/3. Background/Body/iStock-1714438751.jpg");
-    background-repeat: no-repeat; 
-    background-size: cover;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("/assets/img/3. Background/Body/iStock-1714438751.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 canvas {
-    background-color: black;
-    border-radius: 20px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;    
-    display: block;
-    z-index: 1;
+  background-color: black;
+  border-radius: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  display: block;
+  z-index: 1;
 }
 
 .opaque {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 @font-face {
-    font-family: "Luckiest Guy Regular";
-    src: url('/assets/fonts/LuckiestGuy-Regular.ttf') format('truetype'); 
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Luckiest Guy Regular";
+  src: url("/assets/fonts/LuckiestGuy-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 #btn-start {
-    width: 30%;
-    cursor: pointer;
-    z-index: 2;
-    position: absolute;
-    top: 20%;
-    animation: sizeAnimation 3s infinite alternate both ease-in-out;
+  width: 30%;
+  cursor: pointer;
+  z-index: 2;
+  position: absolute;
+  top: 20%;
+  animation: sizeAnimation 3s infinite alternate both ease-in-out;
 }
 
-#img-instructions{
-    width: 50%;
+#img-instructions {
+  width: 50%;
 }
-
 
 @media only screen and (max-width: 720px) {
-    canvas {
-        width: 100%;
-    }
+  canvas {
+    width: 100%;
+  }
 }
 
 @media screen and (max-height: 480px) {
-    canvas {
-        height: 100svh;
-    }
+  canvas {
+    height: 100svh;
+  }
 }
 
+@keyframes sizeAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
