@@ -21,9 +21,7 @@ class ThrowableObject extends MovableObject {
 
   throw() {
     this.speedY = 0.01;
-    setInterval(() => {
-      this.floatingUpwards();
-    }, 1000 / 40);
+    setStoppableInterval(this.floatingUpwards.bind(this), 1000/20);
   }
   
   changeImage() {
