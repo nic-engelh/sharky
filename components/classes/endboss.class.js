@@ -67,6 +67,7 @@ class Endboss extends MovableObject {
   introSound = new Audio("/assets/sounds/evil-laugh-45966.mp3");
   endbossMusic = new Audio("/assets/sounds/tribal-loop-azteca-154482.mp3");
   biteSounds = new Audio("/assets/sounds/monster-bite-44538.mp3");
+  winSound = new Audio("/assets/sounds/you-win-sequence-2-183949.mp3");
   
 
 
@@ -121,6 +122,7 @@ class Endboss extends MovableObject {
     this.playAnimation(this.imagesSpawing);
     this.introSound.play();
     this.endbossMusic.play();
+    this.world.ambientBackgroundMusik.stop();
     i++;
     if (i > 10) {
       this.hadFirstHeroContact = true;
@@ -172,6 +174,7 @@ class Endboss extends MovableObject {
     if (this.deathCounter > 9) {
       this.playAnimation(this.imagesDead);
       this.y -= 5;
+      this.winSound.play();
       return
     }
     this.playAnimation(this.imagesDying);

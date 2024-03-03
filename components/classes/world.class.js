@@ -5,13 +5,22 @@ class World {
   cameraX = 0;
   hero = new Hero();
   level = level1;
+  throwableObjects = [];
   healthStatusBar = new StatusBar("health");
   coinStatusBar = new StatusBar("coin");
   poisonStatusBar = new StatusBar("poison");
-  waterBackgroundSounds = new Audio ("/assets/sounds/underwater-loop-amb-6182.mp3")
-  ambientBackgroundMusik = new Audio("/assets/sounds/027210_39danger-and-beauty39-ukulele-loop-by-reamp3-71291.mp3");
-  throwableObjects = [];
-
+  waterBackgroundSounds = new Audio(
+    "/assets/sounds/underwater-loop-amb-6182.mp3"
+  );
+  ambientBackgroundMusik = new Audio(
+    "/assets/sounds/027210_39danger-and-beauty39-ukulele-loop-by-reamp3-71291.mp3"
+  );
+  bottleSound = new Audio("/assets/sounds/bottle-pop-45531.mp3");
+  coinSound = new Audio(
+    "/assets/sounds/short-success-sound-glockenspiel-treasure-video-game-6346.mp3"
+  );
+  heroHurtSound = new Audio("/assets/sounds/male-hurt-sound-95206.mp3");
+  
   constructor(canvas, keyboard) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
@@ -293,6 +302,7 @@ class World {
         // if hero is not attacking:
         if (!this.hero.isAttacking) {
           this.hero.hit();
+          this.heroHurtSound.play();
           this.changeHealthStatusbar();
           if (enemy instanceof Jellyfish) this.hero.isShocked = true;
         }
@@ -313,6 +323,7 @@ class World {
           this.coinStatusBar.imagesCoin
         );
         eraseObjectFromCanvas(this.level.coins, coin);
+        this.coinSound.play();
       }
     });
   }
@@ -330,6 +341,7 @@ class World {
           this.poisonStatusBar.imagesPoison
         );
         eraseObjectFromCanvas(this.level.bottles, bottle);
+        this.bottleSound.play();
       }
     });
   }

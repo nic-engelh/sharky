@@ -114,8 +114,9 @@ class Hero extends MovableObject {
 
   world;
   speed = 10;
-  swimmingSounds = new Audio("assets/sounds/Undwater_Backgroundsounds.mp3");
-  bubbleSounds = new Audio ('/assets/sounds/sfx_submerge-14424.mp3');
+  swimmingSounds = new Audio("/assets/sounds/fish-in-river-6114.mp3");
+  bubbleSounds = new Audio ("/assets/sounds/sfx_submerge-14424.mp3");
+  finSlapSound = new Audio("/assets/sounds/indiana-jones-style-punchwav-14551.mp3");
   isShooting = false;
   isShocked = false;
   isPoisoned = false;
@@ -205,6 +206,7 @@ class Hero extends MovableObject {
     if (this.isAttacking) {
       this.increaseAttackRange();
       this.playAnimation(this.imagesFinAttacking);
+      this.finSlapSound.play();
       if (this.currentImage >= 8) {
         this.killByCollision();
         this.disengage();
@@ -274,7 +276,7 @@ class Hero extends MovableObject {
     this.otherDirection = false;
     this.downwards = false;
     this.upwards = false;
-    //this.swimmingSounds.play();
+    this.swimmingSounds.play();
   }
 
   moveLeft() {
@@ -283,7 +285,7 @@ class Hero extends MovableObject {
     this.otherDirection = true;
     this.downwards = false;
     this.upwards = false;
-    //this.swimmingSounds.play();
+    this.swimmingSounds.play();
   }
 
   moveUp() {
@@ -291,6 +293,7 @@ class Hero extends MovableObject {
     this.upwards = true;
     this.downwards = false;
     this.y -= this.speed;
+    this.swimmingSounds.play();
   }
 
   moveDown() {
@@ -298,6 +301,7 @@ class Hero extends MovableObject {
     this.downwards = true;
     this.upwards = false;
     this.y += this.speed;
+    this.swimmingSounds.play();
   }
 
   idle() {
