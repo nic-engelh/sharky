@@ -118,6 +118,7 @@ class Hero extends MovableObject {
   bubbleSounds = new Audio ("/assets/sounds/sfx_submerge-14424.mp3");
   finSlapSound = new Audio("/assets/sounds/indiana-jones-style-punchwav-14551.mp3");
   enemyPopSound = new Audio ("/assets/sounds/balloonpop-83760.mp3");
+  shockedSound = new Audio ("/assets/sounds/electric_zap_001-6374.mp3");
   isShooting = false;
   isShocked = false;
   isPoisoned = false;
@@ -259,6 +260,8 @@ class Hero extends MovableObject {
         movementIntervall= 0;
         if (this.isShocked) {
           this.playAnimation(this.imagesElectrifying);
+          this.shockedSound.play();
+          this.isShocked = false;
           return movementIntervall;
         }
         else {

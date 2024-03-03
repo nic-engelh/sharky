@@ -45,7 +45,7 @@ class World {
    *
    */
   run() {
-    setInterval(this.runChecks.bind(this), 1000 / 10);
+    setStoppableInterval(this.runChecks.bind(this), 1000 / 10);
     this.waterBackgroundSounds.play();
     this.ambientBackgroundMusik.play();
     this.ambientBackgroundMusik.volume = 0.1;

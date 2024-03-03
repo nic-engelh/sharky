@@ -29,6 +29,8 @@ class Pufferfish extends MovableObject {
         '/assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.png',
     ];
 
+    transformSound = new Audio ("/assets/sounds/balloon-inflate-1-184052.mp3");
+
     constructor () {
         super().loadImage('/assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim1.png');
         this.loadImages(this.imagesWalking);
@@ -49,28 +51,32 @@ class Pufferfish extends MovableObject {
 
     animate() {
         this.moveLeft();
-        setInterval(() => {
-            if (this.heroIsClose) {
-                this.isAggressive = true;
-                this.getsBigger();
-                this.playAnimation(this.imagesBubbling);
-            }
-            if (this.isAggressive)
-                this.playAnimation(this.imagesBubbleSwimming);
-            if (!this.isAggressive)
-                this.playAnimation(this.imagesWalking);
-            if (this.isDead()) {
-                this.playAnimation(this.imagesDead);
-                this.y -= 10; 
-            }
-        }, 200);
+        setStoppableInterval(this.actionAnimation.bind(this),200);
     }
+
+    actionAnimation() {
+        if (this.heroIsClose) {
+            if (!this.isAggressive) this.getsBigger();
+            this.isAggressive = true;
+            this.playAnimation(this.imagesBubbling);
+        }
+        if (this.isAggressive)
+            this.playAnimation(this.imagesBubbleSwimming);
+        if (!this.isAggressive)
+            this.playAnimation(this.imagesWalking);
+        if (this.isDead()) {
+            this.playAnimation(this.imagesDead);
+            this.y -= 10; 
+        }
+    }
+
 
     /**
      * Enemy transform into bigger version. Function inceases collision radius of the enemy object.
      * 
      */
     getsBigger() {
+        this.transformSound.play();
         this.offsetTop = 0;
         this.offsetBottom = 0;
         this.offsetRight = 0;
