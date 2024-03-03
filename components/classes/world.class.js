@@ -34,16 +34,16 @@ class World {
    *
    */
   run() {
-    setInterval(this.runChecks.bind(this), 1000/10)
+    setInterval(this.runChecks.bind(this), 1000 / 10);
   }
 
   /**
    * Function is used as callback in order to initiate all checks
-   * 
+   *
    */
   runChecks() {
     this.checkCollisions();
-    this.checkGathering()
+    this.checkGathering();
     this.checkThrownObjects();
     this.checkDistances();
     this.checkMeleeAttacks();
@@ -62,18 +62,18 @@ class World {
 
   /**
    * Functions checks if the melee key is pressed. If so it activates the attacking flag for the hero object.
-   * 
+   *
    */
   checkMeleeAttacks() {
     if (this.keyboard.space && !this.hero.isAttacking) {
       this.hero.currentImage = 0;
       this.hero.isAttacking = true;
     }
-  }   
+  }
 
   /**
    * Callback function for all collision checks.
-   * 
+   *
    */
   checkCollisions() {
     this.checkingEnemyCollision();
@@ -82,7 +82,7 @@ class World {
 
   /**
    * Callback function for all coin and bottle collision checks.
-   * 
+   *
    */
   checkGathering() {
     this.checkingCoinCollision();
@@ -91,11 +91,11 @@ class World {
 
   /**
    * Functions checks distances for every enemy in the game. If the enemy object is close to the hero, it will activate a flag wihtin the enemy object scope.
-   * 
+   *
    */
   checkDistances() {
     this.level.enemies.forEach((enemy) => {
-      if (enemy == null) return
+      if (enemy == null) return;
       if (this.hero.isCloseTo(enemy)) {
         enemy.heroIsClose = true;
       }
@@ -124,7 +124,7 @@ class World {
 
   /**
    * Function adds all status bars to the canvas.
-   * 
+   *
    */
   addingGameUtilitiesToMap() {
     this.addToMap(this.healthStatusBar);
@@ -134,9 +134,9 @@ class World {
 
   /**
    * Function adds all movable objects to the canvas.
-   * 
+   *
    */
-  addingAllObjectsToMap () {
+  addingAllObjectsToMap() {
     this.addToMap(this.hero);
     this.addObjectsToMaps(this.level.coins);
     this.addObjectsToMaps(this.level.bottles);
@@ -161,20 +161,15 @@ class World {
    * @param {movableObject} movableObject
    */
   addToMap(movableObject) {
-    if (movableObject.otherDirection) 
-      this.flipImage(movableObject);
-    if (movableObject.upwards)
-      this.rotateImage(movableObject, true, false);
-    if (movableObject.downwards)
-      this.rotateImage(movableObject, false, true);
+    if (movableObject.otherDirection) this.flipImage(movableObject);
+    if (movableObject.upwards) this.rotateImage(movableObject, true, false);
+    if (movableObject.downwards) this.rotateImage(movableObject, false, true);
 
     movableObject.draw(this.ctx);
-    movableObject.drawFrame(this.ctx); 
+    movableObject.drawFrame(this.ctx);
 
-    if (movableObject.otherDirection) 
-      this.resetFlipImage(movableObject);
-    if (movableObject.upwards || movableObject.downwards)
-      this.resetRotation();
+    if (movableObject.otherDirection) this.resetFlipImage(movableObject);
+    if (movableObject.upwards || movableObject.downwards) this.resetRotation();
   }
 
   /**
@@ -199,26 +194,32 @@ class World {
     this.ctx.restore();
   }
 
-/**
- * Function rotates hero object by 45 degress upwards or downwards.
- * 
- * @param {MovoableObject} movableObject as Hero Object
- * @param {boolean} up movement
- * @param {boolean} down movement
- */
+  /**
+   * Function rotates hero object by 45 degress upwards or downwards.
+   *
+   * @param {MovoableObject} movableObject as Hero Object
+   * @param {boolean} up movement
+   * @param {boolean} down movement
+   */
   rotateImage(movableObject, up, down) {
     this.ctx.save();
-    this.ctx.translate(movableObject.x,  movableObject.y);
+    this.ctx.translate(movableObject.x, movableObject.y);
     // up: -Math.PI / 4 down: Math.PI / 4
-    if (up) { 
-      this.ctx.rotate(-Math.PI / 4 );
-      this.ctx.translate(-(movableObject.x + movableObject.width / 2), -(movableObject.y - (movableObject.height / 2)));
-      }
-    if (down) {
-      this.ctx.rotate(Math.PI / 4 );
-      this.ctx.translate(-(movableObject.x - movableObject.width / 2), -(movableObject.y + (movableObject.height / 2)));
+    if (up) {
+      this.ctx.rotate(-Math.PI / 4);
+      this.ctx.translate(
+        -(movableObject.x + movableObject.width / 2),
+        -(movableObject.y - movableObject.height / 2)
+      );
     }
-}
+    if (down) {
+      this.ctx.rotate(Math.PI / 4);
+      this.ctx.translate(
+        -(movableObject.x - movableObject.width / 2),
+        -(movableObject.y + movableObject.height / 2)
+      );
+    }
+  }
 
   resetRotation() {
     this.ctx.restore();
@@ -226,7 +227,7 @@ class World {
 
   /**
    * Function sets the health status bar up to the exact amount of the hero object energy variable.
-   * 
+   *
    */
   changeHealthStatusbar() {
     this.healthStatusBar.setPercentage(
@@ -237,12 +238,12 @@ class World {
 
   /**
    * Function sets the poison status bar up to the exact amount of the hero object gathered poison bottles.
-   * 
+   *
    */
   changePoisonStatusbar() {
     this.poisonStatusBar.setPercentage(
       this.hero.poisonAmmunition,
-      this.poisonStatusBar. imagesPoison
+      this.poisonStatusBar.imagesPoison
     );
   }
 
@@ -253,15 +254,15 @@ class World {
   checkingBubbleCollision() {
     this.throwableObjects.forEach((bubble) => {
       this.level.enemies.forEach((enemy) => {
-        if (bubble.isColliding(enemy) && !(enemy instanceof Endboss)) 
+        if (bubble.isColliding(enemy) && !(enemy instanceof Endboss))
           this.activateBubbleCollisionEffect(enemy, bubble);
-        if (bubble.isColliding(enemy) && enemy instanceof Endboss) 
+        if (bubble.isColliding(enemy) && enemy instanceof Endboss)
           this.activateBubbleCollisionEndbossEffect(enemy, bubble);
       });
     });
   }
 
-  activateBubbleCollisionEffect (enemy, bubble) {
+  activateBubbleCollisionEffect(enemy, bubble) {
     enemy.eliminated();
     eraseObjectFromCanvas(this.throwableObjects, bubble);
   }
@@ -273,7 +274,7 @@ class World {
   }
 
   /**
-   * Function iterates throuh all enemies and check if one object is colliding with the hero object. 
+   * Function iterates throuh all enemies and check if one object is colliding with the hero object.
    * If so, it reduces the health by the hit function and changes the status bar.
    * If the hero object is colliding while attacking with a enemy object, it gets destroyed.
    *
@@ -281,12 +282,12 @@ class World {
   checkingEnemyCollision() {
     this.level.enemies.forEach((enemy) => {
       if (this.hero.isColliding(enemy)) {
-        if (this.hero.isAttacking && enemy instanceof Pufferfish){
+        if (this.hero.isAttacking && enemy instanceof Pufferfish) {
           // hero collides with enemy while attacking than the enemy is dying by meele attack
-          this.hero.isCollidingWith.push(enemy);  
+          this.hero.isCollidingWith.push(enemy);
         }
         // if hero is not attacking:
-        if(!this.hero.isAttacking) {
+        if (!this.hero.isAttacking) {
           this.hero.hit();
           this.changeHealthStatusbar();
           if (enemy instanceof Jellyfish) this.hero.isShocked = true;
@@ -295,16 +296,18 @@ class World {
     });
   }
 
-
   /**
    * Function goes through every coin object an checks a possible collision with the hero object.  If so, the statusbar will be changed and the object will be erased from the game.
-   * 
+   *
    */
   checkingCoinCollision() {
     this.level.coins.forEach((coin) => {
       if (this.hero.isColliding(coin)) {
         this.hero.coins += 30;
-        this.coinStatusBar.setPercentage(this.hero.coins, this.coinStatusBar.imagesCoin);
+        this.coinStatusBar.setPercentage(
+          this.hero.coins,
+          this.coinStatusBar.imagesCoin
+        );
         eraseObjectFromCanvas(this.level.coins, coin);
       }
     });
@@ -312,13 +315,16 @@ class World {
 
   /**
    * Function goes through every poison bottle object an checks a possible collision with the hero object.  If so, the statusbar will be changed and the object will be erased from the game.
-   * 
+   *
    */
   checkingBottleCollision() {
     this.level.bottles.forEach((bottle) => {
       if (this.hero.isColliding(bottle)) {
         this.hero.changeAmmunitionAmount(true, false);
-        this.poisonStatusBar.setPercentage(this.hero.poisonAmmunition, this.poisonStatusBar.imagesPoison);
+        this.poisonStatusBar.setPercentage(
+          this.hero.poisonAmmunition,
+          this.poisonStatusBar.imagesPoison
+        );
         eraseObjectFromCanvas(this.level.bottles, bottle);
       }
     });

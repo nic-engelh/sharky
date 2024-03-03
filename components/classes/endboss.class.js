@@ -64,6 +64,10 @@ class Endboss extends MovableObject {
   attackIndex = 0;
   isHit = false;
   deathCounter = 0;
+  introSound = new Audio("/assets/sounds/evil-laugh-45966.mp3");
+  endbossMusic = new Audio("/assets/sounds/tribal-loop-azteca-154482.mp3");
+  
+
 
   constructor() {
     super().loadImage("assets/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
@@ -114,9 +118,12 @@ class Endboss extends MovableObject {
   
   spawningEndboss(i) {
     this.playAnimation(this.imagesSpawing);
+    this.introSound.play();
+    this.endbossMusic.play();
     i++;
     if (i > 10) {
       this.hadFirstHeroContact = true;
+      this.introSound.pause();
     }
     return i;
   }

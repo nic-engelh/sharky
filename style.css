@@ -58,6 +58,12 @@ canvas {
   canvas {
     height: 100svh;
   }
+  h1 {
+    display: none;
+  }
+  #img-instructions {
+    display: none;
+  }
 }
 
 @keyframes sizeAnimation {

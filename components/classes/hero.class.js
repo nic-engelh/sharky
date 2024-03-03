@@ -115,6 +115,7 @@ class Hero extends MovableObject {
   world;
   speed = 10;
   swimmingSounds = new Audio("assets/sounds/Undwater_Backgroundsounds.mp3");
+  bubbleSounds = new Audio ('/assets/sounds/sfx_submerge-14424.mp3');
   isShooting = false;
   isShocked = false;
   isPoisoned = false;
@@ -336,6 +337,7 @@ class Hero extends MovableObject {
       this.changeAmmunitionAmount(false, true);
     this.world.throwableObjects.push(bubble);
     // Timer for deleting bubble object from array
+    this.bubbleSounds.play();
     setTimeout(() => {
       this.world.throwableObjects.shift();
     }, 15000);
