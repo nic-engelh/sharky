@@ -4,8 +4,8 @@ function hideButton() {
 }
 
 function resetOpacity() {
-    const canvas = document.getElementsByTagName("canvas");
-    canvas.style.opacity = "none";
+    const canvas = document.getElementById("canvas");
+    canvas.classList.remove("opaque");
 }
 
 document.getElementById("btn-start").addEventListener("click", hideButton);
