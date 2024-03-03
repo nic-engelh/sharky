@@ -122,7 +122,7 @@ class Endboss extends MovableObject {
     this.playAnimation(this.imagesSpawing);
     this.introSound.play();
     this.endbossMusic.play();
-    this.world.ambientBackgroundMusik.stop();
+    this.world.
     i++;
     if (i > 10) {
       this.hadFirstHeroContact = true;

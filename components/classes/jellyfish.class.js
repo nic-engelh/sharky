@@ -20,6 +20,8 @@ class Jellyfish extends MovableObject {
         '/assets/img/2.Enemy/2 Jelly fish/Dead/Yellow/y3.png',
         '/assets/img/2.Enemy/2 Jelly fish/Dead/Yellow/y4.png',
     ];
+
+    transformSound = new Audio ("/assets/sounds/balloon-inflate-1-184052.mp3");
     
     constructor () {
         super().loadImage('/assets/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png');
@@ -56,6 +58,7 @@ class Jellyfish extends MovableObject {
     transform() {
         this.isAggressive = true;
         this.playAnimation(this.imagesAttacking);
+        this.transformSound.play();
     }
 
     actionAnimation(){

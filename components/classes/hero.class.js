@@ -117,6 +117,7 @@ class Hero extends MovableObject {
   swimmingSounds = new Audio("/assets/sounds/fish-in-river-6114.mp3");
   bubbleSounds = new Audio ("/assets/sounds/sfx_submerge-14424.mp3");
   finSlapSound = new Audio("/assets/sounds/indiana-jones-style-punchwav-14551.mp3");
+  enemyPopSound = new Audio ("/assets/sounds/balloonpop-83760.mp3");
   isShooting = false;
   isShocked = false;
   isPoisoned = false;
@@ -209,6 +210,7 @@ class Hero extends MovableObject {
       this.finSlapSound.play();
       if (this.currentImage >= 8) {
         this.killByCollision();
+        this.enemyPopSound.play();
         this.disengage();
       }
     }
