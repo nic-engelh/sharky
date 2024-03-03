@@ -18,6 +18,8 @@ canvas {
     border-radius: 20px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;    
     display: block;
+    z-index: 1;
+    opacity: 0.5;
 }
 
 @font-face {
@@ -30,6 +32,10 @@ canvas {
 #btn-start {
     width: 30%;
     cursor: pointer;
+    z-index: 2;
+    position: absolute;
+    top: 20%;
+    animation: sizeAnimation 3s infinite alternate both ease-in-out;
 }
 
 #img-instructions{

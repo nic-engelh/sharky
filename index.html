@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SHARKY</title>
     <script src="/components/utils/variables.js"></script>
     <script src="/components/utils/support.js"></script>
@@ -22,16 +22,27 @@
     <script src="/components/levels/levelOne.js"></script>
     <script src="/components/classes/statusBar.class.js"></script>
     <script src="/components/classes/world.class.js"></script>
+    <script defer src="/components/utils/script.js"></script>
     <script src="/game.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/shark.png">
-</head>
-<body onload="">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/shark.png" />
+  </head>
+  <body onload="">
     <h1>Sharky</h1>
-    <canvas id="canvas" width="720" height="480">
+    <canvas id="canvas" width="720" height="480"> 
+
+        
     </canvas>
-    <img id="img-instructions" src="/assets/img/6.Botones/Instructions 1.png" alt="Instructions">
-    <img id="btn-start" onclick="init()" src="/assets/img/6.Botones/Start/2.png" alt="Start Game">
-    
-</body>
+    <img
+      id="img-instructions"
+      src="/assets/img/6.Botones/Instructions 1.png"
+      alt="Instructions"
+    />
+    <img
+      id="btn-start"
+      onclick="init(); resetOpacity();"
+      src="/assets/img/6.Botones/Start/2.png"
+      alt="Start Game"
+    />
+  </body>
 </html>

@@ -1,10 +1,8 @@
 
-
 function init () {
     canvas = document.getElementById('canvas');
     keyboard = new Keyboard();
     ocean = new World(canvas, keyboard);
-
 } 
 
 window.addEventListener("keydown", (event) => {
@@ -64,3 +62,4 @@ window.addEventListener("keyup", (event) => {
         keyboard.d = false;
     }
 } );
+

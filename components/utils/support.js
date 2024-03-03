@@ -17,10 +17,3 @@ function eraseObjectFromCanvas (array, object) {
     let index = array.indexOf(object);
     array.splice(index, 1);
 }
-
-function hideButton() {
-    const btnStart = document.getElementById("btn-start");
-    btnStart.style.display = "none";
-}
-
-document.getElementById("btn-start").addEventListener("click", hideButton);
