@@ -68,6 +68,8 @@ class Endboss extends MovableObject {
   endbossMusic = new Audio("/assets/sounds/tribal-loop-azteca-154482.mp3");
   biteSounds = new Audio("/assets/sounds/monster-bite-44538.mp3");
   winSound = new Audio("/assets/sounds/you-win-sequence-2-183949.mp3");
+  woundingSound = new Audio ("/assets/sounds/giant-breath-1-184041.mp3");
+  //! Needs a hurt sound
   
 
 
@@ -122,7 +124,8 @@ class Endboss extends MovableObject {
     this.playAnimation(this.imagesSpawing);
     this.introSound.play();
     this.endbossMusic.play();
-    this.world.
+    //? world.ambientMusik has to stop here
+    this.world.ambientBackgroundMusik.pause();
     i++;
     if (i > 10) {
       this.hadFirstHeroContact = true;
@@ -182,6 +185,7 @@ class Endboss extends MovableObject {
   }
 
   reduceEnergy () {
+    this.woundingSound.play();
     this.energy -= 35;
   }
 }
