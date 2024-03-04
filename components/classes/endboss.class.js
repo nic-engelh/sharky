@@ -57,8 +57,8 @@ class Endboss extends MovableObject {
     '/assets/img/2.Enemy/3 Final Enemy/Attack/6.png',
   ];
 
-  height = 520;
-  width = 608;
+  height = 460;
+  width = 506;
   world;
   hadFirstHeroContact = false;
   attackIndex = 0;
@@ -84,9 +84,9 @@ class Endboss extends MovableObject {
     this.x = 2300;
     this.y = -100; // base -150
     // Setting the collision top line lower
-    this.offSetTop = 400;
+    this.offSetTop = 0;
     // Setting the bottom collision line slightly higher
-    this.offsetBottom = -100;
+    this.offsetBottom = 0;
     this.offsetRight = 0;
     this.offsetleft = 0;
     this.animate();

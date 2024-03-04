@@ -1,8 +1,8 @@
 class DrawableObject {
     x = 120;
     y = 200;
-    height = 245;
-    width = 300;
+    height = 205;
+    width = 250;
     image;
     imageCache = new Map();
     currentImage = 0;
@@ -42,7 +42,7 @@ class DrawableObject {
       ctx.beginPath();
       ctx.lineWidth = '5';
       ctx.strokeStyle = 'red';
-      ctx.rect(this.x, this.y, this.width, this.height);
+      ctx.rect((this.x + this.offsetleft), (this.y + this.offsetTop), (this.width - this.offsetRight), (this.height - this.offsetBottom));
       ctx.stroke();
     }
   }

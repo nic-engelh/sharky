@@ -100,7 +100,7 @@ class MovableObject extends DrawableObject {
       // checking top with bottom; top corners; offset set top corner higher; object top corners ;  offset set corners lower
       (this.y + this.height - this.offsetBottom) >= (object.y + object.offsetTop) &&
       // checking top poin with bottom point; top left corner point; offsettop sets y more down; object bottom corner point; offset sets y even more down
-      (this.y + this.offsetTop) <= (object.y + object.height + object.offsetBottom)
+      (this.y + this.offsetTop) <= (object.y + object.height - object.offsetBottom)
     );
   }
 
