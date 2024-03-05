@@ -346,4 +346,17 @@ class World {
       }
     });
   }
+
+  stopAmbientMusic() {
+    this.ambientBackgroundMusik.pause();
+  }
+
+  startAmbientMusic() {
+    this.ambientBackgroundMusik.play();
+  }
+
+  isPlayingOceanAmbientMusic () {
+    return !this.ambientBackgroundMusik.paused;
+  }
+
 }

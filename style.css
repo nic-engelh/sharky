@@ -22,6 +22,10 @@ canvas {
   z-index: 1;
 }
 
+h1 {
+  color: #531A82;
+}
+
 .opaque {
   opacity: 0.5;
 }

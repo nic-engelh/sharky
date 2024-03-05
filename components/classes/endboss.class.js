@@ -69,9 +69,6 @@ class Endboss extends MovableObject {
   biteSounds = new Audio("/assets/sounds/monster-bite-44538.mp3");
   winSound = new Audio("/assets/sounds/you-win-sequence-2-183949.mp3");
   woundingSound = new Audio ("/assets/sounds/giant-breath-1-184041.mp3");
-  //! Needs a hurt sound
-  
-
 
   constructor() {
     super().loadImage("assets/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
@@ -90,6 +87,19 @@ class Endboss extends MovableObject {
     this.offsetRight = 0;
     this.offsetleft = 0;
     this.animate();
+  }
+
+  startBossAmbientMusic() {
+    if (this.world.ambientBackgroundMusik.paused) return;
+    this.endbossMusic.play();
+  }
+   
+  stopBossAmbientMusic() {
+    this.endbossMusic.pause();
+  }
+
+  isPlayingBossAmbientMusic () {
+    return !this.endbossMusic.paused;
   }
 
   animate() {
