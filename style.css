@@ -64,7 +64,17 @@ canvas {
   #img-instructions {
     display: none;
   }
+  #gamepad-left {
+    display: flex;
+  }
 }
+
+@media screen and (min-height: 480px) {
+  .gamepad {
+    display: none;
+  }
+}
+
 
 @keyframes sizeAnimation {
   0% {
@@ -77,3 +87,54 @@ canvas {
     transform: scale(1);
   }
 }
+
+.gamepad {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 80px;
+  height: 300px;
+  background-color: rgba(255, 255, 255, 0.1); /* Transparenter Hintergrund */
+  border-radius: 20px;
+  backdrop-filter: blur(10px); /* Blur-Effekt */
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.button {
+  width: 60px;
+  height: 60px;
+  background-color: #7FFFE0; /* Fläche im Button */
+  border-radius: 50%;
+  border: 2px solid white; /* Weißer Rand */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+.button svg {
+  fill: #531A82; /* Farbe für den Pfeil */
+  width: 30px;
+  height: 30px;
+ 
+}
+
+.up svg path,
+.down svg path,
+.left svg path,
+.right svg path {
+  transition: fill 0.3s ease; /* Animiere die Farbänderung des Pfeils */
+}
+
+.up:hover svg path,
+.down:hover svg path,
+.left:hover svg path,
+.right:hover svg path {
+  fill: #fff; /* Ändere die Farbe des Pfeils bei Hover */
+}
+
