@@ -63,3 +63,21 @@ window.addEventListener("keyup", (event) => {
     }
 } );
 
+window.addEventListener("click",  (event) => {
+    pressedButton = event.target.id;
+    console.log(pressedButton, event);
+
+    if (pressedButton == "gamepad-button-up") {
+        keyboard.up = true;
+    }
+    if (pressedButton == "gamepad-button-down") {
+        keyboard.down = true;
+    }
+    if (pressedButton == "gamepad-button-left") {
+        keyboard.left = true;
+    }
+    if (pressedButton == "gamepad-button-right") {
+        keyboard.right = true;
+    }
+});
+
