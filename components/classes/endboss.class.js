@@ -91,10 +91,12 @@ class Endboss extends MovableObject {
 
   startBossAmbientMusic() {
     if (this.world.ambientBackgroundMusik.paused) return;
+    this.world.ambientBackgroundMusik.pause();
     this.endbossMusic.play();
   }
    
   stopBossAmbientMusic() {
+    this.world.ambientBackgroundMusik.pause();
     this.endbossMusic.pause();
   }
 
@@ -133,9 +135,9 @@ class Endboss extends MovableObject {
   spawningEndboss(i) {
     this.playAnimation(this.imagesSpawing);
     this.introSound.play();
-    this.endbossMusic.play();
+    this.startBossAmbientMusic();
     //? world.ambientMusik has to stop here
-    this.world.ambientBackgroundMusik.pause();
+    
     i++;
     if (i > 10) {
       this.hadFirstHeroContact = true;

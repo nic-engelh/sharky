@@ -26,8 +26,7 @@ function toggleMuteIcon() {
     if (isMuted) {
         icon.classList.remove('muted');
         icon.src = '/assets/img/6.Botones/Control/volume_up_FILL0_wght400_GRAD0_opsz24.svg'; // Replace with the path to your unmute icon
-        ocean.startAmbientMusik();
-        
+        ocean.startAmbientMusic();
         
     } else {
         icon.classList.add('muted');

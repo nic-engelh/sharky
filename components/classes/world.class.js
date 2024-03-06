@@ -349,6 +349,7 @@ class World {
 
   stopAmbientMusic() {
     this.ambientBackgroundMusik.pause();
+    this.enemies[5].endbossMusic.pause();
   }
 
   startAmbientMusic() {
@@ -358,5 +359,4 @@ class World {
   isPlayingOceanAmbientMusic () {
     return !this.ambientBackgroundMusik.paused;
   }
-
 }
