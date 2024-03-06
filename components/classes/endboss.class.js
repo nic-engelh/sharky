@@ -90,13 +90,10 @@ class Endboss extends MovableObject {
   }
 
   startBossAmbientMusic() {
-    if (this.world.ambientBackgroundMusik.paused) return;
-    this.world.ambientBackgroundMusik.pause();
     this.endbossMusic.play();
   }
    
   stopBossAmbientMusic() {
-    this.world.ambientBackgroundMusik.pause();
     this.endbossMusic.pause();
   }
 

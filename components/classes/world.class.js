@@ -349,7 +349,6 @@ class World {
 
   stopAmbientMusic() {
     this.ambientBackgroundMusik.pause();
-    this.enemies[5].endbossMusic.pause();
   }
 
   startAmbientMusic() {

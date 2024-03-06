@@ -76,11 +76,16 @@ class Pufferfish extends MovableObject {
      * 
      */
     getsBigger() {
-        this.transformSound.play();
+        this.playTransformSound();
         this.offsetTop = 0;
         this.offsetBottom = 0;
         this.offsetRight = 0;
         this.offsetleft = 0;
+    }
+
+    playTransformSound() {
+        this.transformSound.volume = 0.1;
+        this.transformSound.play();
     }
 
 }

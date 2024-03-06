@@ -26,11 +26,16 @@ function toggleMuteIcon() {
     if (isMuted) {
         icon.classList.remove('muted');
         icon.src = '/assets/img/6.Botones/Control/volume_up_FILL0_wght400_GRAD0_opsz24.svg'; // Replace with the path to your unmute icon
+        if (ocean.hero.isEndbossNear()) {
+            ocean.level.enemies[5].startBossAmbientMusic();
+            return;
+        }
         ocean.startAmbientMusic();
         
     } else {
         icon.classList.add('muted');
         icon.src = '/assets/img/6.Botones/Control/volume_mute_FILL0_wght400_GRAD0_opsz24.svg'; // Replace with the path to your mute icon
         ocean.stopAmbientMusic();
+        ocean.level.enemies[5].stopBossAmbientMusic();
     }
 }
