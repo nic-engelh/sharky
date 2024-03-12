@@ -353,13 +353,13 @@ class Hero extends MovableObject {
   }
 
   increaseAttackRange(){
-    this.offsetRight = -100;
-    this.offsetleft = 0;
+    this.offsetRight = -40;
+    this.offsetleft = 20;
   }
 
   decreaseAttackRange(){
-    this.offsetRight = 100;
-    this.offsetleft = 0;
+    this.offsetRight = 40;
+    this.offsetleft = 20;
   }
 
   /**

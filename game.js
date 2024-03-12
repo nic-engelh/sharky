@@ -67,17 +67,39 @@ window.addEventListener("click",  (event) => {
     pressedButton = event.target.id;
     console.log(pressedButton, event);
 
-    if (pressedButton == "gamepad-button-up") {
+    if (pressedButton == "gamepad-button-up" || pressedButton == "gamepad-button-up-arrow") {
         keyboard.up = true;
     }
-    if (pressedButton == "gamepad-button-down") {
+    if (pressedButton == "gamepad-button-down"|| pressedButton == "gamepad-button-down-arrow") {
         keyboard.down = true;
     }
-    if (pressedButton == "gamepad-button-left") {
+    if (pressedButton == "gamepad-button-left"|| pressedButton == "gamepad-button-left-arrow") {
         keyboard.left = true;
     }
-    if (pressedButton == "gamepad-button-right") {
+    if (pressedButton == "gamepad-button-right"|| pressedButton == "gamepad-button-right-arrow") {
         keyboard.right = true;
     }
+    if (pressedButton == "gamepad-button-attack-range") {
+        keyboard.d = true;
+    }
+    if (pressedButton == "gamepad-button-attack-melee") {
+        keyboard.space = true;
+    }
 });
+
+window.addEventListener("mouseup", () => {
+    resetKeyboard();
+});
+
+window.addEventListener("touchend", () => {
+    resetKeyboard();
+});
+
+function resetKeyboard() {
+    for (let key in keyboard) {
+        keyboard[key] = false;
+    }
+}
+
+
 
