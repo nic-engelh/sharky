@@ -291,6 +291,7 @@ class World {
    * Function iterates throuh all enemies and check if one object is colliding with the hero object.
    * If so, it reduces the health by the hit function and changes the status bar.
    * If the hero object is colliding while attacking with a enemy object, it gets destroyed.
+   * Further functions will be activated in the hero class
    *
    */
   checkingEnemyCollision() {

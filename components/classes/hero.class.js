@@ -217,6 +217,10 @@ class Hero extends MovableObject {
     }
   }
 
+  /**
+   *   checkingEnemyCollision() in the world class are prequel functions
+   * 
+   */
   killByCollision(){
     if(this.isCollidingWith.length > 0) 
       this.isCollidingWith[0].eliminated();
@@ -226,7 +230,7 @@ class Hero extends MovableObject {
     this.currentImage = 0;
     this.isAttacking = false;
     this.decreaseAttackRange();
-    // deletes elements enemies from array and therefore from the canvas
+    // deletes elements enemies from array 
     this.isCollidingWith.shift();
     //! We have to delecte form enemies array in order to fully delete it from the "game"
   }
@@ -338,7 +342,7 @@ class Hero extends MovableObject {
    */
   throwingBubble(poison) {
     if (poison == null) return;
-    let bubble = new ThrowableObject(this.x + this.width - 100, this.y + 150, poison);
+    let bubble = new ThrowableObject(this.x + this.width - 100, this.y + 150, poison, this.otherDirection);
     if (poison)
       this.changeAmmunitionAmount(false, true);
     this.world.throwableObjects.push(bubble);
@@ -346,7 +350,7 @@ class Hero extends MovableObject {
     this.bubbleSounds.play();
     setTimeout(() => {
       this.world.throwableObjects.shift();
-    }, 15000);
+    }, 10000);
   }
 
   increaseAttackRange(){
