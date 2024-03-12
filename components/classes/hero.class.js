@@ -342,15 +342,11 @@ class Hero extends MovableObject {
    */
   throwingBubble(poison) {
     if (poison == null) return;
-    let bubble = new ThrowableObject(this.x + this.width - 100, this.y + 150, poison, this.otherDirection);
+    let bubble = new ThrowableObject(this.x + this.width - 50, this.y + 120, poison, this.otherDirection);
     if (poison)
       this.changeAmmunitionAmount(false, true);
     this.world.throwableObjects.push(bubble);
-    // Timer for deleting bubble object from array
     this.bubbleSounds.play();
-    setTimeout(() => {
-      this.world.throwableObjects.shift();
-    }, 10000);
   }
 
   increaseAttackRange(){

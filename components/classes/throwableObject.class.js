@@ -8,8 +8,9 @@ class ThrowableObject extends MovableObject {
       this.loadImage("/assets/img/1.Sharkie/4.Attack/Bubble trap/Bubble.png");
     this.width = 40;
     this.height = 40;
+    if (direction) this.x =  ocean.hero.x;
+    if(!direction) this.x = x;
     this.y = y;
-    this.x = x;
     this.speedX = 5;
     this.acceleration = 0.05;
     this.offSetTop = 0;
@@ -35,5 +36,11 @@ class ThrowableObject extends MovableObject {
     this.y -= this.speedY;
     this.speedY += this.acceleration;
     this.speedX -= this.acceleration;
+    //this.deleteBubble();
+  }
+
+  deleteBubble(){
+    if (this.y <= 0) 
+      eraseObjectFromCanvas (ocean.throwableObjects, this)
   }
 }
