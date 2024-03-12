@@ -296,19 +296,32 @@ class World {
   checkingEnemyCollision() {
     this.level.enemies.forEach((enemy) => {
       if (this.hero.isColliding(enemy)) {
-        if (this.hero.isAttacking && enemy instanceof Pufferfish) {
+        if (this.isAttackingPufferfish(enemy)) {
           // hero collides with enemy while attacking than the enemy is dying by meele attack
-          this.hero.isCollidingWith.push(enemy);
+          if (this.hasHeroAlreadyAttacked(enemy))
+            this.hero.isCollidingWith.push(enemy);
         }
         // if hero is not attacking:
         if (!this.hero.isAttacking) {
-          this.hero.hit();
-          this.heroHurtSound.play();
-          this.changeHealthStatusbar();
-          if (enemy instanceof Jellyfish) this.hero.isShocked = true;
+          this.woundingHero(enemy);
         }
       }
     });
+  }
+
+  woundingHero(enemy) {
+    this.hero.hit();
+    this.heroHurtSound.play();
+    this.changeHealthStatusbar();
+    if (enemy instanceof Jellyfish) this.hero.isShocked = true;
+  }
+
+  isAttackingPufferfish(enemy) {
+    return this.hero.isAttacking && enemy instanceof Pufferfish;
+  }
+
+  hasHeroAlreadyAttacked(enemy) {
+    return !this.hero.isCollidingWith.includes(enemy);
   }
 
   /**

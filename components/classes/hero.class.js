@@ -228,6 +228,7 @@ class Hero extends MovableObject {
     this.decreaseAttackRange();
     // deletes elements enemies from array and therefore from the canvas
     this.isCollidingWith.shift();
+    //! We have to delecte form enemies array in order to fully delete it from the "game"
   }
 
   rangeAttack() {
@@ -307,10 +308,6 @@ class Hero extends MovableObject {
     this.upwards = false;
     this.y += this.speed;
     this.swimmingSounds.play();
-  }
-
-  idle() {
-
   }
 
   isMoving() {
