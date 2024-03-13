@@ -35,3 +35,20 @@ window.addEventListener("orientationchange", checkOrientation);
 window.onload = function() {
     checkOrientation();
 };
+
+
+
+const impressumButton = document.getElementById("button-impressum");
+const impressumDialog = document.getElementById("dialog-impressum");
+const impressumText = document.getElementById("dialog-impressum-text-box");
+
+impressumButton.addEventListener("click", function() {
+    impressumDialog.showModal();
+    impressumText.innerHTML = impressumHTML();
+
+});
+
+function closeImpressumDialog() {
+    impressumDialog.close();
+    impressumText.innerHTML = "";
+}

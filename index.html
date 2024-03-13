@@ -24,6 +24,7 @@
     <script src="/components/classes/world.class.js"></script>
     <script defer src="/components/utils/script.js"></script>
     <script defer src="/game.js"></script>
+    <script src="/components/utils/html.js"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/x-icon" href="/assets/img/favicon/shark.png" />
   </head>
@@ -87,12 +88,26 @@
         <p>Melee Attack</p>
       </div>
     </div>
+
+    <button id="button-impressum">
+      <img src="/assets/img/6.Botones/Control/dateisicherheit.png" alt="Impressum">
+    </button>
+
+
+
+
     <dialog id="dialog-device-orientation">
       <div id="dialog-device-orientation-message">
         <img src="/assets/img/6.Botones/Control/responsive(1).png" alt="Rotate Device Instructions">
         <p>Please, rotate your device</p>
       </div>
-      
-    </dialog >
+    </dialog>
+    <dialog  id="dialog-impressum">
+      <div id="dialog-impressum-text-box">
+        <h2>Impressum</h2>
+        <p>Hier könnte der Text für das Impressum stehen.</p>
+      </div>
+      <button onclick="closeImpressumDialog()">Schließen</button>
+    </dialog>
   </body>
 </html>

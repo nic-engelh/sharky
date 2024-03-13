@@ -175,4 +175,28 @@ dialog img {
   width: 50%;
 }
 
+#button-impressum {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#button-impressum img {
+  height: 50px;
+}
+
+#dialog-impressum {
+  background-color: rgba(0, 0, 0, 0.5); /* Halbtransparenter Hintergrund */
+  color: white;
+  font-size: 18px;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  text-align: left;
+  max-width: 80%;
+}
+
 
