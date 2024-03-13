@@ -10,3 +10,7 @@ function resetOpacity() {
 
 document.getElementById("btn-start").addEventListener("click", hideButton);
 
+
+
+
+

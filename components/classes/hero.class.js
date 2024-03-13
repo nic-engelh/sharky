@@ -125,6 +125,8 @@ class Hero extends MovableObject {
   isCollidingWith = [];
   poisonAmmunition = 0;
   coins = 0;
+  deathIntervall = 0;
+  movementIntervall = 0;
 
   constructor() {
     super().loadImage("/assets/img/1.Sharkie/3.Swim/1.png");
@@ -149,13 +151,11 @@ class Hero extends MovableObject {
   }
 
   actionAnimation () {
-    let deathIntervall = 0;
-    let movementIntervall = 0;
     // if dead is need , function is not async, functions are not waiting
-    if (this.isDead()) deathIntervall = this.dying(deathIntervall);
+    if (this.isDead()) this.dying();
     if (this.isAttacking || this.isShooting) this.attacking();
     if (!this.isDead() && !this.isShooting && !this.isAttacking)
-      movementIntervall = this.moving(movementIntervall);
+      this.moving();
   }
 
   swimming() {
@@ -182,17 +182,17 @@ class Hero extends MovableObject {
    * @param {number} deathIntervall 
    * @returns 
    */
-  dying(deathIntervall) {
-    if (deathIntervall > 11) {
+  dying() {
+    if (this.deathIntervall > 11) {
       this.playAnimation(this.imagesDead);
     }
-    if (deathIntervall <= 11) {
-      if(deathIntervall == 0) this.currentImage = 0;
+    if (this.deathIntervall <= 11) {
+      if(this.deathIntervall == 0) this.currentImage = 0;
       this.playAnimation(this.imagesDying);
-      deathIntervall++;
+      this.deathIntervall++;
       // stop game i > 11
     }
-    return deathIntervall;
+    return;
   }
 
   /**
@@ -253,21 +253,21 @@ class Hero extends MovableObject {
    * Function controlls the moving animation state of the hero
    *
    */
-  moving(movementIntervall) {
-      if (movementIntervall>= 54) {
+  moving() {
+      if (this.movementIntervall>= 54) {
         this.playAnimation(this.imagesSleeping);
       }
-      if (movementIntervall < 54) {
+      if (this.movementIntervall < 54) {
         this.playAnimation(this.imagesWaiting);
-        movementIntervall++;
+        this.movementIntervall++;
       }
       if (this.isHurt()) {
-        movementIntervall= 0;
+        this.movementIntervall= 0;
         if (this.isShocked) {
           this.playAnimation(this.imagesElectrifying);
           this.shockedSound.play();
           this.isShocked = false;
-          return movementIntervall;
+          return ;
         }
         else {
           this.playAnimation(this.imagesPoisoning);
@@ -275,9 +275,9 @@ class Hero extends MovableObject {
       }
       if (this.isMoving()) {
         this.playAnimation(this.imagesWalking);
-        movementIntervall = 0;
+        this.movementIntervall = 0;
       }
-    return movementIntervall;
+    return
   }
 
   moveRight() {
