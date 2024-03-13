@@ -153,3 +153,26 @@ h1 {
 .button p:hover {
   color:#fff;
 }
+
+dialog:-internal-dialog-in-top-layer::backdrop  {
+  backdrop-filter: blur(10px);
+}
+dialog {
+  background-color: black;
+  color: white;
+  border-width: 0;
+  font-size: xx-large;
+  border-radius: 20px;
+}
+
+#dialog-device-orientation-message {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+}
+
+dialog img {
+  width: 50%;
+}
+
+

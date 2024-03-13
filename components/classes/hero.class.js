@@ -226,15 +226,21 @@ class Hero extends MovableObject {
       this.isCollidingWith[0].eliminated();
   } 
 
+/**
+ *  Wrapper function to disengage the hero. Attacking flag will be set back. Attack range will be set to normal collision range. Last element in Array with collided objects will be deleted.
+ * 
+ */
   disengage() {
     this.currentImage = 0;
     this.isAttacking = false;
     this.decreaseAttackRange();
-    // deletes elements enemies from array 
     this.isCollidingWith.shift();
-    //! We have to delecte form enemies array in order to fully delete it from the "game"
   }
 
+  /**
+   *  Functions checks bubble variations according to the closest enemy. Endboss (poison) or normal enemy (normal bubble). 
+   * 
+   */
   rangeAttack() {
     this.currentImage = 0;
     if (this.isEndbossNear() && this.poisonAmmunition > 0)
