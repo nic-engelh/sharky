@@ -68,6 +68,9 @@ h1 {
   #img-instructions {
     display: none;
   }
+  #button-impressum {
+    display: none;
+  }
   .gamepad{
     display: flex;
   }
@@ -199,4 +202,8 @@ dialog img {
   max-width: 80%;
 }
 
-
+#dialog-impressum-close-btn {
+  all: initial;
+  width: 10%;
+  cursor: pointer;
+}
