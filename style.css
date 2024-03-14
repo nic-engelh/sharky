@@ -218,11 +218,36 @@ dialog ::backdrop {
 
 #dialog-lose-picture-container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: space-around;
+}
+
+#dialog-win-box {
+  height: 100%;
+  width: 100%;
+  background-color: initial;
+}
+
+#dialog-win-box img {
+  height: 100%;
+  width: 100%;
+}
+
+#dialog-lose-box {
+  height: 30%;
+  background-color: #201B4E !important;
+}
+
+#dialog-win-picture-container {
+  display: flex;
   justify-content: center;
   flex-direction: column;
   align-content: center;
-  align-items: center; 
+  align-items: center;
 }
+
 
  /* Tooltip container */
  .tooltip {
