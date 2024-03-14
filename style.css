@@ -44,6 +44,10 @@ h1 {
   z-index: 2;
   position: absolute;
   top: 20%;
+  
+}
+
+.animate-size {
   animation: sizeAnimation 3s infinite alternate both ease-in-out;
 }
 
@@ -178,6 +182,10 @@ dialog img {
   width: 50%;
 }
 
+dialog ::backdrop {
+  backdrop-filter: blur(10px);
+}
+
 #button-impressum {
   position: fixed;
   bottom: 20px;
@@ -206,6 +214,22 @@ dialog img {
   all: initial;
   width: 10%;
   cursor: pointer;
+}
+
+#dialog-lose-box {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  align-items: center; 
+}
+
+#dialog-lose-picture-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  align-items: center; 
 }
 
  /* Tooltip container */

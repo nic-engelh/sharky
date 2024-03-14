@@ -74,6 +74,7 @@
     />
     <img
       id="btn-start"
+      class="animate-size"
       onclick="init(); resetOpacity();"
       src="/assets/img/6.Botones/Start/2.png"
       alt="Start Game"
@@ -113,10 +114,13 @@
       </button>
     </dialog>
     <dialog id="dialog-win-box">
-      <img src="/assets/img/6.Botones/Tittles/You win/Mesa de trabajo 1.png" alt="">
+      <img src="/assets/img/6.Botones/Tittles/You win/Mesa de trabajo 1.png" alt="You win">
     </dialog>
     <dialog id="dialog-lose-box">
-      <img src="/assets/img/6.Botones/Tittles/Game Over/Recurso 10.png" alt="">
+      <div id="dialog-lose-picture-container">
+        <img src="/assets/img/6.Botones/Tittles/Game Over/Recurso 10.png" alt="You lost">
+        <img src="/assets/img/6.Botones/Try again/Recurso 18.png" alt="Try again">
+      </div> 
     </dialog>
   </body>
 </html>
