@@ -216,14 +216,6 @@ dialog ::backdrop {
   cursor: pointer;
 }
 
-#dialog-lose-box {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-content: center;
-  align-items: center; 
-}
-
 #dialog-lose-picture-container {
   display: flex;
   justify-content: center;

@@ -57,6 +57,7 @@ class Endboss extends MovableObject {
     "/assets/img/2.Enemy/3 Final Enemy/Attack/6.png",
   ];
 
+  moveCounter = 0;
   height = 460;
   width = 506;
   world;
@@ -102,13 +103,11 @@ class Endboss extends MovableObject {
   }
 
   run() {
-    let i = 0;
-
-    setStoppableInterval(this.animate, 1000 / 7);
+    setStoppableInterval(this.animate.bind(this), 1000 / 7);
   }
 
   animate() {
-    if (this.isHeroNear()) i = this.spawningEndboss(i);
+    if (this.isHeroNear()) this.spawningEndboss();
     if (this.isHit && !this.isDead()) this.takingDamage();
     if (this.isDead()) this.isDying();
     if (this.isAttacking && !this.isHit && !this.isHeroNear()) this.attacking();
@@ -120,8 +119,8 @@ class Endboss extends MovableObject {
       !this.isHit &&
       !this.isDead()
     ) {
-      i = this.swimming(i);
-      if (i % 20 === 0) this.luring();
+      this.swimming();
+      if (this.moveCounter % 20 === 0) this.luring();
     }
   }
 
@@ -133,18 +132,17 @@ class Endboss extends MovableObject {
     }
   }
 
-  spawningEndboss(i) {
+  spawningEndboss() {
     this.playAnimation(this.imagesSpawing);
     this.introSound.play();
     this.startBossAmbientMusic();
     //? world.ambientMusik has to stop here
-
-    i++;
-    if (i > 10) {
+    this.moveCounter++;
+    if (this.moveCounter > 10) {
       this.hadFirstHeroContact = true;
       this.introSound.pause();
     }
-    return i;
+    return;
   }
 
   attacking() {
@@ -162,11 +160,11 @@ class Endboss extends MovableObject {
     this.attackIndex = 0;
   }
 
-  swimming(i) {
+  swimming() {
     this.playAnimation(this.imagesWalking);
-    i++;
+    this.moveCounter++;
     if (this.currentImage >= 13) this.isAttacking = true;
-    return i;
+    return;
   }
 
   /**
