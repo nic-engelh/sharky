@@ -3,17 +3,17 @@ return /*html*/ `
 <h1>Impressum</h1>
 <h2>Angaben gemäß § 5 TMG:</h2>
 <p>Niklas Engelhardt<br>
-    Musterstraße 123<br>
-    12345 Musterstadt</p>
+    Thusneldastrasse 25<br>
+    90482 Nürnberg</p>
 
 <h2>Kontakt:</h2>
-<p>Telefon: 01234-56789<br>
+<p>Telefon: 0174-3846113<br>
     E-Mail: <a href="mailto:niklas.engelhardt@gmx.de">niklas.engelhardt@gmx.de</a></p>
 
 <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</h2>
 <p>Niklas Engelhardt<br>
-    Musterstraße 123<br>
-    12345 Musterstadt</p>
+    Thusneldastrasse 25<br>
+    90482 Nürnberg</p>
 
 <h2>Haftungsausschluss:</h2>
 
@@ -63,8 +63,8 @@ return /*html*/ `
     <li><a class="index-link" href="#m328">Plugins und eingebettete Funktionen sowie Inhalte</a></li>
 </ul>
 <h2 id="m3">Verantwortlicher</h2>
-<p>Vorname, Name / Firma<br>Straße, Hausnr.<br>PLZ, Ort, Land</p>
-E-Mail-Adresse: <a href="mailto:vorname.name@beispielsdomain.eu">vorname.name@beispielsdomain.eu</a>
+<p>Niklas, Engelhardt<br> Thusneldastrasse, 25.<br>90482, Nürnberg, Deutschland</p>
+E-Mail-Adresse: <a href="mailto:niklas.engelhardt@bgmx.de">niklas.engelhardt@gmx.de</a>
 
 <h2 id="mOverview">Übersicht der Verarbeitungen</h2>
 <p>Die nachfolgende Übersicht fasst die Arten der verarbeiteten Daten und die Zwecke ihrer Verarbeitung zusammen und
