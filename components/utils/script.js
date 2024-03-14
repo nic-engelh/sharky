@@ -46,3 +46,42 @@ function closeImpressumDialog() {
   impressumDialog.close();
   impressumText.innerHTML = "";
 }
+
+function openWinDialog() {
+  const modal = document.getElementById("dialog-win-box");
+  modal.showModal();
+}
+
+function openLoseDialog() {
+  const modal = document.getElementById("dialog-lose-box");
+  modal.showModal();
+}
+
+function toggleMuteIcon() {
+  let icon = document.getElementById("muteIcon");
+  let isMuted = icon.classList.contains("muted");
+  if (isMuted) {
+    unmuteBackgroundMusic(icon);
+  } else {
+    muteBackgroundMusic(icon);
+  }
+}
+
+function unmuteBackgroundMusic(icon) {
+  icon.classList.remove("muted");
+  icon.src =
+    "/assets/img/6.Botones/Control/volume_up_FILL0_wght400_GRAD0_opsz24.svg"; // Replace with the path to your unmute icon
+  if (ocean.hero.isEndbossNear()) {
+    ocean.level.enemies[5].startBossAmbientMusic();
+    return;
+  }
+  ocean.startAmbientMusic();
+}
+
+function muteBackgroundMusic(icon) {
+  icon.classList.add("muted");
+  icon.src =
+    "/assets/img/6.Botones/Control/volume_mute_FILL0_wght400_GRAD0_opsz24.svg"; // Replace with the path to your mute icon
+  ocean.stopAmbientMusic();
+  ocean.level.enemies[5].stopBossAmbientMusic();
+}

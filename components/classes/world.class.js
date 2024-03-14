@@ -20,6 +20,8 @@ class World {
     "/assets/sounds/short-success-sound-glockenspiel-treasure-video-game-6346.mp3"
   );
   heroHurtSound = new Audio("/assets/sounds/male-hurt-sound-95206.mp3");
+  hasWon = false;
+  hasLost = false;
   
   constructor(canvas, keyboard) {
     this.canvas = canvas;
@@ -371,5 +373,19 @@ class World {
 
   isPlayingOceanAmbientMusic () {
     return !this.ambientBackgroundMusik.paused;
+  }
+
+  isWon() {
+    // stop game
+    stopGame();
+    openWinDialog();
+    // show win graphic
+  }
+
+  isLost() {
+    stopGame();
+    openLoseDialog();
+    // stop game 
+    // show lost grafik / dialog and retry button
   }
 }

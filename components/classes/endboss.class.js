@@ -28,33 +28,33 @@ class Endboss extends MovableObject {
   ];
 
   imagesDying = [
-    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 6.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 8.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png',
+    "/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2.png",
+    "/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 6.png",
+    "/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png",
+    "/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 8.png",
+    "/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png",
   ];
 
   imagesDead = [
-    '/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png',
-  ]
+    "/assets/img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png",
+  ];
 
   imagesWounding = [
-    '/assets/img/2.Enemy/3 Final Enemy/Hurt/1.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Hurt/2.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Hurt/3.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Hurt/1.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Hurt/2.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Hurt/3.png',
+    "/assets/img/2.Enemy/3 Final Enemy/Hurt/1.png",
+    "/assets/img/2.Enemy/3 Final Enemy/Hurt/2.png",
+    "/assets/img/2.Enemy/3 Final Enemy/Hurt/3.png",
+    "/assets/img/2.Enemy/3 Final Enemy/Hurt/1.png",
+    "/assets/img/2.Enemy/3 Final Enemy/Hurt/2.png",
+    "/assets/img/2.Enemy/3 Final Enemy/Hurt/3.png",
   ];
 
   imagesAttacking = [
-    '/assets/img/2.Enemy/3 Final Enemy/Attack/1.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Attack/2.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Attack/3.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Attack/4.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Attack/5.png',
-    '/assets/img/2.Enemy/3 Final Enemy/Attack/6.png',
+    "/assets/img/2.Enemy/3 Final Enemy/Attack/1.png",
+    "/assets/img/2.Enemy/3 Final Enemy/Attack/2.png",
+    "/assets/img/2.Enemy/3 Final Enemy/Attack/3.png",
+    "/assets/img/2.Enemy/3 Final Enemy/Attack/4.png",
+    "/assets/img/2.Enemy/3 Final Enemy/Attack/5.png",
+    "/assets/img/2.Enemy/3 Final Enemy/Attack/6.png",
   ];
 
   height = 460;
@@ -68,7 +68,7 @@ class Endboss extends MovableObject {
   endbossMusic = new Audio("/assets/sounds/tribal-loop-azteca-154482.mp3");
   biteSounds = new Audio("/assets/sounds/monster-bite-44538.mp3");
   winSound = new Audio("/assets/sounds/you-win-sequence-2-183949.mp3");
-  woundingSound = new Audio ("/assets/sounds/giant-breath-1-184041.mp3");
+  woundingSound = new Audio("/assets/sounds/giant-breath-1-184041.mp3");
 
   constructor() {
     super().loadImage("assets/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
@@ -86,55 +86,59 @@ class Endboss extends MovableObject {
     this.offsetBottom = 0;
     this.offsetRight = 0;
     this.offsetleft = 0;
-    this.animate();
+    this.run();
   }
 
   startBossAmbientMusic() {
     this.endbossMusic.play();
   }
-   
+
   stopBossAmbientMusic() {
     this.endbossMusic.pause();
   }
 
-  isPlayingBossAmbientMusic () {
+  isPlayingBossAmbientMusic() {
     return !this.endbossMusic.paused;
   }
 
-  animate() {
+  run() {
     let i = 0;
-    setInterval(() => {
-      if (this.isHeroNear()) 
-        i = this.spawningEndboss(i);
-      if(this.isHit && !this.isDead()) 
-        this.takingDamage();
-      if(this.isDead())
-        this.isDying();
-      if(this.isAttacking && !this.isHit && !this.isHeroNear())
-        this.attacking(); 
-      if (this.isAttacking && this.attackIndex > 6 && !this.isHit)
-        this.withdrawing();
-      if (this.hadFirstHeroContact && !this.isAttacking && !this.isHit && !this.isDead()) {
-        i = this.swimming(i);
-        if (i % 20 === 0) this.luring();
-      }
-    }, 1000 / 7);
+
+    setStoppableInterval(this.animate, 1000 / 7);
+  }
+
+  animate() {
+    if (this.isHeroNear()) i = this.spawningEndboss(i);
+    if (this.isHit && !this.isDead()) this.takingDamage();
+    if (this.isDead()) this.isDying();
+    if (this.isAttacking && !this.isHit && !this.isHeroNear()) this.attacking();
+    if (this.isAttacking && this.attackIndex > 6 && !this.isHit)
+      this.withdrawing();
+    if (
+      this.hadFirstHeroContact &&
+      !this.isAttacking &&
+      !this.isHit &&
+      !this.isDead()
+    ) {
+      i = this.swimming(i);
+      if (i % 20 === 0) this.luring();
+    }
   }
 
   isHeroNear() {
-    try { 
+    try {
       return this.world.hero.x > 1900 && !this.hadFirstHeroContact;
     } catch (error) {
       return false;
     }
   }
-  
+
   spawningEndboss(i) {
     this.playAnimation(this.imagesSpawing);
     this.introSound.play();
     this.startBossAmbientMusic();
     //? world.ambientMusik has to stop here
-    
+
     i++;
     if (i > 10) {
       this.hadFirstHeroContact = true;
@@ -146,12 +150,12 @@ class Endboss extends MovableObject {
   attacking() {
     this.offsetleft = 0;
     this.x = 2100;
-    this.biteSounds.play(); 
+    this.biteSounds.play();
     this.playAnimation(this.imagesAttacking);
     this.attackIndex++;
   }
 
-  withdrawing() {   
+  withdrawing() {
     this.isAttacking = false;
     this.offsetleft = 0;
     this.x = 2300;
@@ -160,16 +164,15 @@ class Endboss extends MovableObject {
 
   swimming(i) {
     this.playAnimation(this.imagesWalking);
-      i++;
-      if(this.currentImage >= 13) 
-        this.isAttacking = true;
-    return i
+    i++;
+    if (this.currentImage >= 13) this.isAttacking = true;
+    return i;
   }
 
   /**
    * function moves endboss randomly up and down. Range-Y: -250 to +50.
-   * 
-  */
+   *
+   */
   luring() {
     let topBorder = -250;
     let rangeY = 300;
@@ -179,7 +182,7 @@ class Endboss extends MovableObject {
 
   takingDamage() {
     this.playAnimation(this.imagesWounding);
-    if(this.currentImage == 6) this.isHit = false;
+    if (this.currentImage == 6) this.isHit = false;
   }
 
   isDying() {
@@ -187,13 +190,14 @@ class Endboss extends MovableObject {
       this.playAnimation(this.imagesDead);
       this.y -= 5;
       this.winSound.play();
-      return
+      this.world.isWon();
+      return;
     }
     this.playAnimation(this.imagesDying);
     this.deathCounter++;
   }
 
-  reduceEnergy () {
+  reduceEnergy() {
     this.woundingSound.play();
     this.energy -= 35;
   }

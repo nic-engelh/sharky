@@ -185,6 +185,7 @@ class Hero extends MovableObject {
   dying() {
     if (this.deathIntervall > 11) {
       this.playAnimation(this.imagesDead);
+      this.world.isLost();
     }
     if (this.deathIntervall <= 11) {
       if(this.deathIntervall == 0) this.currentImage = 0;
