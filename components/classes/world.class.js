@@ -335,7 +335,7 @@ class World {
   }
 
   /**
-   * functions checks if the enemy arguement is not already int he "colliding with" array from the hero class
+   * functions checks if the enemy amovableObject.drawFrame(this.ctx);rguement is not already int he "colliding with" array from the hero class
    *
    * @param {enemy} enemy
    * @returns boolean

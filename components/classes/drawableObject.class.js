@@ -29,7 +29,6 @@ class DrawableObject {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 
- /*
   drawFrame(ctx) {
     if (
       this instanceof Hero ||
@@ -47,5 +46,4 @@ class DrawableObject {
       ctx.stroke();
     }
   }
-*/
 }
