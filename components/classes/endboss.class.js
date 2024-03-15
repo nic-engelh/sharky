@@ -101,10 +101,18 @@ class Endboss extends MovableObject {
     return !this.endbossMusic.paused;
   }
 
+  /**
+   * functions sets animation intervall in motion
+   * 
+   */
   run() {
     setStoppableInterval(this.animate.bind(this), 1000 / 7);
   }
 
+  /**
+   * functions controlls the different states and following animations of the endboss object
+   * 
+   */
   animate() {
     if (this.isHeroNear()) this.spawningEndboss();
     if (this.isHit && !this.isDead()) this.takingDamage();
@@ -123,6 +131,11 @@ class Endboss extends MovableObject {
     }
   }
 
+  /**
+   * functions checks if the hero object has moved up to a certain point and if it has done it before or not
+   * 
+   * @returns boolean
+   */
   isHeroNear() {
     try {
       return this.world.hero.x > 1900 && !this.hadFirstHeroContact;
@@ -131,6 +144,11 @@ class Endboss extends MovableObject {
     }
   }
 
+  /**
+   * functions spawns the endboss and controlls the spawning animation and the music
+   * 
+   * @returns 
+   */
   spawningEndboss() {
     this.playAnimation(this.imagesSpawing);
     this.introSound.play();
@@ -144,6 +162,10 @@ class Endboss extends MovableObject {
     return;
   }
 
+  /**
+   * function lets the object do an attack movement and activates the movement and sound. It will raise the attack index to controll the overall animaiton flow.
+   * 
+   */
   attacking() {
     this.offsetleft = 0;
     this.x = 2100;
@@ -152,6 +174,10 @@ class Endboss extends MovableObject {
     this.attackIndex++;
   }
 
+  /**
+   * functions sets the endboss back to its base position after an attack
+   * 
+   */
   withdrawing() {
     this.isAttacking = false;
     this.offsetleft = 0;
@@ -159,6 +185,11 @@ class Endboss extends MovableObject {
     this.attackIndex = 0;
   }
 
+  /**
+   * function activates the animation for swimming and will activate the attack mode after certain movement repetitions
+   * 
+   * @returns 
+   */
   swimming() {
     this.playAnimation(this.imagesWalking);
     this.moveCounter++;
@@ -176,11 +207,21 @@ class Endboss extends MovableObject {
     this.y = topBorder + Math.random() * rangeY;
   }
 
+
+  /**
+   * function activates the wounding animations and after six pictures it will put 
+   * 
+   */
   takingDamage() {
     this.playAnimation(this.imagesWounding);
     if (this.currentImage == 6) this.isHit = false;
   }
 
+  /**
+   * functions controlls dying and death animation variants and activtes the win sequenz if the endboss is defeated. To controll the dying animation it will raise the deathCounter.
+   * 
+   * @returns 
+   */
   isDying() {
     if (this.deathCounter > 9) {
       this.playAnimation(this.imagesDead);
@@ -193,8 +234,13 @@ class Endboss extends MovableObject {
     this.deathCounter++;
   }
 
-  reduceEnergy() {
+ /**
+  * unction reduces the endbosses energy by the amount of damage
+  * 
+  * @param {number} damage 
+  */
+  reduceEnergy(damage) {
     this.woundingSound.play();
-    this.energy -= 35;
+    this.energy -= damage;
   }
 }

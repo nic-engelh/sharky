@@ -357,11 +357,20 @@ class Hero extends MovableObject {
     this.bubbleSounds.play();
   }
 
+
+  /**
+   * function increases the melee attack range with offset at the collision range
+   * 
+   */
   increaseAttackRange(){
     this.offsetRight = -40;
     this.offsetleft = 20;
   }
 
+  /**
+   * function reduces the attack range to normal collision range
+   * 
+   */
   decreaseAttackRange(){
     this.offsetRight = 40;
     this.offsetleft = 20;

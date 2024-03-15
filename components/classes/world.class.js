@@ -22,7 +22,7 @@ class World {
   heroHurtSound = new Audio("/assets/sounds/male-hurt-sound-95206.mp3");
   hasWon = false;
   hasLost = false;
-  
+
   constructor(canvas, keyboard) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
@@ -285,7 +285,8 @@ class World {
   activateBubbleCollisionEndbossEffect(enemy, bubble) {
     eraseObjectFromCanvas(this.throwableObjects, bubble);
     enemy.isHit = true;
-    this.level.enemies[5].reduceEnergy();
+    if (!bubble.poisoned)this.level.enemies[5].reduceEnergy(10);
+    if (bubble.poisoned) this.level.enemies[5].reduceEnergy(50);
   }
 
   /**
@@ -311,6 +312,11 @@ class World {
     });
   }
 
+  /**
+   * functions activates the following functions of the hero object hit. It will play a hurt sound and change the statusbar. If the hero was hit by a jellyfish object it will activate the shocked flag.
+   *
+   * @param {enemies} enemy
+   */
   woundingHero(enemy) {
     this.hero.hit();
     this.heroHurtSound.play();
@@ -318,10 +324,22 @@ class World {
     if (enemy instanceof Jellyfish) this.hero.isShocked = true;
   }
 
+  /**
+   * functions checks the typ ob  the enemy object. If the object is a jellyfisch it returns true
+   *
+   * @param {enemy} enemy
+   * @returns boolean
+   */
   isAttackingPufferfish(enemy) {
     return this.hero.isAttacking && enemy instanceof Pufferfish;
   }
 
+  /**
+   * functions checks if the enemy arguement is not already int he "colliding with" array from the hero class
+   *
+   * @param {enemy} enemy
+   * @returns boolean
+   */
   hasHeroAlreadyAttacked(enemy) {
     return !this.hero.isCollidingWith.includes(enemy);
   }
@@ -370,7 +388,7 @@ class World {
     this.ambientBackgroundMusik.play();
   }
 
-  isPlayingOceanAmbientMusic () {
+  isPlayingOceanAmbientMusic() {
     return !this.ambientBackgroundMusik.paused;
   }
 

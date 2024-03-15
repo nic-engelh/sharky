@@ -17,6 +17,7 @@ class ThrowableObject extends MovableObject {
     this.offsetBottom = 0;
     this.offsetRight = 0;
     this.offsetleft = 0;
+    this.poisoned = poison;
     this.direction = direction; //? is boolean but should be "left" / "right"; otherDirection==true = left
     this.throw();
   }
