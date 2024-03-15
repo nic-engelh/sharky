@@ -395,7 +395,6 @@ class World {
   isWon() {
     stopGame();
     openWinDialog();
-    // show win graphic
   }
 
   isLost() {

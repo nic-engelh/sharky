@@ -64,7 +64,6 @@
     </div>
   </div>
   <canvas id="canvas" class="opaque" width="720" height="480"> </canvas>
-  <img id="img-instructions" src="/assets/img/6.Botones/Instructions 1.png" alt="Instructions" />
   <img id="btn-start" class="animate-size" onclick="init(); resetOpacity();" src="/assets/img/6.Botones/Start/2.png"
     alt="Start Game" />
   <div id="gamepad-right" class="gamepad">
@@ -79,6 +78,12 @@
     <img src="/assets/img/6.Botones/Control/notice.png" alt="Impressum & Datenschutzerklärung" />
     <span class="tooltiptext">
       Privacy Policy & Legal Notice
+    </span>
+  </button>
+  <button id="button-controls" class="tooltip">
+    <img src="/assets/img/6.Botones/Control/controller.png" alt="Control Manual" />
+    <span class="tooltiptext">
+      Game Controls
     </span>
   </button>
   <dialog id="dialog-device-orientation">
@@ -98,16 +103,20 @@
   <dialog id="dialog-win-box">
     <div id="dialog-win-picture-container">
       <img src="/assets/img/6.Botones/Tittles/You win/Mesa de trabajo 1.png" alt="You win">
-      <img id="btn-start" class="animate-size" onclick="init(); closeDialog('dialog-win-box');" src="/assets/img/6.Botones/Start/2.png"
-        alt="Start Game again"/>
+      <img onclick="reloadPage();" src="/assets/img/6.Botones/Try again/Recurso 18.png" alt="Try again">
     </div>
   </dialog>
   <dialog id="dialog-lose-box">
     <div id="dialog-lose-picture-container">
       <img class="animate-size" src="/assets/img/6.Botones/Tittles/Game Over/Recurso 12.png" alt="You lost">
-      <img src="/assets/img/6.Botones/Try again/Recurso 18.png" alt="Try again">
+      <img onclick="reloadPage();" src="/assets/img/6.Botones/Try again/Recurso 18.png" alt="Try again">
     </div>
   </dialog>
-</body>
+  <dialog id="dialog-instructions-box">
+    <div id="dialog-incstructions-picture-container">
+      <img id="img-instructions" src="/assets/img/6.Botones/Instructions 1.png" alt="Game and control instructions" />
+    </div>
+  </dialog>
 
+</body>
 </html>

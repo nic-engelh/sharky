@@ -62,6 +62,11 @@ function closeDialog(elementId) {
   modal.close(); 
 }
 
+function openDialog(elementId) {
+  const modal = document.getElementById(elementId);
+  modal.close(); 
+}
+
 function toggleMuteIcon() {
   let icon = document.getElementById("muteIcon");
   let isMuted = icon.classList.contains("muted");
@@ -89,4 +94,8 @@ function muteBackgroundMusic(icon) {
     "/assets/img/6.Botones/Control/volume_mute_FILL0_wght400_GRAD0_opsz24.svg"; // Replace with the path to your mute icon
   ocean.stopAmbientMusic();
   ocean.level.enemies[5].stopBossAmbientMusic();
+}
+
+function reloadPage() {
+  location.reload();
 }

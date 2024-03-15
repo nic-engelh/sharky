@@ -131,10 +131,10 @@ class Hero extends MovableObject {
   constructor() {
     super().loadImage("/assets/img/1.Sharkie/3.Swim/1.png");
     this.loadingAllImages(); 
-    this.offsetTop =  100; // 100
-    this.offsetBottom = 90; // 150 
-    this.offsetRight = 40; // 100
-    this.offsetleft = 20; // 50
+    this.offsetTop =  100;
+    this.offsetBottom = 90; 
+    this.offsetRight = 40; 
+    this.offsetleft = 20; 
     this.x = 50;
     this.animate();
   }
@@ -151,7 +151,6 @@ class Hero extends MovableObject {
   }
 
   actionAnimation () {
-    // if dead is need , function is not async, functions are not waiting
     if (this.isDead()) this.dying();
     if (this.isAttacking || this.isShooting) this.attacking();
     if (!this.isDead() && !this.isShooting && !this.isAttacking)
@@ -191,7 +190,6 @@ class Hero extends MovableObject {
       if(this.deathIntervall == 0) this.currentImage = 0;
       this.playAnimation(this.imagesDying);
       this.deathIntervall++;
-      // stop game i > 11
     }
     return;
   }
@@ -247,7 +245,7 @@ class Hero extends MovableObject {
     if (this.isEndbossNear() && this.poisonAmmunition > 0) {
       this.throwingBubble(true);
       this.world.changePoisonStatusbar();
-      // place new bottle
+      // !place new bottle
     }
     this.throwingBubble(false);
     this.isShooting = false;

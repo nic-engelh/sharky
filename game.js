@@ -6,7 +6,6 @@ function init () {
 } 
 
 window.addEventListener("keydown", (event) => {
-    //console.log(event);
     pressedKey = event.code;
     if (pressedKey == "ArrowDown") {
         keyboard.down = true;

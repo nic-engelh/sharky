@@ -2,7 +2,7 @@ class ThrowableObject extends MovableObject {
 
   /**
    * constructor function
-   * direction is a boolean value. otherDirection == true = left.
+   * direction is a boolean value. Example: otherDirection == true = left.
    * 
    * @param {number} x 
    * @param {number} y 
