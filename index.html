@@ -1,128 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SHARKY</title>
-    <script src="/components/classes/keyboard.class.js"></script>
-    <script src="/components/utils/variables.js"></script>
-    <script src="/components/utils/support.js"></script>
-    <script src="/components/classes/drawableObject.class.js"></script>
-    <script src="/components/classes/movableObject.class.js"></script>
-    <script src="/components/classes/backgroundObjects.class.js"></script>
-    <script src="/components/classes/throwableObject.class.js"></script>
-    <script src="/components/classes/hero.class.js"></script>
-    <script src="/components/classes/pufferfish.class.js"></script>
-    <script src="/components/classes/jellyfish.class.js"></script>
-    <script src="/components/classes/endboss.class.js"></script>
-    <script src="/components/classes/coin.class.js"></script>
-    <script src="/components/classes/bottle.class.js"></script>
-    <script src="/components/classes/bubble.class.js"></script>
-    <script src="/components/classes/level.class.js"></script>
-    <script src="/components/levels/levelOne.js"></script>
-    <script src="/components/classes/statusBar.class.js"></script>
-    <script src="/components/classes/world.class.js"></script>
-    <script defer src="/components/utils/script.js"></script>
-    <script defer src="/game.js"></script>
-    <script src="/components/utils/html.js"></script>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon/shark.png" />
-  </head>
 
-  <body>
-    <img
-      id="muteIcon"
-      src="/assets/img/6.Botones/Control/volume_mute_FILL0_wght400_GRAD0_opsz24.svg"
-      onclick="toggleMuteIcon()"
-      style="
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHARKY</title>
+  <script src="/components/classes/keyboard.class.js"></script>
+  <script src="/components/utils/variables.js"></script>
+  <script src="/components/utils/support.js"></script>
+  <script src="/components/classes/drawableObject.class.js"></script>
+  <script src="/components/classes/movableObject.class.js"></script>
+  <script src="/components/classes/backgroundObjects.class.js"></script>
+  <script src="/components/classes/throwableObject.class.js"></script>
+  <script src="/components/classes/hero.class.js"></script>
+  <script src="/components/classes/pufferfish.class.js"></script>
+  <script src="/components/classes/jellyfish.class.js"></script>
+  <script src="/components/classes/endboss.class.js"></script>
+  <script src="/components/classes/coin.class.js"></script>
+  <script src="/components/classes/bottle.class.js"></script>
+  <script src="/components/classes/bubble.class.js"></script>
+  <script src="/components/classes/level.class.js"></script>
+  <script src="/components/levels/levelOne.js"></script>
+  <script src="/components/classes/statusBar.class.js"></script>
+  <script src="/components/classes/world.class.js"></script>
+  <script defer src="/components/utils/script.js"></script>
+  <script defer src="/game.js"></script>
+  <script src="/components/utils/html.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="/assets/img/favicon/shark.png" />
+</head>
+
+<body>
+  <img id="muteIcon" src="/assets/img/6.Botones/Control/volume_up_FILL0_wght400_GRAD0_opsz24.svg"
+    onclick="toggleMuteIcon()" style="
         position: fixed;
         top: 10px;
         right: 10px;
         width: 50px;
         height: 50px;
         cursor: pointer;
-      "
-    />
-    <h1>Sharky</h1>
-    <div id="gamepad-left" class="gamepad">
-      <div class="button up" id="gamepad-button-up">
-        <svg id="gamepad-button-up-arrow" viewBox="0 0 20 20">
-          <path d="M10 0 L0 20 L20 20 Z" />
-        </svg>
-      </div>
-      <div class="button right" id="gamepad-button-right">
-        <svg id="gamepad-button-right-arrow" viewBox="0 0 20 20">
-          <path d="M20 10 L0 0 L0 20 Z" />
-        </svg>
-      </div>
-      <div class="button left" id="gamepad-button-left">
-        <svg id="gamepad-button-left-arrow" viewBox="0 0 20 20">
-          <path d="M0 10 L20 0 L20 20 Z" />
-        </svg>
-      </div>
-      <div class="button down" id="gamepad-button-down">
-        <svg id="gamepad-button-down-arrow" viewBox="0 0 20 20">
-          <path d="M10 20 L0 0 L20 0 Z" />
-        </svg>
-      </div>
+      " />
+  <h1>Sharky</h1>
+  <div id="gamepad-left" class="gamepad">
+    <div class="button up" id="gamepad-button-up">
+      <svg id="gamepad-button-up-arrow" viewBox="0 0 20 20">
+        <path d="M10 0 L0 20 L20 20 Z" />
+      </svg>
     </div>
-    <canvas id="canvas" class="opaque" width="720" height="480"> </canvas>
-    <img
-      id="img-instructions"
-      src="/assets/img/6.Botones/Instructions 1.png"
-      alt="Instructions"
-    />
-    <img
-      id="btn-start"
-      class="animate-size"
-      onclick="init(); resetOpacity();"
-      src="/assets/img/6.Botones/Start/2.png"
-      alt="Start Game"
-    />
-    <div id="gamepad-right" class="gamepad">
-      <div class="button attack-range" id="gamepad-button-attack-range">
-        <p>Range Attack</p>
-      </div>
-      <div class="button attack-melee" id="gamepad-button-attack-melee">
-        <p>Melee Attack</p>
-      </div>
+    <div class="button right" id="gamepad-button-right">
+      <svg id="gamepad-button-right-arrow" viewBox="0 0 20 20">
+        <path d="M20 10 L0 0 L0 20 Z" />
+      </svg>
     </div>
-    <button id="button-impressum" class="tooltip">
-      <img
-        src="/assets/img/6.Botones/Control/notice.png"
-        alt="Impressum & Datenschutzerklärung"
-      />
-      <span class="tooltiptext">
-        Privacy Policy & Legal Notice
-      </span>
+    <div class="button left" id="gamepad-button-left">
+      <svg id="gamepad-button-left-arrow" viewBox="0 0 20 20">
+        <path d="M0 10 L20 0 L20 20 Z" />
+      </svg>
+    </div>
+    <div class="button down" id="gamepad-button-down">
+      <svg id="gamepad-button-down-arrow" viewBox="0 0 20 20">
+        <path d="M10 20 L0 0 L20 0 Z" />
+      </svg>
+    </div>
+  </div>
+  <canvas id="canvas" class="opaque" width="720" height="480"> </canvas>
+  <img id="img-instructions" src="/assets/img/6.Botones/Instructions 1.png" alt="Instructions" />
+  <img id="btn-start" class="animate-size" onclick="init(); resetOpacity();" src="/assets/img/6.Botones/Start/2.png"
+    alt="Start Game" />
+  <div id="gamepad-right" class="gamepad">
+    <div class="button attack-range" id="gamepad-button-attack-range">
+      <p>Range Attack</p>
+    </div>
+    <div class="button attack-melee" id="gamepad-button-attack-melee">
+      <p>Melee Attack</p>
+    </div>
+  </div>
+  <button id="button-impressum" class="tooltip">
+    <img src="/assets/img/6.Botones/Control/notice.png" alt="Impressum & Datenschutzerklärung" />
+    <span class="tooltiptext">
+      Privacy Policy & Legal Notice
+    </span>
+  </button>
+  <dialog id="dialog-device-orientation">
+    <div id="dialog-device-orientation-message">
+      <img src="/assets/img/6.Botones/Control/responsive(1).png" alt="Rotate Device Instructions" />
+      <p>Please, rotate your device</p>
+    </div>
+  </dialog>
+  <dialog id="dialog-impressum">
+    <div id="dialog-impressum-text-box">
+      <!-- Impressum und Datenschutzerklärung werden hier eingefügt -->
+    </div>
+    <button id="dialog-impressum-close-btn" onclick="closeImpressumDialog()">
+      <img src="/assets/img/6.Botones/Control/close.png" alt="Close Dialog">
     </button>
-    <dialog id="dialog-device-orientation">
-      <div id="dialog-device-orientation-message">
-        <img
-          src="/assets/img/6.Botones/Control/responsive(1).png"
-          alt="Rotate Device Instructions"
-        />
-        <p>Please, rotate your device</p>
-      </div>
-    </dialog>
-    <dialog id="dialog-impressum">
-      <div id="dialog-impressum-text-box">
-        <!-- Impressum und Datenschutzerklärung werden hier eingefügt -->
-      </div>
-      <button id="dialog-impressum-close-btn" onclick="closeImpressumDialog()">
-        <img src="/assets/img/6.Botones/Control/close.png" alt="Close Dialog">
-      </button>
-    </dialog>
-    <dialog id="dialog-win-box">
-      <div id="dialog-win-picture-container">
-        <img src="/assets/img/6.Botones/Tittles/You win/Mesa de trabajo 1.png" alt="You win">
-      </div>
-    </dialog>
-    <dialog id="dialog-lose-box">
-      <div id="dialog-lose-picture-container">
-        <img class="animate-size" src="/assets/img/6.Botones/Tittles/Game Over/Recurso 12.png" alt="You lost">
-        <img src="/assets/img/6.Botones/Try again/Recurso 18.png" alt="Try again">
-      </div> 
-    </dialog>
-  </body>
+  </dialog>
+  <dialog id="dialog-win-box">
+    <div id="dialog-win-picture-container">
+      <img src="/assets/img/6.Botones/Tittles/You win/Mesa de trabajo 1.png" alt="You win">
+      <img id="btn-start" class="animate-size" onclick="init(); closeDialog('dialog-win-box');" src="/assets/img/6.Botones/Start/2.png"
+        alt="Start Game again"/>
+    </div>
+  </dialog>
+  <dialog id="dialog-lose-box">
+    <div id="dialog-lose-picture-container">
+      <img class="animate-size" src="/assets/img/6.Botones/Tittles/Game Over/Recurso 12.png" alt="You lost">
+      <img src="/assets/img/6.Botones/Try again/Recurso 18.png" alt="Try again">
+    </div>
+  </dialog>
+</body>
+
 </html>

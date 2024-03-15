@@ -232,7 +232,7 @@ dialog ::backdrop {
 
 #dialog-win-box img {
   height: 100%;
-  width: 100%;
+  width: 50%;
 }
 
 #dialog-lose-box {

@@ -1,5 +1,14 @@
 class ThrowableObject extends MovableObject {
 
+  /**
+   * constructor function
+   * direction is a boolean value. otherDirection == true = left.
+   * 
+   * @param {number} x 
+   * @param {number} y 
+   * @param {boolean} poison 
+   * @param {boolean} direction 
+   */
   constructor(x, y, poison, direction) {
     super();
     if (poison) 
@@ -18,19 +27,32 @@ class ThrowableObject extends MovableObject {
     this.offsetRight = 0;
     this.offsetleft = 0;
     this.poisoned = poison;
-    this.direction = direction; //? is boolean but should be "left" / "right"; otherDirection==true = left
+    this.direction = direction;
     this.throw();
   }
 
+  /**
+   * functions sets the intervall for the bubble floating animation
+   * 
+   */
   throw() {
     this.speedY = 0.01;
     setStoppableInterval(()=> this.bubbleFloatingUpwards(this.direction), 1000/20);
   }
   
+  /**
+   * functions changes the image cache if the bubbel hits a jellyfish enemy object
+   * 
+   */
   changeImage() {
     this.loadImage('/assets/img/2.Enemy/2 Jelly fish/Dead/Yellow/y1.png');
   } 
 
+  /**
+   * function controlls the x and y coordinates for the upwards floating or the shooting parabel
+   * 
+   * @param {boolean} left 
+   */
   bubbleFloatingUpwards(left) {
     if (left) this.x -= this.speedX;
     if (!left) this.x += this.speedX;
@@ -39,6 +61,10 @@ class ThrowableObject extends MovableObject {
     this.speedX -= this.acceleration;
   }
 
+  /**
+   * functions activates the delecte functions if the object is out of the canvas
+   * 
+   */
   deleteBubble(){
     if (this.y <= 0) 
       eraseObjectFromCanvas (ocean.throwableObjects, this)

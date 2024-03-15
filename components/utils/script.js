@@ -57,6 +57,11 @@ function openLoseDialog() {
   modal.showModal();
 }
 
+function closeDialog(elementId) {
+  const modal = document.getElementById(elementId);
+  modal.close(); 
+}
+
 function toggleMuteIcon() {
   let icon = document.getElementById("muteIcon");
   let isMuted = icon.classList.contains("muted");
