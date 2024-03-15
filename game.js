@@ -35,7 +35,6 @@ window.addEventListener("keydown", (event) => {
 } );
 
 window.addEventListener("keyup", (event) => {
-    //console.log(event);
     pressedKey = event.code;
     if (pressedKey == "ArrowDown") {
         keyboard.down = false;
@@ -65,8 +64,6 @@ window.addEventListener("keyup", (event) => {
 
 window.addEventListener("click",  (event) => {
     pressedButton = event.target.id;
-    console.log(pressedButton, event);
-
     if (pressedButton == "gamepad-button-up" || pressedButton == "gamepad-button-up-arrow") {
         keyboard.up = true;
     }

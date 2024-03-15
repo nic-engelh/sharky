@@ -15,11 +15,11 @@ class Bottle extends MovableObject {
     this.loadImages(this.imagesMoving);
     this.x = 400 + Math.random() * 2000;
     this.y = 300 - Math.random() * 300;
-    this.height = 120;
-    this.width = 90;
+    this.height = 90;
+    this.width = 60;
     this.offSetTop = 0;
     this.offsetBottom = 0;
-    this.offsetRight = -100;
+    this.offsetRight = 0;
     this.offsetleft = 0;
     this.animate();
   }

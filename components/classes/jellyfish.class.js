@@ -21,8 +21,7 @@ class Jellyfish extends MovableObject {
         '/assets/img/2.Enemy/2 Jelly fish/Dead/Yellow/y4.png',
     ];
 
-    
-    
+
     constructor () {
         super().loadImage('/assets/img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png');
         this.loadImages(this.imagesWalking);
@@ -43,23 +42,32 @@ class Jellyfish extends MovableObject {
         this.animate();
     }
 
+    /**
+     * function initiates animation intervalls and movement of the object
+     * 
+     */
     animate() {
         this.currentImage = 0;
-        // überprüfe ob held in der nähe ist
-        // wenn held in der nähe dann shock modus
-        // sonst normaler modus
-        
         if(!this.isDead()){
             this.moveLeft();
         }
         setStoppableInterval(this.actionAnimation.bind(this), 200);
     }
 
+    /**
+     * function changes appreance of the object 
+     * 
+     */
     transform() {
         this.isAggressive = true;
         this.playAnimation(this.imagesAttacking);
     }
 
+
+    /**
+     * function controlls the animation flow of the jellyfisch object
+     *
+     */
     actionAnimation(){
         if (this.isDead()) {
             this.playAnimation(this.imagesBubbled);

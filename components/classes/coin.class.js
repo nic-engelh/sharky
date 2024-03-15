@@ -12,8 +12,8 @@ class Coin extends MovableObject  {
         this.loadImages(this.imagesMoving);
         this.x = 500 + Math.random() * 2000;
         this.y = 300 - Math.random() * 300;
-        this.height = 63;
-        this.width = 69;
+        this.height = 43;
+        this.width = 49;
         this.offSetTop = 0;
         this.offsetBottom = 0;
         this.offsetRight = 0;
@@ -21,10 +21,18 @@ class Coin extends MovableObject  {
         this.animate();
     }
 
+    /**
+     * Function activates animation interval
+     * 
+     */
     animate() {
         setStoppableInterval(this.turnAnimation.bind(this), 200);
     }
 
+    /**
+     * function activates the animation in the drawable Object class to rotate the coin
+     * 
+     */
     turnAnimation () {
         this.playAnimation(this.imagesMoving);
     }

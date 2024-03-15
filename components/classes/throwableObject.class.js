@@ -36,7 +36,6 @@ class ThrowableObject extends MovableObject {
     this.y -= this.speedY;
     this.speedY += this.acceleration;
     this.speedX -= this.acceleration;
-    //this.deleteBubble();
   }
 
   deleteBubble(){

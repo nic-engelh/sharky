@@ -220,7 +220,6 @@ class World {
   rotateImage(movableObject, up, down) {
     this.ctx.save();
     this.ctx.translate(movableObject.x, movableObject.y);
-    // up: -Math.PI / 4 down: Math.PI / 4
     if (up) {
       this.ctx.rotate(-Math.PI / 4);
       this.ctx.translate(
@@ -376,7 +375,6 @@ class World {
   }
 
   isWon() {
-    // stop game
     stopGame();
     openWinDialog();
     // show win graphic
@@ -385,7 +383,5 @@ class World {
   isLost() {
     stopGame();
     openLoseDialog();
-    // stop game 
-    // show lost grafik / dialog and retry button
   }
 }

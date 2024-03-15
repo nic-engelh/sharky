@@ -60,6 +60,7 @@ class Endboss extends MovableObject {
   moveCounter = 0;
   height = 460;
   width = 506;
+  energy = 200;
   world;
   hadFirstHeroContact = false;
   attackIndex = 0;
@@ -80,10 +81,8 @@ class Endboss extends MovableObject {
     this.loadImages(this.imagesWounding);
     this.loadImages(this.imagesDead);
     this.x = 2300;
-    this.y = -100; // base -150
-    // Setting the collision top line lower
+    this.y = -100;
     this.offSetTop = 0;
-    // Setting the bottom collision line slightly higher
     this.offsetBottom = 0;
     this.offsetRight = 0;
     this.offsetleft = 0;
@@ -174,7 +173,6 @@ class Endboss extends MovableObject {
   luring() {
     let topBorder = -250;
     let rangeY = 300;
-    // 1500 + Math.random() * 500;
     this.y = topBorder + Math.random() * rangeY;
   }
 

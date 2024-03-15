@@ -244,11 +244,12 @@ class Hero extends MovableObject {
    */
   rangeAttack() {
     this.currentImage = 0;
-    if (this.isEndbossNear() && this.poisonAmmunition > 0)
+    if (this.isEndbossNear() && this.poisonAmmunition > 0) {
       this.throwingBubble(true);
       this.world.changePoisonStatusbar();
-    if (!this.isEndbossNear())
-      this.throwingBubble(false);
+      // place new bottle
+    }
+    this.throwingBubble(false);
     this.isShooting = false;
   }
 
