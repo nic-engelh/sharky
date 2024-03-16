@@ -59,12 +59,12 @@ function openLoseDialog() {
 
 function closeDialog(elementId) {
   const modal = document.getElementById(elementId);
-  modal.close(); 
+  modal.close();
 }
 
 function openDialog(elementId) {
   const modal = document.getElementById(elementId);
-  modal.close(); 
+  modal.showModal();
 }
 
 function toggleMuteIcon() {
@@ -99,3 +99,30 @@ function muteBackgroundMusic(icon) {
 function reloadPage() {
   location.reload();
 }
+
+document.addEventListener(
+  "click",
+  function (event) {
+    // If user either clicks X button OR clicks outside the modal window, then close modal by calling closeModal()
+    if (
+      event.target.matches("#dialog-instructions-box") ||
+      event.target.matches("#dialog-instructions-picture-container")
+    ) {
+      document.getElementById("dialog-instructions-box").close();
+    }
+  },
+  false
+);
+
+document.addEventListener(
+  "click",
+  function (event) {
+    // If user either clicks X button OR clicks outside the modal window, then close modal by calling closeModal()
+    if (
+      event.target.matches("#dialog-impressum")
+    ) {
+      document.getElementById("dialog-impressum").close();
+    }
+  },
+  false
+);

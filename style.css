@@ -266,6 +266,36 @@ dialog ::backdrop {
   align-items: center;
 }
 
+#dialog-instructions-box {
+  background-color: #201B4E;
+}
+
+#dialog-instructions-picture-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+#dialog-instructions-picture-container div {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+  width: 75%;
+}
+
+
+#img-instructions-attack1 {
+  width: 10%
+}
+
+#img-instructions-move {
+  width: 40%
+}
+
+
 
  /* Tooltip container */
  .tooltip {

@@ -80,8 +80,8 @@
       Privacy Policy & Legal Notice
     </span>
   </button>
-  <button id="button-controls" class="tooltip">
-    <img src="/assets/img/6.Botones/Control/controller.png" alt="Control Manual" />
+  <button id="button-controls" class="tooltip" >
+    <img src="/assets/img/6.Botones/Control/controller.png" alt="Control Manual"  onclick="openDialog('dialog-instructions-box')"/>
     <span class="tooltiptext">
       Game Controls
     </span>
@@ -113,8 +113,22 @@
     </div>
   </dialog>
   <dialog id="dialog-instructions-box">
-    <div id="dialog-incstructions-picture-container">
-      <img id="img-instructions" src="/assets/img/6.Botones/Instructions 1.png" alt="Game and control instructions" />
+    <div id="dialog-instructions-picture-container">
+      <div>
+        <img id="img-instructions-move" src="/assets/img/6.Botones/Key/arrow keys.png" alt="Game and control instructions" />
+        <p>Move Shark</p>
+      </div>
+      <div>
+        <img id="img-instructions-attack1" src="/assets/img/6.Botones/Key/D key.png" alt="Game and control instructions" />
+        <p>Bubbel Attack</p>
+      </div>
+      <div>
+        <img id="img-instructions-attack2" src="/assets/img/6.Botones/Key/Space Bar key.png" alt="Game and control instructions" />
+        <p>Fin Attack</p>
+      </div>
+      
+
+
     </div>
   </dialog>
 
