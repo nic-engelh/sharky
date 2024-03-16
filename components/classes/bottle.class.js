@@ -17,7 +17,7 @@ class Bottle extends MovableObject {
     this.y = 300 - Math.random() * 300;
     this.height = 90;
     this.width = 60;
-    this.offSetTop = 0;
+    this.offsetTop = 0;
     this.offsetBottom = 0;
     this.offsetRight = 0;
     this.offsetleft = 0;

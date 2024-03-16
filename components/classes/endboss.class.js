@@ -58,8 +58,6 @@ class Endboss extends MovableObject {
   ];
 
   moveCounter = 0;
-  height = 400;
-  width = 556;
   energy = 200;
   world;
   hadFirstHeroContact = false;
@@ -82,10 +80,12 @@ class Endboss extends MovableObject {
     this.loadImages(this.imagesDead);
     this.x = 2300;
     this.y = -100;
-    this.offSetTop = 200;
-    this.offsetBottom = 0;
+    this.height = 400;
+    this.width = 556;
+    this.offsetTop = 150;
+    this.offsetBottom = 150;
     this.offsetRight = 0;
-    this.offsetleft = 70;
+    this.offsetleft = 50;
     this.run();
   }
 
