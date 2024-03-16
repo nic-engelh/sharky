@@ -81,25 +81,41 @@ class MovableObject extends DrawableObject {
 
   /**
    * Function is checking the x and y cordinates added by a given offset of two objects. It will return true if the x and y values are crossing each other.
-   *
+   * Each x and y makes in kombination the cordinates for every of the 4 points of the object image frame: top right, top left, bottom right, bottom left.
+   * zero point is top left corner; Y Axis is inverted; Y goes from top to bottom positiv
+   * checking right with left; Top Right Corner Point; offset to shorten it; object top left corner point; Offset to shorten top
+   * checking Left with right; top left corner point; offset to set it more to the right; object top right corner; offset to set x to the left
+   * checking top with bottom; top corners; offset set top corner higher; object top corners ;  offset set corners lower
+   * checking top poin with bottom point; top left corner point; offsettop sets y more down; object bottom corner point; offset sets y even more down
+   * 
    * @param {object} object
    * @returns boolean
    */
   isColliding(object) {
-    if (object == null) return;
     return (
-      // each x and y makes in kombination the cordinates for every of the 4 points of the object image frame: top right, top left, bottom right, bottom left.
-      // zero point is top left corner; Y Axis is inverted; Y goes from top to bottom positiv
-      // checking right with left; Top Right Corner Point; offset to shorten it; object top left corner point; Offset to shorten top
-      (this.x + this.width - this.offsetRight) >= (object.x + object.offsetleft) &&
-      // checking Left with right; top left corner point; offset to set it more to the right; object top right corner; offset to set x to the left
-      (this.x + this.offsetleft) <= (object.x + object.width - object.offsetRight) &&
-      // checking top with bottom; top corners; offset set top corner higher; object top corners ;  offset set corners lower
-      (this.y + this.height - this.offsetBottom) >= (object.y + object.offsetTop) &&
-      // checking top poin with bottom point; top left corner point; offsettop sets y more down; object bottom corner point; offset sets y even more down
-      (this.y + this.offsetTop) <= (object.y + object.height - object.offsetBottom)
+      (this.x + this.width - this.offsetRight) > (object.x + object.offsetleft) &&
+
+      (this.y + this.height - this.offsetBottom) > (object.y + object.offsetTop) &&
+  
+      (this.x + this.offsetleft) < (object.x + object.width - object.offsetRight) &&
+
+      (this.y + this.offsetTop) < (object.y + object.height - object.offsetBottom)
     );
   }
+
+
+  /*
+
+ return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+    }
+
+
+  */
+
+
 
   isCollidingRightwithLeft (object) {
     return (this.x + this.width - this.offsetRight >= object.x + object.offsetleft);

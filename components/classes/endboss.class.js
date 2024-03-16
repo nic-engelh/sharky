@@ -82,10 +82,10 @@ class Endboss extends MovableObject {
     this.y = -100;
     this.height = 400;
     this.width = 556;
-    this.offsetTop = 150;
-    this.offsetBottom = 150;
+    this.offsetTop = 180;
+    this.offsetBottom = 80;
     this.offsetRight = 0;
-    this.offsetleft = 50;
+    this.offsetleft = 30;
     this.run();
   }
 
@@ -168,6 +168,7 @@ class Endboss extends MovableObject {
    */
   attacking() {
     this.x = 2100;
+    this.offsetleft = 0;
     this.biteSounds.play();
     this.playAnimation(this.imagesAttacking);
     this.attackIndex++;
@@ -179,6 +180,7 @@ class Endboss extends MovableObject {
    */
   withdrawing() {
     this.isAttacking = false;
+    this.offsetleft = 30;
     this.x = 2300;
     this.attackIndex = 0;
   }

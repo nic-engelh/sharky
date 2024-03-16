@@ -132,8 +132,8 @@ class Hero extends MovableObject {
     super().loadImage("/assets/img/1.Sharkie/3.Swim/1.png");
     this.loadingAllImages(); 
     this.offsetTop =  100;
-    this.offsetBottom = 140; 
-    this.offsetRight = 90; 
+    this.offsetBottom = 50; 
+    this.offsetRight = 70; 
     this.offsetleft = 40; 
     this.x = 50;
     this.animate();
