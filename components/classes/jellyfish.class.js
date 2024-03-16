@@ -35,8 +35,8 @@ class Jellyfish extends MovableObject {
         this.speedY = this.speed;
         this.speedX = 5;
         this.heroIsClose;
-        this.offsetTop = 0;
-        this.offsetBottom = 0;
+        this.offsetTop = 30;
+        this.offsetBottom = 30;
         this.offsetRight = 0;
         this.offsetleft = 0;
         this.animate();
