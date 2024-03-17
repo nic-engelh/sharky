@@ -9,17 +9,6 @@ class World {
   healthStatusBar = new StatusBar("health");
   coinStatusBar = new StatusBar("coin");
   poisonStatusBar = new StatusBar("poison");
-  waterBackgroundSounds = new Audio(
-    "/assets/sounds/underwater-loop-amb-6182.mp3"
-  );
-  ambientBackgroundMusik = new Audio(
-    "/assets/sounds/027210_39danger-and-beauty39-ukulele-loop-by-reamp3-71291.mp3"
-  );
-  bottleSound = new Audio("/assets/sounds/bottle-pop-45531.mp3");
-  coinSound = new Audio(
-    "/assets/sounds/short-success-sound-glockenspiel-treasure-video-game-6346.mp3"
-  );
-  heroHurtSound = new Audio("/assets/sounds/male-hurt-sound-95206.mp3");
   hasWon = false;
   hasLost = false;
 
@@ -30,11 +19,13 @@ class World {
     this.keyboard = keyboard;
     this.setWorld();
     this.checkCollisions();
+    this.worldAudioManager = new AudioManager();
+    this.worldAudioManager.setVolumeForAll();
     this.run();
   }
 
   /**
-   * Function will add a world instance to given object
+   * Function will add a world instance to given objects
    *
    */
   setWorld() {
@@ -48,9 +39,8 @@ class World {
    */
   run() {
     setStoppableInterval(this.runChecks.bind(this), 1000 / 10);
-    this.waterBackgroundSounds.play();
-    this.ambientBackgroundMusik.play();
-    this.ambientBackgroundMusik.volume = 0.1;
+    this.worldAudioManager.playSound("waterflowEffect");
+    this.worldAudioManager.playSound("ambient");
   }
 
   /**
@@ -319,7 +309,7 @@ class World {
    */
   woundingHero(enemy) {
     this.hero.hit();
-    this.heroHurtSound.play();
+    this.audioManager.playSound("heroHurt");
     this.changeHealthStatusbar();
     if (enemy instanceof Jellyfish) this.hero.isShocked = true;
   }
@@ -357,7 +347,7 @@ class World {
           this.coinStatusBar.imagesCoin
         );
         eraseObjectFromCanvas(this.level.coins, coin);
-        this.coinSound.play();
+        this.worldAudioManager.playSound("coin");
       }
     });
   }
@@ -375,21 +365,9 @@ class World {
           this.poisonStatusBar.imagesPoison
         );
         eraseObjectFromCanvas(this.level.bottles, bottle);
-        this.bottleSound.play();
+        this.worldAudioManager.playSound("bottle");
       }
     });
-  }
-
-  stopAmbientMusic() {
-    this.ambientBackgroundMusik.pause();
-  }
-
-  startAmbientMusic() {
-    this.ambientBackgroundMusik.play();
-  }
-
-  isPlayingOceanAmbientMusic() {
-    return !this.ambientBackgroundMusik.paused;
   }
 
   isWon() {
