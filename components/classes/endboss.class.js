@@ -64,12 +64,7 @@ class Endboss extends MovableObject {
   attackIndex = 0;
   isHit = false;
   deathCounter = 0;
-  introSound = new Audio("/assets/sounds/evil-laugh-45966.mp3");
-  endbossMusic = new Audio("/assets/sounds/tribal-loop-azteca-154482.mp3");
-  biteSounds = new Audio("/assets/sounds/monster-bite-44538.mp3");
-  winSound = new Audio("/assets/sounds/you-win-sequence-2-183949.mp3");
-  woundingSound = new Audio("/assets/sounds/giant-breath-1-184041.mp3");
-
+  
   constructor() {
     super().loadImage("assets/img/2.Enemy/3 Final Enemy/1.Introduce/1.png");
     this.loadImages(this.imagesWalking);
@@ -87,18 +82,6 @@ class Endboss extends MovableObject {
     this.offsetRight = 0;
     this.offsetleft = 30;
     this.run();
-  }
-
-  startBossAmbientMusic() {
-    this.endbossMusic.play();
-  }
-
-  stopBossAmbientMusic() {
-    this.endbossMusic.pause();
-  }
-
-  isPlayingBossAmbientMusic() {
-    return !this.endbossMusic.paused;
   }
 
   /**
@@ -151,13 +134,13 @@ class Endboss extends MovableObject {
    */
   spawningEndboss() {
     this.playAnimation(this.imagesSpawing);
-    this.introSound.play();
-    this.startBossAmbientMusic();
-    //? world.ambientMusik has to stop here
+    this.world.worldAudioManager.playSound("introSound");
+    this.world.worldAudioManager.playSound("ambientBoss");
+    this.world.worldAudioManager.stopSound("ambient");
     this.moveCounter++;
     if (this.moveCounter > 10) {
       this.hadFirstHeroContact = true;
-      this.introSound.pause();
+      this.world.worldAudioManager.stopSound("ambientBoss");
     }
     return;
   }
@@ -169,7 +152,7 @@ class Endboss extends MovableObject {
   attacking() {
     this.x = 2100;
     this.offsetleft = 0;
-    this.biteSounds.play();
+    this.world.worldAudioManager.playSound("biteSounds");
     this.playAnimation(this.imagesAttacking);
     this.attackIndex++;
   }
@@ -226,7 +209,7 @@ class Endboss extends MovableObject {
     if (this.deathCounter > 9) {
       this.playAnimation(this.imagesDead);
       this.y -= 5;
-      this.winSound.play();
+      this.world.worldAudioManager.playSound("winSound");
       this.world.isWon();
       return;
     }
@@ -240,7 +223,7 @@ class Endboss extends MovableObject {
   * @param {number} damage 
   */
   reduceEnergy(damage) {
-    this.woundingSound.play();
+    this.world.worldAudioManager.playSound("woundingSound");
     this.energy -= damage;
   }
 }
