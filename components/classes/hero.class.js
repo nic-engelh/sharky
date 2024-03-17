@@ -1,28 +1,7 @@
 class Hero extends MovableObject {
-  imagesWalking = [
-   
-  ];
+  imagesWalking = [];
 
-  imagesWaiting = [
-    "/assets/img/1.Sharkie/1.IDLE/1.png",
-    "/assets/img/1.Sharkie/1.IDLE/2.png",
-    "/assets/img/1.Sharkie/1.IDLE/3.png",
-    "/assets/img/1.Sharkie/1.IDLE/4.png",
-    "/assets/img/1.Sharkie/1.IDLE/5.png",
-    "/assets/img/1.Sharkie/1.IDLE/6.png",
-    "/assets/img/1.Sharkie/1.IDLE/7.png",
-    "/assets/img/1.Sharkie/1.IDLE/8.png",
-    "/assets/img/1.Sharkie/1.IDLE/9.png",
-    "/assets/img/1.Sharkie/1.IDLE/10.png",
-    "/assets/img/1.Sharkie/1.IDLE/11.png",
-    "/assets/img/1.Sharkie/1.IDLE/12.png",
-    "/assets/img/1.Sharkie/1.IDLE/13.png",
-    "/assets/img/1.Sharkie/1.IDLE/14.png",
-    "/assets/img/1.Sharkie/1.IDLE/15.png",
-    "/assets/img/1.Sharkie/1.IDLE/16.png",
-    "/assets/img/1.Sharkie/1.IDLE/17.png",
-    "/assets/img/1.Sharkie/1.IDLE/18.png",
-  ];
+  imagesWaiting = [];
 
   imagesFinAttacking = [
     "/assets/img/1.Sharkie/4.Attack/Fin slap/1.png",
@@ -35,22 +14,7 @@ class Hero extends MovableObject {
     "/assets/img/1.Sharkie/4.Attack/Fin slap/8.png",
   ];
 
-  imagesSleeping = [
-    "/assets/img/1.Sharkie/2.Long_IDLE/i1.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/I2.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/I3.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/I4.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/I5.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/I6.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/I7.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/I8.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/I9.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/I10.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/I11.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/I12.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/I13.png",
-    "/assets/img/1.Sharkie/2.Long_IDLE/I14.png",
-  ];
+  imagesSleeping = [];
 
   imagesDying = [
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/1.png",
@@ -65,7 +29,6 @@ class Hero extends MovableObject {
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/10.png",
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
-   
   ];
 
   imagesDead = [
@@ -104,10 +67,12 @@ class Hero extends MovableObject {
   world;
   speed = 10;
   swimmingSounds = new Audio("/assets/sounds/fish-in-river-6114.mp3");
-  bubbleSounds = new Audio ("/assets/sounds/sfx_submerge-14424.mp3");
-  finSlapSound = new Audio("/assets/sounds/indiana-jones-style-punchwav-14551.mp3");
-  enemyPopSound = new Audio ("/assets/sounds/balloonpop-83760.mp3");
-  shockedSound = new Audio ("/assets/sounds/electric_zap_001-6374.mp3");
+  bubbleSounds = new Audio("/assets/sounds/sfx_submerge-14424.mp3");
+  finSlapSound = new Audio(
+    "/assets/sounds/indiana-jones-style-punchwav-14551.mp3"
+  );
+  enemyPopSound = new Audio("/assets/sounds/balloonpop-83760.mp3");
+  shockedSound = new Audio("/assets/sounds/electric_zap_001-6374.mp3");
   isShooting = false;
   isShocked = false;
   isPoisoned = false;
@@ -119,48 +84,59 @@ class Hero extends MovableObject {
 
   constructor() {
     super().loadImage("/assets/img/1.Sharkie/3.Swim/1.png");
-    this.offsetTop =  100;
-    this.offsetBottom = 50; 
-    this.offsetRight = 70; 
-    this.offsetleft = 40; 
+    this.offsetTop = 100;
+    this.offsetBottom = 50;
+    this.offsetRight = 70;
+    this.offsetleft = 40;
     this.x = 50;
-    this.loadingAllImages(); 
+    this.loadingAllImages();
     this.animate();
   }
 
-
-/**
+  /**
    * Function buffers all image arrays for animation in the constructor.
-   * 
+   *
    */
   async loadingAllImages() {
-    await this.loadImagesFromJSON("/assets/img/1.Sharkie/3.Swim/imagesWalking.json", this.imagesWalking);
-    await this.loadImages(this.imagesWalking);
-    await this.loadImages(this.imagesWaiting);
+    this.loadImagesFromJSON(
+      "/assets/img/1.Sharkie/3.Swim/imagesWalking.json",
+      this.imagesWalking
+    );
+    await this.loadImagesFromJSON(
+      "/assets/img/1.Sharkie/1.IDLE/imagesWaiting.json",
+      this.imagesWaiting
+    );
+    await this.loadImagesFromJSON(
+      "/assets/img/1.Sharkie/2.Long_IDLE/imagesSleeping.json",
+      this.imagesSleeping
+    );
     await this.loadImages(this.imagesFinAttacking);
-    this.loadImages(this.imagesBubbleAttacking);
-    this.loadImages(this.imagesSleeping);
-    this.loadImages(this.imagesPoisoning);
-    this.loadImages(this.imagesShocking);
-    this.loadImages(this.imagesDying);
-    this.loadImages(this.imagesDead);
+    await this.loadImages(this.imagesBubbleAttacking);
+    await this.loadImages(this.imagesPoisoning);
+    await this.loadImages(this.imagesShocking);
+    await this.loadImages(this.imagesDying);
+    await this.loadImagesFromJSON(
+      "/assets/img/1.Sharkie/6.dead/1.Poisoned/imagesDying.json",
+      this.imagesDying
+    );
+    await this.loadImages(this.imagesDead);
   }
-
 
   loadImagesFromJSON(jsonPath, imageArray) {
     fetch(jsonPath)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         imageArray.push(...data);
-        this.loadImages(this.imagesWalking);
+        this.loadImages(imageArray);
       })
-      .catch(error => console.error('Error loading images from JSON:', error));
+      .catch((error) =>
+        console.error("Error loading images from JSON:", error)
+      );
   }
 
-
   animate() {
-    setStoppableInterval(this.swimAnimation.bind(this), 1000/45);
-    setStoppableInterval(this.actionAnimation.bind(this), 1000/7);
+    setStoppableInterval(this.swimAnimation.bind(this), 1000 / 45);
+    setStoppableInterval(this.actionAnimation.bind(this), 1000 / 7);
   }
 
   swimAnimation() {
@@ -169,11 +145,10 @@ class Hero extends MovableObject {
     this.world.cameraX = -this.x + 100;
   }
 
-  actionAnimation () {
+  actionAnimation() {
     if (this.isDead()) this.dying();
     if (this.isAttacking || this.isShooting) this.attacking();
-    if (!this.isDead() && !this.isShooting && !this.isAttacking)
-      this.moving();
+    if (!this.isDead() && !this.isShooting && !this.isAttacking) this.moving();
   }
 
   swimming() {
@@ -186,18 +161,18 @@ class Hero extends MovableObject {
 
   /**
    * Function aligns hero to horizontal position in order to not stand/swimm in a vertical position.
-   * 
+   *
    */
-  resetVerticalAlignment () {
+  resetVerticalAlignment() {
     this.downwards = false;
     this.upwards = false;
   }
 
   /**
    * Function controlls the death animation. It will play the dying animation (11 pictures) in the beginning and afterwards the death animation.
-   * 
-   * @param {number} deathIntervall 
-   * @returns 
+   *
+   * @param {number} deathIntervall
+   * @returns
    */
   dying() {
     if (this.deathIntervall > 11) {
@@ -205,7 +180,7 @@ class Hero extends MovableObject {
       this.world.isLost();
     }
     if (this.deathIntervall <= 11) {
-      if(this.deathIntervall == 0) this.currentImage = 0;
+      if (this.deathIntervall == 0) this.currentImage = 0;
       this.playAnimation(this.imagesDying);
       this.deathIntervall++;
     }
@@ -219,11 +194,10 @@ class Hero extends MovableObject {
   attacking() {
     if (this.isShooting) {
       this.playAnimation(this.imagesBubbleAttacking);
-      if (this.currentImage >= 8) 
-        this.rangeAttack();
+      if (this.currentImage >= 8) this.rangeAttack();
     }
     if (this.isAttacking) {
-      this.adaptAttackRange(true, false)
+      this.adaptAttackRange(true, false);
       this.playAnimation(this.imagesFinAttacking);
       this.finSlapSound.play();
       if (this.currentImage >= 8) {
@@ -236,17 +210,16 @@ class Hero extends MovableObject {
 
   /**
    *   checkingEnemyCollision() in the world class are prequel functions
-   * 
+   *
    */
-  killByCollision(){
-    if(this.isCollidingWith.length > 0) 
-      this.isCollidingWith[0].eliminated();
-  } 
+  killByCollision() {
+    if (this.isCollidingWith.length > 0) this.isCollidingWith[0].eliminated();
+  }
 
-/**
- *  Wrapper function to disengage the hero. Attacking flag will be set back. Attack range will be set to normal collision range. Last element in Array with collided objects will be deleted.
- * 
- */
+  /**
+   *  Wrapper function to disengage the hero. Attacking flag will be set back. Attack range will be set to normal collision range. Last element in Array with collided objects will be deleted.
+   *
+   */
   disengage() {
     this.currentImage = 0;
     this.isAttacking = false;
@@ -255,8 +228,8 @@ class Hero extends MovableObject {
   }
 
   /**
-   *  Functions checks bubble variations according to the closest enemy. Endboss (poison) or normal enemy (normal bubble). 
-   * 
+   *  Functions checks bubble variations according to the closest enemy. Endboss (poison) or normal enemy (normal bubble).
+   *
    */
   rangeAttack() {
     this.currentImage = 0;
@@ -270,7 +243,7 @@ class Hero extends MovableObject {
   }
 
   isEndbossNear() {
-    return (this.world.level.enemies[5].x - this.x < 500)
+    return this.world.level.enemies[5].x - this.x < 500;
   }
 
   /**
@@ -278,34 +251,33 @@ class Hero extends MovableObject {
    *
    */
   moving() {
-      if (this.movementIntervall>= 54) {
-        this.playAnimation(this.imagesSleeping);
+    if (this.movementIntervall >= 54) {
+      this.playAnimation(this.imagesSleeping);
+    }
+    if (this.movementIntervall < 54) {
+      this.playAnimation(this.imagesWaiting);
+      this.movementIntervall++;
+    }
+    if (this.isHurt()) {
+      this.movementIntervall = 0;
+      if (this.isShocked) {
+        this.playAnimation(this.imagesShocking);
+        this.shockedSound.play();
+        this.isShocked = false;
+        return;
+      } else {
+        this.playAnimation(this.imagesPoisoning);
       }
-      if (this.movementIntervall < 54) {
-        this.playAnimation(this.imagesWaiting);
-        this.movementIntervall++;
-      }
-      if (this.isHurt()) {
-        this.movementIntervall= 0;
-        if (this.isShocked) {
-          this.playAnimation(this.imagesShocking);
-          this.shockedSound.play();
-          this.isShocked = false;
-          return ;
-        }
-        else {
-          this.playAnimation(this.imagesPoisoning);
-        } 
-      }
-      if (this.isMoving()) {
-        this.playAnimation(this.imagesWalking);
-        this.movementIntervall = 0;
-      }
-    return
+    }
+    if (this.isMoving()) {
+      this.playAnimation(this.imagesWalking);
+      this.movementIntervall = 0;
+    }
+    return;
   }
 
   moveRight() {
-    if(this.isDead()) return false;
+    if (this.isDead()) return false;
     this.x += this.speed;
     this.otherDirection = false;
     this.downwards = false;
@@ -314,7 +286,7 @@ class Hero extends MovableObject {
   }
 
   moveLeft() {
-    if(this.isDead()) return false;
+    if (this.isDead()) return false;
     this.x -= this.speed;
     this.otherDirection = true;
     this.downwards = false;
@@ -323,7 +295,7 @@ class Hero extends MovableObject {
   }
 
   moveUp() {
-    if(this.isDead()) return false;
+    if (this.isDead()) return false;
     this.upwards = true;
     this.downwards = false;
     this.y -= this.speed;
@@ -331,7 +303,7 @@ class Hero extends MovableObject {
   }
 
   moveDown() {
-    if(this.isDead()) return false;
+    if (this.isDead()) return false;
     this.downwards = true;
     this.upwards = false;
     this.y += this.speed;
@@ -357,27 +329,31 @@ class Hero extends MovableObject {
   canHeroMoveDown() {
     return this.world.keyboard.down && this.y < 300;
   }
-  
+
   /**
    * Function creates a bubble to shoot for the hero object. If will reduce poisonenous bubble ammunition. The bubble will be released as a Throwable Object into the world object. It will be erased after a certain time.
-   * 
-   * @param {boolean} poison 
-   * @returns 
+   *
+   * @param {boolean} poison
+   * @returns
    */
   throwingBubble(poison) {
     if (poison == null) return;
-    let bubble = new ThrowableObject(this.x + this.width - 50, this.y + 120, poison, this.otherDirection);
-    if (poison)
-      this.changeAmmunitionAmount(false, true);
+    let bubble = new ThrowableObject(
+      this.x + this.width - 50,
+      this.y + 120,
+      poison,
+      this.otherDirection
+    );
+    if (poison) this.changeAmmunitionAmount(false, true);
     this.world.throwableObjects.push(bubble);
     this.bubbleSounds.play();
   }
 
   /**
    * function increases or decreases the melee attack range with offset at the collision range
-   * 
-   * @param {boolean} increase 
-   * @param {boolean} decrease 
+   *
+   * @param {boolean} increase
+   * @param {boolean} decrease
    */
   adaptAttackRange(increase, decrease) {
     if (increase) this.offsetRight = -40;
@@ -386,19 +362,15 @@ class Hero extends MovableObject {
 
   /**
    * Function increases or decreases the ammount of poison bubbles of the hero object.
-   * 
-   * @param {boolean} increase 
-   * @param {boolean} decrease 
-   * @returns 
+   *
+   * @param {boolean} increase
+   * @param {boolean} decrease
+   * @returns
    */
   changeAmmunitionAmount(increase, decrease) {
-    if(increase == null || decrease == null) return;
+    if (increase == null || decrease == null) return;
     // baseAmount = this.world.level.bottles.length
-    if (increase)
-      this.poisonAmmunition += 30;
-    if (decrease)
-      this.poisonAmmunition -= 30;
+    if (increase) this.poisonAmmunition += 30;
+    if (decrease) this.poisonAmmunition -= 30;
   }
-
-  
 }
