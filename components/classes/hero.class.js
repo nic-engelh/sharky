@@ -1,56 +1,25 @@
 class Hero extends MovableObject {
   imagesWalking = [];
-
   imagesWaiting = [];
-
-  imagesFinAttacking = [
-    "/assets/img/1.Sharkie/4.Attack/Fin slap/1.png",
-    "/assets/img/1.Sharkie/4.Attack/Fin slap/2.png",
-    "/assets/img/1.Sharkie/4.Attack/Fin slap/3.png",
-    "/assets/img/1.Sharkie/4.Attack/Fin slap/4.png",
-    "/assets/img/1.Sharkie/4.Attack/Fin slap/5.png",
-    "/assets/img/1.Sharkie/4.Attack/Fin slap/6.png",
-    "/assets/img/1.Sharkie/4.Attack/Fin slap/7.png",
-    "/assets/img/1.Sharkie/4.Attack/Fin slap/8.png",
-  ];
-
+  imagesFinAttacking = [];
   imagesSleeping = [];
+  imagesDying = [];
+  imagesDead = [];
+  imagesPoisoning = [];
+  imagesShocking = [];
+  imagesBubbleAttacking = [];
 
-  imagesDying = [
-  ];
-
-  imagesDead = [
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/10.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
-  ];
-
-  imagesPoisoning = [
-    "/assets/img/1.Sharkie/5.Hurt/1.Poisoned/1.png",
-    "/assets/img/1.Sharkie/5.Hurt/1.Poisoned/2.png",
-    "/assets/img/1.Sharkie/5.Hurt/1.Poisoned/3.png",
-    "/assets/img/1.Sharkie/5.Hurt/1.Poisoned/4.png",
-    "/assets/img/1.Sharkie/5.Hurt/1.Poisoned/5.png",
-  ];
-
-  imagesShocking = [
-    "/assets/img/1.Sharkie/5.Hurt/2.Electric shock/1.png",
-    "/assets/img/1.Sharkie/5.Hurt/2.Electric shock/2.png",
-    "/assets/img/1.Sharkie/5.Hurt/2.Electric shock/3.png",
-  ];
-
-  imagesBubbleAttacking = [
-    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png",
-    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png",
-    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png",
-    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png",
-    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png",
-    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png",
-    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png",
-    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png",
-  ];
+  allHeroImages = new Map([
+    ["/assets/img/1.Sharkie/3.Swim/imagesWalking.json", this.imagesWalking],
+    ["/assets/img/1.Sharkie/1.IDLE/imagesWaiting.json", this.imagesWaiting],
+    ["/assets/img/1.Sharkie/2.Long_IDLE/imagesSleeping.json", this.imagesSleeping],
+    ["/assets/img/1.Sharkie/4.Attack/Fin slap/imagesFinAttacking.json", this.imagesFinAttacking],
+    ["/assets/img/1.Sharkie/4.Attack/Bubble trap/imagesBubbleAttacking.json", this.imagesBubbleAttacking],
+    ["/assets/img/1.Sharkie/5.Hurt/1.Poisoned/imagesPoisoning.json", this.imagesPoisoning],
+    ["/assets/img/1.Sharkie/5.Hurt/2.Electric shock/imagesShocking.json",  this.imagesShocking],
+    ["/assets/img/1.Sharkie/6.dead/1.Poisoned/imagesDying.json", this.imagesDying],
+    ["/assets/img/1.Sharkie/6.dead/1.Poisoned/imagesDead.json", this.imagesDead],
+  ]);
 
   world;
   speed = 10;
@@ -86,31 +55,52 @@ class Hero extends MovableObject {
    *
    */
   async loadingAllImages() {
+    /*
+    let promises = [];
+    this.allHeroImages.forEach((value, key) => {
+      promises.push(loadImagesFromJSON(key, value));
+    });
+    await Promise.all(promises);
+    */
+    
     loadImagesFromJSON(
       "/assets/img/1.Sharkie/3.Swim/imagesWalking.json",
       this.imagesWalking
     );
-    await loadImagesFromJSON(
+    loadImagesFromJSON(
       "/assets/img/1.Sharkie/1.IDLE/imagesWaiting.json",
       this.imagesWaiting
     );
-    await loadImagesFromJSON(
+    loadImagesFromJSON(
       "/assets/img/1.Sharkie/2.Long_IDLE/imagesSleeping.json",
       this.imagesSleeping
     );
-    await this.loadImages(this.imagesFinAttacking);
-    await this.loadImages(this.imagesBubbleAttacking);
-    await this.loadImages(this.imagesPoisoning);
-    await this.loadImages(this.imagesShocking);
-    await this.loadImages(this.imagesDying);
-    await loadImagesFromJSON(
+    loadImagesFromJSON(
+      "/assets/img/1.Sharkie/4.Attack/Fin slap/imagesFinAttacking.json",
+      this.imagesFinAttacking
+    );
+    loadImagesFromJSON(
+      "/assets/img/1.Sharkie/4.Attack/Bubble trap/imagesBubbleAttacking.json",
+      this.imagesBubbleAttacking
+    );
+    loadImagesFromJSON(
+      "/assets/img/1.Sharkie/5.Hurt/1.Poisoned/imagesPoisoning.json",
+      this.imagesPoisoning
+    );
+    loadImagesFromJSON(
+      "/assets/img/1.Sharkie/5.Hurt/2.Electric shock/imagesShocking.json",
+      this.imagesShocking
+    );
+    loadImagesFromJSON(
       "/assets/img/1.Sharkie/6.dead/1.Poisoned/imagesDying.json",
       this.imagesDying
     );
-    await this.loadImages(this.imagesDead);
+    loadImagesFromJSON(
+      "/assets/img/1.Sharkie/6.dead/1.Poisoned/imagesDead.json",
+      this.imagesDead
+    );
+    
   }
-
-  
 
   animate() {
     setStoppableInterval(this.swimAnimation.bind(this), 1000 / 45);

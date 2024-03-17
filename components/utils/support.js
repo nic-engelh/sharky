@@ -36,7 +36,7 @@ function loadImagesFromJSON(jsonPath, imageArray) {
       .then((response) => response.json())
       .then((data) => {
         imageArray.push(...data);
-        this.loadImages(imageArray);
+        ocean.hero.loadImages(imageArray);
       })
       .catch((error) =>
         console.error("Error loading images from JSON:", error)
