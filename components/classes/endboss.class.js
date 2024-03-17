@@ -88,7 +88,7 @@ class Endboss extends MovableObject {
       this.imagesWounding,
       this.imagesDead,
     ];
-    allImages.array.forEach((element) => {
+    allImages.forEach((element) => {
       this.loadImages(element);
     });
   }
@@ -158,7 +158,7 @@ class Endboss extends MovableObject {
    *
    */
   attacking() {
-    this.x = 2100;
+    this.x = this.x - 50;
     this.offsetleft = 0;
     this.world.worldAudioManager.playSound("biteSounds");
     this.playAnimation(this.imagesAttacking);
@@ -172,7 +172,7 @@ class Endboss extends MovableObject {
   withdrawing() {
     this.isAttacking = false;
     this.offsetleft = 30;
-    this.x = 2300;
+    this.x = this.x + 60;
     this.attackIndex = 0;
   }
 
@@ -182,6 +182,7 @@ class Endboss extends MovableObject {
    * @returns
    */
   swimming() {
+    this.x = this.world.hero.x + 350 - this.speed;
     this.playAnimation(this.imagesWalking);
     this.moveCounter++;
     if (this.currentImage >= 13) this.isAttacking = true;
@@ -193,9 +194,10 @@ class Endboss extends MovableObject {
    *
    */
   luring() {
+    this.y = this.world.hero.y - 50;
     let topBorder = 0;
     let rangeY = 200;
-    this.y = topBorder + Math.random() * rangeY;
+    //this.y = topBorder + Math.random() * rangeY;
   }
 
   /**
