@@ -140,7 +140,6 @@ class Endboss extends MovableObject {
     this.moveCounter++;
     if (this.moveCounter > 10) {
       this.hadFirstHeroContact = true;
-      this.world.worldAudioManager.stopSound("ambientBoss");
     }
     return;
   }

@@ -33,6 +33,21 @@ class AudioManager {
     this.sounds["woundingSound"] = new Audio(
       "/assets/sounds/giant-breath-1-184041.mp3"
     );
+    this.sounds["swimming"] = new Audio(
+      "/assets/sounds/fish-in-river-6114.mp3"
+    );
+    this.sounds["bubbleShot"] = new Audio(
+      "/assets/sounds/sfx_submerge-14424.mp3"
+    );
+    this.sounds["finSlap"] = new Audio(
+      "/assets/sounds/indiana-jones-style-punchwav-14551.mp3"
+    );
+    this.sounds["enemyBubblePop"] = new Audio(
+      "/assets/sounds/balloonpop-83760.mp3"
+    );
+    this.sounds["shocked"] = new Audio(
+      "/assets/sounds/electric_zap_001-6374.mp3"
+    );
   }
 
   playSound(name) {

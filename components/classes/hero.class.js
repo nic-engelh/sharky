@@ -114,13 +114,6 @@ class Hero extends MovableObject {
 
   world;
   speed = 10;
-  swimmingSounds = new Audio("/assets/sounds/fish-in-river-6114.mp3");
-  bubbleSounds = new Audio("/assets/sounds/sfx_submerge-14424.mp3");
-  finSlapSound = new Audio(
-    "/assets/sounds/indiana-jones-style-punchwav-14551.mp3"
-  );
-  enemyPopSound = new Audio("/assets/sounds/balloonpop-83760.mp3");
-  shockedSound = new Audio("/assets/sounds/electric_zap_001-6374.mp3");
   isShooting = false;
   isShocked = false;
   isPoisoned = false;
@@ -147,7 +140,7 @@ class Hero extends MovableObject {
   }
 
   swimAnimation() {
-    this.swimmingSounds.pause();
+    this.world.worldAudioManager.stopSound("swimming"); 
     this.swimming();
     this.world.cameraX = -this.x + 100;
   }
@@ -207,10 +200,10 @@ class Hero extends MovableObject {
     if (this.isAttacking) {
       this.adaptAttackRange(true, false);
       this.playAnimation(this.imagesFinAttacking);
-      this.finSlapSound.play();
+      this.world.worldAudioManager.playSound("finSlap");
       if (this.currentImage >= 8) {
         this.killByCollision();
-        this.enemyPopSound.play();
+        this.world.worldAudioManager.playSound("enemyBubblePop");
         this.disengage();
       }
     }
@@ -270,7 +263,7 @@ class Hero extends MovableObject {
       this.movementIntervall = 0;
       if (this.isShocked) {
         this.playAnimation(this.imagesShocking);
-        this.shockedSound.play();
+        this.world.worldAudioManager.playSound("shocked");
         this.isShocked = false;
         return;
       } else {
@@ -290,7 +283,7 @@ class Hero extends MovableObject {
     this.otherDirection = false;
     this.downwards = false;
     this.upwards = false;
-    this.swimmingSounds.play();
+    this.world.worldAudioManager.playSound("swimming");
   }
 
   moveLeft() {
@@ -299,7 +292,7 @@ class Hero extends MovableObject {
     this.otherDirection = true;
     this.downwards = false;
     this.upwards = false;
-    this.swimmingSounds.play();
+    this.world.worldAudioManager.playSound("swimming");
   }
 
   moveUp() {
@@ -307,7 +300,7 @@ class Hero extends MovableObject {
     this.upwards = true;
     this.downwards = false;
     this.y -= this.speed;
-    this.swimmingSounds.play();
+    this.world.worldAudioManager.playSound("swimming");
   }
 
   moveDown() {
@@ -315,7 +308,7 @@ class Hero extends MovableObject {
     this.downwards = true;
     this.upwards = false;
     this.y += this.speed;
-    this.swimmingSounds.play();
+    this.world.worldAudioManager.playSound("swimming");
   }
 
   isMoving() {
@@ -354,9 +347,8 @@ class Hero extends MovableObject {
     );
     if (poison) this.changeAmmunitionAmount(false, true);
     this.world.throwableObjects.push(bubble);
-    this.bubbleSounds.play();
+    this.world.worldAudioManager.playSound("bubbleShot");
   }
-
 
   /**
    * function increases or decreases the melee attack range with offset at the collision range
@@ -371,6 +363,7 @@ class Hero extends MovableObject {
 
   /**
    * Function increases or decreases the ammount of poison bubbles of the hero object.
+   * baseAmount = this.world.level.bottles.length
    *
    * @param {boolean} increase
    * @param {boolean} decrease
@@ -378,18 +371,15 @@ class Hero extends MovableObject {
    */
   changeAmmunitionAmount(increase, decrease) {
     if (increase == null || decrease == null) return;
-    // baseAmount = this.world.level.bottles.length
     if (increase) this.poisonAmmunition += 30;
     if (decrease) this.poisonAmmunition -= 30;
   }
-
 
   /**
    * Function buffers all image arrays for animation in the constructor.
    * 
    */
   loadingAllImages() {
-    
     this.loadImages(this.imagesWalking);
     this.loadImages(this.imagesWaiting);
     this.loadImages(this.imagesFinAttacking);
