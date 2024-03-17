@@ -73,12 +73,6 @@ class Hero extends MovableObject {
    
   ];
 
-  imagesElectrifying = [
-    '/assets/img/1.Sharkie/5.Hurt/2.Electric shock/1.png',
-    '/assets/img/1.Sharkie/5.Hurt/2.Electric shock/2.png',
-    '/assets/img/1.Sharkie/5.Hurt/2.Electric shock/3.png',
-  ];
-
   imagesDead = [
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
@@ -168,7 +162,6 @@ class Hero extends MovableObject {
     this.upwards = false;
   }
 
-
   /**
    * Function controlls the death animation. It will play the dying animation (11 pictures) in the beginning and afterwards the death animation.
    *
@@ -224,7 +217,7 @@ class Hero extends MovableObject {
   disengage() {
     this.currentImage = 0;
     this.isAttacking = false;
-    this.decreaseAttackRange();
+    this.adaptAttackRange(false, true);
     this.isCollidingWith.shift();
   }
 
@@ -237,7 +230,7 @@ class Hero extends MovableObject {
     if (this.isEndbossNear() && this.poisonAmmunition > 0) {
       this.throwingBubble(true);
       this.world.changePoisonStatusbar();
-      // !place new bottle
+      this.world.level.bottles.push(new Bottle());
     }
     this.throwingBubble(false);
     this.isShooting = false;
@@ -380,15 +373,9 @@ class Hero extends MovableObject {
    * 
    */
   loadingAllImages() {
-    this.loadImages(this.imagesWalking);
-    this.loadImages(this.imagesWaiting);
-    this.loadImages(this.imagesFinAttacking);
-    this.loadImages(this.imagesBubbleAttacking);
-    this.loadImages(this.imagesSleeping);
-    this.loadImages(this.imagesPoisoning);
-    this.loadImages(this.imagesShocking);
-    this.loadImages(this.imagesDying);
-    this.loadImages(this.imagesDead);
-    this.loadImages(this.imagesElectrifying);
+    const allImages = [this.imagesWalking, this.imagesWaiting,this.imagesFinAttacking,this.imagesBubbleAttacking,this.imagesSleeping,this.imagesPoisoning, this.imagesShocking,this.imagesDying,this.imagesDead]
+    allImages.forEach(element => {
+      this.loadImages(element);
+    });
   }
 }
