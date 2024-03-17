@@ -90,6 +90,9 @@ h1 {
   #button-impressum {
     display: none;
   }
+  #button-controls {
+    display: none;
+  }
   .gamepad{
     display: flex;
   }
@@ -109,6 +112,7 @@ h1 {
   #img-instructions {
     display: none;
   }
+
 }
 
 @keyframes sizeAnimation {
@@ -286,7 +290,6 @@ dialog ::backdrop {
   width: 75%;
 }
 
-
 #img-instructions-attack1 {
   width: 10%
 }
@@ -294,8 +297,6 @@ dialog ::backdrop {
 #img-instructions-move {
   width: 40%
 }
-
-
 
  /* Tooltip container */
  .tooltip {

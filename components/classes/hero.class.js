@@ -1,11 +1,6 @@
 class Hero extends MovableObject {
   imagesWalking = [
-    "/assets/img/1.Sharkie/3.Swim/1.png",
-    "/assets/img/1.Sharkie/3.Swim/2.png",
-    "/assets/img/1.Sharkie/3.Swim/3.png",
-    "/assets/img/1.Sharkie/3.Swim/4.png",
-    "/assets/img/1.Sharkie/3.Swim/5.png",
-    "/assets/img/1.Sharkie/3.Swim/6.png",
+   
   ];
 
   imagesWaiting = [
@@ -73,12 +68,6 @@ class Hero extends MovableObject {
    
   ];
 
-  imagesElectrifying = [
-    '/assets/img/1.Sharkie/5.Hurt/2.Electric shock/1.png',
-    '/assets/img/1.Sharkie/5.Hurt/2.Electric shock/2.png',
-    '/assets/img/1.Sharkie/5.Hurt/2.Electric shock/3.png',
-  ];
-
   imagesDead = [
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
@@ -130,14 +119,44 @@ class Hero extends MovableObject {
 
   constructor() {
     super().loadImage("/assets/img/1.Sharkie/3.Swim/1.png");
-    this.loadingAllImages(); 
     this.offsetTop =  100;
     this.offsetBottom = 50; 
     this.offsetRight = 70; 
     this.offsetleft = 40; 
     this.x = 50;
+    this.loadingAllImages(); 
     this.animate();
   }
+
+
+/**
+   * Function buffers all image arrays for animation in the constructor.
+   * 
+   */
+  async loadingAllImages() {
+    await this.loadImagesFromJSON("/assets/img/1.Sharkie/3.Swim/imagesWalking.json", this.imagesWalking);
+    await this.loadImages(this.imagesWalking);
+    await this.loadImages(this.imagesWaiting);
+    await this.loadImages(this.imagesFinAttacking);
+    this.loadImages(this.imagesBubbleAttacking);
+    this.loadImages(this.imagesSleeping);
+    this.loadImages(this.imagesPoisoning);
+    this.loadImages(this.imagesShocking);
+    this.loadImages(this.imagesDying);
+    this.loadImages(this.imagesDead);
+  }
+
+
+  loadImagesFromJSON(jsonPath, imageArray) {
+    fetch(jsonPath)
+      .then(response => response.json())
+      .then(data => {
+        imageArray.push(...data);
+        this.loadImages(this.imagesWalking);
+      })
+      .catch(error => console.error('Error loading images from JSON:', error));
+  }
+
 
   animate() {
     setStoppableInterval(this.swimAnimation.bind(this), 1000/45);
@@ -174,7 +193,6 @@ class Hero extends MovableObject {
     this.upwards = false;
   }
 
-
   /**
    * Function controlls the death animation. It will play the dying animation (11 pictures) in the beginning and afterwards the death animation.
    * 
@@ -205,7 +223,7 @@ class Hero extends MovableObject {
         this.rangeAttack();
     }
     if (this.isAttacking) {
-      this.increaseAttackRange();
+      this.adaptAttackRange(true, false)
       this.playAnimation(this.imagesFinAttacking);
       this.finSlapSound.play();
       if (this.currentImage >= 8) {
@@ -232,7 +250,7 @@ class Hero extends MovableObject {
   disengage() {
     this.currentImage = 0;
     this.isAttacking = false;
-    this.decreaseAttackRange();
+    this.adaptAttackRange(false, true);
     this.isCollidingWith.shift();
   }
 
@@ -270,7 +288,7 @@ class Hero extends MovableObject {
       if (this.isHurt()) {
         this.movementIntervall= 0;
         if (this.isShocked) {
-          this.playAnimation(this.imagesElectrifying);
+          this.playAnimation(this.imagesShocking);
           this.shockedSound.play();
           this.isShocked = false;
           return ;
@@ -355,23 +373,15 @@ class Hero extends MovableObject {
     this.bubbleSounds.play();
   }
 
-
   /**
-   * function increases the melee attack range with offset at the collision range
+   * function increases or decreases the melee attack range with offset at the collision range
    * 
+   * @param {boolean} increase 
+   * @param {boolean} decrease 
    */
-  increaseAttackRange(){
-    this.offsetRight = -40;
-    this.offsetleft = 20;
-  }
-
-  /**
-   * function reduces the attack range to normal collision range
-   * 
-   */
-  decreaseAttackRange(){
-    this.offsetRight = 40;
-    this.offsetleft = 20;
+  adaptAttackRange(increase, decrease) {
+    if (increase) this.offsetRight = -40;
+    if (decrease) this.offsetRight = 40;
   }
 
   /**
@@ -390,21 +400,5 @@ class Hero extends MovableObject {
       this.poisonAmmunition -= 30;
   }
 
-
-  /**
-   * Function buffers all image arrays for animation in the constructor.
-   * 
-   */
-  loadingAllImages() {
-    this.loadImages(this.imagesWalking);
-    this.loadImages(this.imagesWaiting);
-    this.loadImages(this.imagesFinAttacking);
-    this.loadImages(this.imagesBubbleAttacking);
-    this.loadImages(this.imagesSleeping);
-    this.loadImages(this.imagesPoisoning);
-    this.loadImages(this.imagesShocking);
-    this.loadImages(this.imagesDying);
-    this.loadImages(this.imagesDead);
-    this.loadImages(this.imagesElectrifying);
-  }
+  
 }
