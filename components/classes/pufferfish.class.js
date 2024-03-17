@@ -29,8 +29,6 @@ class Pufferfish extends MovableObject {
         '/assets/img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.png',
     ];
 
-    transformSound = new Audio ("/assets/sounds/balloon-inflate-1-184052.mp3");
-
     constructor () {
         super().loadImage('/assets/img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim1.png');
         this.loadImages(this.imagesWalking);
@@ -70,22 +68,15 @@ class Pufferfish extends MovableObject {
         }
     }
 
-
     /**
      * Enemy transform into bigger version. Function inceases collision radius of the enemy object.
      * 
      */
     getsBigger() {
-        this.playTransformSound();
+        ocean.worldAudioManager.playSound("transform");
         this.offsetTop = 0;
         this.offsetBottom = 0;
         this.offsetRight = 0;
         this.offsetleft = 0;
     }
-
-    playTransformSound() {
-        this.transformSound.volume = 0.1;
-        this.transformSound.play();
-    }
-
 }

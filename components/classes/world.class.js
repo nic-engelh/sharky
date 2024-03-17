@@ -309,7 +309,7 @@ class World {
    */
   woundingHero(enemy) {
     this.hero.hit();
-    this.audioManager.playSound("heroHurt");
+    this.worldAudioManager.playSound("heroHurt");
     this.changeHealthStatusbar();
     if (enemy instanceof Jellyfish) this.hero.isShocked = true;
   }

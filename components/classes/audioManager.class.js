@@ -48,6 +48,7 @@ class AudioManager {
     this.sounds["shocked"] = new Audio(
       "/assets/sounds/electric_zap_001-6374.mp3"
     );
+    this.sounds["transform"] = new Audio ("/assets/sounds/balloon-inflate-1-184052.mp3");
   }
 
   playSound(name) {

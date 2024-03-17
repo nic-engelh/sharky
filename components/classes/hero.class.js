@@ -175,7 +175,7 @@ class Hero extends MovableObject {
    * @param {number} deathIntervall
    * @returns
    */
-  dying() {tabnine
+  dying() {
     if (this.deathIntervall > 11) {
       this.playAnimation(this.imagesDead);
       this.world.isLost();
