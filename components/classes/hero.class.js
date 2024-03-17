@@ -1,25 +1,116 @@
 class Hero extends MovableObject {
-  imagesWalking = [];
-  imagesWaiting = [];
-  imagesFinAttacking = [];
-  imagesSleeping = [];
-  imagesDying = [];
-  imagesDead = [];
-  imagesPoisoning = [];
-  imagesShocking = [];
-  imagesBubbleAttacking = [];
+  imagesWalking = [
+    "/assets/img/1.Sharkie/3.Swim/1.png",
+    "/assets/img/1.Sharkie/3.Swim/2.png",
+    "/assets/img/1.Sharkie/3.Swim/3.png",
+    "/assets/img/1.Sharkie/3.Swim/4.png",
+    "/assets/img/1.Sharkie/3.Swim/5.png",
+    "/assets/img/1.Sharkie/3.Swim/6.png",
+  ];
 
-  allHeroImages = new Map([
-    ["/assets/img/1.Sharkie/3.Swim/imagesWalking.json", this.imagesWalking],
-    ["/assets/img/1.Sharkie/1.IDLE/imagesWaiting.json", this.imagesWaiting],
-    ["/assets/img/1.Sharkie/2.Long_IDLE/imagesSleeping.json", this.imagesSleeping],
-    ["/assets/img/1.Sharkie/4.Attack/Fin slap/imagesFinAttacking.json", this.imagesFinAttacking],
-    ["/assets/img/1.Sharkie/4.Attack/Bubble trap/imagesBubbleAttacking.json", this.imagesBubbleAttacking],
-    ["/assets/img/1.Sharkie/5.Hurt/1.Poisoned/imagesPoisoning.json", this.imagesPoisoning],
-    ["/assets/img/1.Sharkie/5.Hurt/2.Electric shock/imagesShocking.json",  this.imagesShocking],
-    ["/assets/img/1.Sharkie/6.dead/1.Poisoned/imagesDying.json", this.imagesDying],
-    ["/assets/img/1.Sharkie/6.dead/1.Poisoned/imagesDead.json", this.imagesDead],
-  ]);
+  imagesWaiting = [
+    "/assets/img/1.Sharkie/1.IDLE/1.png",
+    "/assets/img/1.Sharkie/1.IDLE/2.png",
+    "/assets/img/1.Sharkie/1.IDLE/3.png",
+    "/assets/img/1.Sharkie/1.IDLE/4.png",
+    "/assets/img/1.Sharkie/1.IDLE/5.png",
+    "/assets/img/1.Sharkie/1.IDLE/6.png",
+    "/assets/img/1.Sharkie/1.IDLE/7.png",
+    "/assets/img/1.Sharkie/1.IDLE/8.png",
+    "/assets/img/1.Sharkie/1.IDLE/9.png",
+    "/assets/img/1.Sharkie/1.IDLE/10.png",
+    "/assets/img/1.Sharkie/1.IDLE/11.png",
+    "/assets/img/1.Sharkie/1.IDLE/12.png",
+    "/assets/img/1.Sharkie/1.IDLE/13.png",
+    "/assets/img/1.Sharkie/1.IDLE/14.png",
+    "/assets/img/1.Sharkie/1.IDLE/15.png",
+    "/assets/img/1.Sharkie/1.IDLE/16.png",
+    "/assets/img/1.Sharkie/1.IDLE/17.png",
+    "/assets/img/1.Sharkie/1.IDLE/18.png",
+  ];
+
+  imagesFinAttacking = [
+    "/assets/img/1.Sharkie/4.Attack/Fin slap/1.png",
+    "/assets/img/1.Sharkie/4.Attack/Fin slap/2.png",
+    "/assets/img/1.Sharkie/4.Attack/Fin slap/3.png",
+    "/assets/img/1.Sharkie/4.Attack/Fin slap/4.png",
+    "/assets/img/1.Sharkie/4.Attack/Fin slap/5.png",
+    "/assets/img/1.Sharkie/4.Attack/Fin slap/6.png",
+    "/assets/img/1.Sharkie/4.Attack/Fin slap/7.png",
+    "/assets/img/1.Sharkie/4.Attack/Fin slap/8.png",
+  ];
+
+  imagesSleeping = [
+    "/assets/img/1.Sharkie/2.Long_IDLE/i1.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I2.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I3.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I4.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I5.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I6.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I7.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I8.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I9.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I10.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I11.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I12.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I13.png",
+    "/assets/img/1.Sharkie/2.Long_IDLE/I14.png",
+  ];
+
+  imagesDying = [
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/1.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/2.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/3.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/4.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/5.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/6.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/7.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/8.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/9.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/10.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
+   
+  ];
+
+  imagesElectrifying = [
+    '/assets/img/1.Sharkie/5.Hurt/2.Electric shock/1.png',
+    '/assets/img/1.Sharkie/5.Hurt/2.Electric shock/2.png',
+    '/assets/img/1.Sharkie/5.Hurt/2.Electric shock/3.png',
+  ];
+
+  imagesDead = [
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/10.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
+    "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
+  ];
+
+  imagesPoisoning = [
+    "/assets/img/1.Sharkie/5.Hurt/1.Poisoned/1.png",
+    "/assets/img/1.Sharkie/5.Hurt/1.Poisoned/2.png",
+    "/assets/img/1.Sharkie/5.Hurt/1.Poisoned/3.png",
+    "/assets/img/1.Sharkie/5.Hurt/1.Poisoned/4.png",
+    "/assets/img/1.Sharkie/5.Hurt/1.Poisoned/5.png",
+  ];
+
+  imagesShocking = [
+    "/assets/img/1.Sharkie/5.Hurt/2.Electric shock/1.png",
+    "/assets/img/1.Sharkie/5.Hurt/2.Electric shock/2.png",
+    "/assets/img/1.Sharkie/5.Hurt/2.Electric shock/3.png",
+  ];
+
+  imagesBubbleAttacking = [
+    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png",
+    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png",
+    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png",
+    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png",
+    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png",
+    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png",
+    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png",
+    "/assets/img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png",
+  ];
 
   world;
   speed = 10;
@@ -41,65 +132,13 @@ class Hero extends MovableObject {
 
   constructor() {
     super().loadImage("/assets/img/1.Sharkie/3.Swim/1.png");
-    this.offsetTop = 100;
-    this.offsetBottom = 50;
-    this.offsetRight = 70;
-    this.offsetleft = 40;
+    this.loadingAllImages(); 
+    this.offsetTop =  100;
+    this.offsetBottom = 50; 
+    this.offsetRight = 70; 
+    this.offsetleft = 40; 
     this.x = 50;
-    this.loadingAllImages();
     this.animate();
-  }
-
-  /**
-   * Function buffers all image arrays for animation in the constructor.
-   *
-   */
-  async loadingAllImages() {
-    /*
-    let promises = [];
-    this.allHeroImages.forEach((value, key) => {
-      promises.push(loadImagesFromJSON(key, value));
-    });
-    await Promise.all(promises);
-    */
-    
-    loadImagesFromJSON(
-      "/assets/img/1.Sharkie/3.Swim/imagesWalking.json",
-      this.imagesWalking
-    );
-    loadImagesFromJSON(
-      "/assets/img/1.Sharkie/1.IDLE/imagesWaiting.json",
-      this.imagesWaiting
-    );
-    loadImagesFromJSON(
-      "/assets/img/1.Sharkie/2.Long_IDLE/imagesSleeping.json",
-      this.imagesSleeping
-    );
-    loadImagesFromJSON(
-      "/assets/img/1.Sharkie/4.Attack/Fin slap/imagesFinAttacking.json",
-      this.imagesFinAttacking
-    );
-    loadImagesFromJSON(
-      "/assets/img/1.Sharkie/4.Attack/Bubble trap/imagesBubbleAttacking.json",
-      this.imagesBubbleAttacking
-    );
-    loadImagesFromJSON(
-      "/assets/img/1.Sharkie/5.Hurt/1.Poisoned/imagesPoisoning.json",
-      this.imagesPoisoning
-    );
-    loadImagesFromJSON(
-      "/assets/img/1.Sharkie/5.Hurt/2.Electric shock/imagesShocking.json",
-      this.imagesShocking
-    );
-    loadImagesFromJSON(
-      "/assets/img/1.Sharkie/6.dead/1.Poisoned/imagesDying.json",
-      this.imagesDying
-    );
-    loadImagesFromJSON(
-      "/assets/img/1.Sharkie/6.dead/1.Poisoned/imagesDead.json",
-      this.imagesDead
-    );
-    
   }
 
   animate() {
@@ -135,6 +174,7 @@ class Hero extends MovableObject {
     this.downwards = false;
     this.upwards = false;
   }
+
 
   /**
    * Function controlls the death animation. It will play the dying animation (11 pictures) in the beginning and afterwards the death animation.
@@ -191,7 +231,7 @@ class Hero extends MovableObject {
   disengage() {
     this.currentImage = 0;
     this.isAttacking = false;
-    this.adaptAttackRange(false, true);
+    this.decreaseAttackRange();
     this.isCollidingWith.shift();
   }
 
@@ -317,6 +357,7 @@ class Hero extends MovableObject {
     this.bubbleSounds.play();
   }
 
+
   /**
    * function increases or decreases the melee attack range with offset at the collision range
    *
@@ -340,5 +381,23 @@ class Hero extends MovableObject {
     // baseAmount = this.world.level.bottles.length
     if (increase) this.poisonAmmunition += 30;
     if (decrease) this.poisonAmmunition -= 30;
+  }
+
+
+  /**
+   * Function buffers all image arrays for animation in the constructor.
+   * 
+   */
+  loadingAllImages() {
+    this.loadImages(this.imagesWalking);
+    this.loadImages(this.imagesWaiting);
+    this.loadImages(this.imagesFinAttacking);
+    this.loadImages(this.imagesBubbleAttacking);
+    this.loadImages(this.imagesSleeping);
+    this.loadImages(this.imagesPoisoning);
+    this.loadImages(this.imagesShocking);
+    this.loadImages(this.imagesDying);
+    this.loadImages(this.imagesDead);
+    this.loadImages(this.imagesElectrifying);
   }
 }
