@@ -17,18 +17,6 @@ class Hero extends MovableObject {
   imagesSleeping = [];
 
   imagesDying = [
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/1.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/2.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/3.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/4.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/5.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/6.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/7.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/8.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/9.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/10.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
-    "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
   ];
 
   imagesDead = [
@@ -98,15 +86,15 @@ class Hero extends MovableObject {
    *
    */
   async loadingAllImages() {
-    this.loadImagesFromJSON(
+    loadImagesFromJSON(
       "/assets/img/1.Sharkie/3.Swim/imagesWalking.json",
       this.imagesWalking
     );
-    await this.loadImagesFromJSON(
+    await loadImagesFromJSON(
       "/assets/img/1.Sharkie/1.IDLE/imagesWaiting.json",
       this.imagesWaiting
     );
-    await this.loadImagesFromJSON(
+    await loadImagesFromJSON(
       "/assets/img/1.Sharkie/2.Long_IDLE/imagesSleeping.json",
       this.imagesSleeping
     );
@@ -115,24 +103,14 @@ class Hero extends MovableObject {
     await this.loadImages(this.imagesPoisoning);
     await this.loadImages(this.imagesShocking);
     await this.loadImages(this.imagesDying);
-    await this.loadImagesFromJSON(
+    await loadImagesFromJSON(
       "/assets/img/1.Sharkie/6.dead/1.Poisoned/imagesDying.json",
       this.imagesDying
     );
     await this.loadImages(this.imagesDead);
   }
 
-  loadImagesFromJSON(jsonPath, imageArray) {
-    fetch(jsonPath)
-      .then((response) => response.json())
-      .then((data) => {
-        imageArray.push(...data);
-        this.loadImages(imageArray);
-      })
-      .catch((error) =>
-        console.error("Error loading images from JSON:", error)
-      );
-  }
+  
 
   animate() {
     setStoppableInterval(this.swimAnimation.bind(this), 1000 / 45);
