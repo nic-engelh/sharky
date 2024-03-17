@@ -3,70 +3,117 @@ const impressumButton = document.getElementById("button-impressum");
 const impressumDialog = document.getElementById("dialog-impressum");
 const impressumText = document.getElementById("dialog-impressum-text-box");
 
+/**
+ * functions hides the game starts button if its clicked.
+ *
+ */
 function hideButton() {
   const btnStart = document.getElementById("btn-start");
   btnStart.style.display = "none";
 }
 
+/**
+ * function resets the opacity of the canvas element after the start button was clicked
+ *
+ */
 function resetOpacity() {
   const canvas = document.getElementById("canvas");
   canvas.classList.remove("opaque");
 }
 
+/**
+ * function checks the orientation of the device if its in the portrait mode, it shows a dialog message.
+ * the dialog can't be closed. It will be closed, if user rotates the device in the landscape mode
+ *
+ * @returns
+ */
 function checkOrientation() {
   const dialogElement = document.getElementById("dialog-device-orientation");
-  if (!dialogElement) return; // Wenn das Dialog-Element nicht gefunden wurde, die Funktion abbrechen
+  if (!dialogElement) return;
 
   if (window.matchMedia("(orientation: portrait)").matches) {
-    // Wenn das Gerät im Hochformat ist
-    dialogElement.showModal(); // Dialog anzeigen
+    dialogElement.showModal();
   } else {
-    // Wenn das Gerät im Querformat ist
     if (typeof dialogElement.close === "function") {
-      dialogElement.close(); // Dialog schließen, falls close() verfügbar ist
+      dialogElement.close();
     }
   }
 }
 
-// Die Ausrichtung überprüfen, wenn sich die Bildschirmgröße ändert oder das Gerät gedreht wird
+/**
+ * window event listener to check the orientation
+ * Check the orientation when the screen changes size or the device is rotated
+ *
+ */
 window.addEventListener("resize", checkOrientation);
 window.addEventListener("orientationchange", checkOrientation);
 
-// Überprüfen Sie die Ausrichtung, wenn die Seite geladen wird
+/**
+ * Check the alignment when the page loads
+ *
+ */
 window.onload = function () {
   checkOrientation();
 };
 
+/**
+ * event listener to check vor clicks on the impressum or legal notice button / symbol. It will open the impressum or legal notice dialog with further informaiton.
+ *
+ */
 impressumButton.addEventListener("click", function () {
   impressumDialog.showModal();
   impressumText.innerHTML = impressumHTML();
 });
 
+/**
+ * function will close the legal notice (impressum) dialog
+ *
+ */
 function closeImpressumDialog() {
   impressumDialog.close();
   impressumText.innerHTML = "";
 }
 
+/**
+ * function will open the given dialog element by id.
+ *
+ */
 function openWinDialog() {
   const modal = document.getElementById("dialog-win-box");
   modal.showModal();
 }
 
+/**
+ * function will open the given dialog element by id.
+ *
+ */
 function openLoseDialog() {
   const modal = document.getElementById("dialog-lose-box");
   modal.showModal();
 }
 
+/**
+ * function will close the given dialog element by id.
+ *
+ */
 function closeDialog(elementId) {
   const modal = document.getElementById(elementId);
   modal.close();
 }
 
+/**
+ * function will open the given dialog element by id.
+ *
+ */
 function openDialog(elementId) {
   const modal = document.getElementById(elementId);
   modal.showModal();
 }
 
+/**
+ * function will toggle the mute and unmute status for the music by clicking the mute unmute symbol
+ *
+ */
 function toggleMuteIcon() {
   let icon = document.getElementById("muteIcon");
   let isMuted = icon.classList.contains("muted");
@@ -76,6 +123,13 @@ function toggleMuteIcon() {
     muteBackgroundMusic(icon);
   }
 }
+
+/**
+ * function controlls the mute status of the game. It will changes the symbol mute if clicked. It will start the different background musics according to the position of the hero
+ *
+ * @param {Element} icon
+ * @returns
+ */
 
 function unmuteBackgroundMusic(icon) {
   icon.classList.remove("muted");
@@ -88,6 +142,12 @@ function unmuteBackgroundMusic(icon) {
   ocean.startAmbientMusic();
 }
 
+/**
+ * function will mute all background music but not the effect sounds. It will change the symbol
+ *
+ * @param {Element} icon
+ */
+
 function muteBackgroundMusic(icon) {
   icon.classList.add("muted");
   icon.src =
@@ -96,31 +156,29 @@ function muteBackgroundMusic(icon) {
   ocean.level.enemies[5].stopBossAmbientMusic();
 }
 
+/**
+ * function will reload the website
+ *
+ */
 function reloadPage() {
   location.reload();
 }
 
+/**
+ * event listener for clicking on the document in order to close the dialog
+ * If user either clicks X button OR clicks outside the modal window, then close modal by calling closeModal()
+ *
+ */
 document.addEventListener(
   "click",
   function (event) {
     // If user either clicks X button OR clicks outside the modal window, then close modal by calling closeModal()
     if (
       event.target.matches("#dialog-instructions-box") ||
-      event.target.matches("#dialog-instructions-picture-container")
-    ) {
-      document.getElementById("dialog-instructions-box").close();
-    }
-  },
-  false
-);
-
-document.addEventListener(
-  "click",
-  function (event) {
-    // If user either clicks X button OR clicks outside the modal window, then close modal by calling closeModal()
-    if (
+      event.target.matches("#dialog-instructions-picture-container") ||
       event.target.matches("#dialog-impressum")
     ) {
+      document.getElementById("dialog-instructions-box").close();
       document.getElementById("dialog-impressum").close();
     }
   },
