@@ -258,11 +258,16 @@ dialog ::backdrop {
   width: 100%;
   display: flex;
   max-width: 700px;
+  cursor: pointer
 }
 
 #dialog-lose-box {
   height: 30%;
   background-color: #201B4E !important;
+}
+
+#dialog-lose-box img {
+  cursor: pointer;
 }
 
 #dialog-win-picture-container {
