@@ -70,7 +70,6 @@ class Hero extends MovableObject {
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/10.png",
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/11.png",
     "/assets/img/1.Sharkie/6.dead/1.Poisoned/12.png",
-   
   ];
 
   imagesDead = [
@@ -119,11 +118,11 @@ class Hero extends MovableObject {
 
   constructor() {
     super().loadImage("/assets/img/1.Sharkie/3.Swim/1.png");
-    this.loadingAllImages(); 
-    this.offsetTop =  100;
-    this.offsetBottom = 50; 
-    this.offsetRight = 70; 
-    this.offsetleft = 40; 
+    this.loadingAllImages();
+    this.offsetTop = 100;
+    this.offsetBottom = 50;
+    this.offsetRight = 70;
+    this.offsetleft = 40;
     this.x = 50;
     this.animate();
   }
@@ -133,18 +132,30 @@ class Hero extends MovableObject {
     setStoppableInterval(this.actionAnimation.bind(this), 1000 / 7);
   }
 
+  /**
+   * Functions activates the swimming movement logic function. It Stops any Swimming sounds and followsw the object with the camera.
+   *
+   */
   swimAnimation() {
-    this.world.worldAudioManager.stopSound("swimming"); 
+    this.world.worldAudioManager.stopSound("swimming");
     this.swimming();
     this.world.cameraX = -this.x + 100;
   }
 
+  /**
+   * Function controlls the action animation according to various states as dead, attacking/shooting and moving.
+   *
+   */
   actionAnimation() {
     if (this.isDead()) this.dying();
     if (this.isAttacking || this.isShooting) this.attacking();
     if (!this.isDead() && !this.isShooting && !this.isAttacking) this.moving();
   }
 
+  /**
+   * Function contols the movement/swimming logic. Every direction is check if the object is in the game boundries.
+   *
+   */
   swimming() {
     this.resetVerticalAlignment();
     if (this.canHeroMoveRight()) this.moveRight();
@@ -236,6 +247,11 @@ class Hero extends MovableObject {
     this.isShooting = false;
   }
 
+  /**
+   * Functions checks if the endboss object is closer than 500 px;
+   *
+   * @returns boolean
+   */
   isEndbossNear() {
     return this.world.level.enemies[5].x - this.x < 500;
   }
@@ -270,6 +286,11 @@ class Hero extends MovableObject {
     return;
   }
 
+  /**
+   * function moves the object to the right y the amount of the speed variable. It will flag every other direction as false.
+   *
+   * @returns boolean
+   */
   moveRight() {
     if (this.isDead()) return false;
     this.x += this.speed;
@@ -279,6 +300,11 @@ class Hero extends MovableObject {
     this.world.worldAudioManager.playSound("swimming");
   }
 
+  /**
+   * function moves the object to the left by the amount of the speed variable. It will flag every other direction as false.
+   *
+   * @returns boolean
+   */
   moveLeft() {
     if (this.isDead()) return false;
     this.x -= this.speed;
@@ -288,6 +314,11 @@ class Hero extends MovableObject {
     this.world.worldAudioManager.playSound("swimming");
   }
 
+  /**
+   * function moves the object up y the amount of the speed variable. It will flag every other direction as false.
+   *
+   * @returns boolean
+   */
   moveUp() {
     if (this.isDead()) return false;
     this.upwards = true;
@@ -296,6 +327,11 @@ class Hero extends MovableObject {
     this.world.worldAudioManager.playSound("swimming");
   }
 
+  /**
+   * function moves the object down y the amount of the speed variable. It will flag every other direction as false.
+   *
+   * @returns boolean
+   */
   moveDown() {
     if (this.isDead()) return false;
     this.downwards = true;
@@ -304,22 +340,47 @@ class Hero extends MovableObject {
     this.world.worldAudioManager.playSound("swimming");
   }
 
+  /**
+   * Functions checks if the keyboard right trigger or keyboard left trigger is used - it returns true then
+   *
+   * @returns boolean
+   */
   isMoving() {
     return this.world.keyboard.right || this.world.keyboard.left;
   }
 
+  /**
+   * functions checks if object can move further left. X coordinate must be bigger than 0
+   *
+   * @returns boolean
+   */
   canHeroMoveLeft() {
     return this.world.keyboard.left && this.x > 0;
   }
 
+  /**
+   * function checks if object can move further right. X coordinate must be smaller than the level end
+   *
+   * @returns boolean
+   */
   canHeroMoveRight() {
     return this.world.keyboard.right && this.x < this.world.level.levelEndX;
   }
 
+  /**
+   * function checks if object can move further up. y coordinate must be bigger than the level top border
+   *
+   * @returns boolean
+   */
   canHeroMoveUp() {
     return this.world.keyboard.up && this.y > -100;
   }
 
+  /**
+   * function checks if object can move further down. y coordinate must be bigger than the level lower border
+   *
+   * @returns boolean
+   */
   canHeroMoveDown() {
     return this.world.keyboard.down && this.y < 300;
   }
@@ -370,11 +431,21 @@ class Hero extends MovableObject {
 
   /**
    * Function buffers all image arrays for animation in the constructor.
-   * 
+   *
    */
   loadingAllImages() {
-    const allImages = [this.imagesWalking, this.imagesWaiting,this.imagesFinAttacking,this.imagesBubbleAttacking,this.imagesSleeping,this.imagesPoisoning, this.imagesShocking,this.imagesDying,this.imagesDead]
-    allImages.forEach(element => {
+    const allImages = [
+      this.imagesWalking,
+      this.imagesWaiting,
+      this.imagesFinAttacking,
+      this.imagesBubbleAttacking,
+      this.imagesSleeping,
+      this.imagesPoisoning,
+      this.imagesShocking,
+      this.imagesDying,
+      this.imagesDead,
+    ];
+    allImages.forEach((element) => {
       this.loadImages(element);
     });
   }

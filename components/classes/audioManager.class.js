@@ -4,6 +4,11 @@ class AudioManager {
     this.loadSounds();
     this.mute = false;
   }
+
+/**
+ * Function adds the sounds into an object with certain key.
+ * 
+ */
   loadSounds() {
     this.sounds["waterflowEffect"] = new Audio(
       "/assets/sounds/underwater-loop-amb-6182.mp3"
@@ -51,11 +56,21 @@ class AudioManager {
     this.sounds["transform"] = new Audio ("/assets/sounds/balloon-inflate-1-184052.mp3");
   }
 
+  /**
+   * Functions plays a sound with the name as argument. It loads the sound from the sounds object
+   * 
+   * @param {string} name 
+   */
   playSound(name) {
     if (this.sounds[name]) {
       this.sounds[name].play();
     }
   }
+  /**
+   * Function stops a certain sound given by the name argument. It pauses the sound from sounds object.
+   * 
+   * @param {string} name 
+   */
   stopSound(name) {
     if (this.sounds[name]) {
       this.sounds[name].pause();
@@ -63,18 +78,33 @@ class AudioManager {
     }
   }
 
+
+  /**
+   * Functions sets the volume of the sound according to the given arguments. Number as a float.
+   * 
+   * @param {string} name 
+   * @param {number} volume 
+   */
   setVolume(name, volume) {
     if (this.sounds[name]) {
       this.sounds[name].volume = volume;
     }
   }
 
+  /**
+   * Function reduces alls sounds in the object to 0.1
+   * 
+   */
   setVolumeForAll() {
     for (const soundName in this.sounds) {
       this.setVolume(soundName, 0.1);
     }
   }
 
+  /**
+   * Functions mutes all sounds. It reduces alls sounds in the sounds object to volume 0.0.
+   * 
+   */
   muteAllSounds() {
     for (const soundName in this.sounds) {
       this.setVolume(soundName, 0.0);

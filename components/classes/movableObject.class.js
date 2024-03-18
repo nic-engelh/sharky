@@ -12,11 +12,18 @@ class MovableObject extends DrawableObject {
   upwards = false;
   downwards = false;
 
- 
+ /**
+  * functions starts an interval in order to move an object to the right in +x-direction
+  * 
+  */
   moveRight() {
     setStoppableInterval(this.stepRight.bind(this), 1000/60);
   }
 
+   /**
+  * functions starts an interval in order to move an object to the lift in -x-direction
+  * 
+  */
   moveLeft() {
     setStoppableInterval(this.stepLeft.bind(this), 1000/60);
    }
@@ -102,36 +109,6 @@ class MovableObject extends DrawableObject {
     );
   }
 
-
-  /*
-
- return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
-            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
-    }
-
-
-  */
-
-
-
-  isCollidingRightwithLeft (object) {
-    return (this.x + this.width - this.offsetRight >= object.x + object.offsetleft);
-  }
-
-  isCollidingLeftwithRight (object) {
-    return (this.x + this.offsetleft <= object.x + object.width - this.offsetRight);
-  }
-
-  isCollidingTopwithBottom (object) {
-    return (this.y + this.height - this.offsetBottom >= object.y + object.offsetTop);
-  }
-
-  isCollidingBottomWithTop (object) {
-    return (this.y + this.offsetTop <= object.y + object.height - object.offsetBottom);
-  }
-
   /**
    * Function reduces the energy to zero in five point steps. It will stay at zero. It will create a date object from the last hit.
    *
@@ -187,6 +164,13 @@ class MovableObject extends DrawableObject {
     this.speedX -= this.acceleration;
   }
 
+
+  /**
+   * functions checks the object x coordinates and returns a true if the difference is smaller than 350
+   * 
+   * @param {object} object 
+   * @returns 
+   */
   isCloseTo (object) {
     if (object == null) return;
     let distance =  object.x - this.x ;

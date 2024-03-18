@@ -24,10 +24,18 @@ class Bottle extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Function activates a intervall. It will animate the bottle object.
+   * 
+   */
   animate() {
     setStoppableInterval(this.moveAnimation.bind(this) , 200);
   } 
 
+  /**
+   * Function moves the bottle object.
+   * 
+   */
   moveAnimation () {
     this.playAnimation(this.imagesMoving);
   }

@@ -172,7 +172,7 @@ class World {
     if (movableObject.downwards) this.rotateImage(movableObject, false, true);
 
     movableObject.draw(this.ctx);
-    movableObject.drawFrame(this.ctx);
+    //movableObject.drawFrame(this.ctx);
 
     if (movableObject.otherDirection) this.resetFlipImage(movableObject);
     if (movableObject.upwards || movableObject.downwards) this.resetRotation();
@@ -370,11 +370,19 @@ class World {
     });
   }
 
+  /**
+   * function stops all intervals and opens the win dialog
+   * 
+   */
   isWon() {
     stopGame();
     openWinDialog();
   }
 
+  /**
+   * function stops all intervals and opens the lose dialog
+   * 
+   */
   isLost() {
     stopGame();
     openLoseDialog();

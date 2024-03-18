@@ -79,6 +79,10 @@ class Endboss extends MovableObject {
     this.run();
   }
 
+  /**
+   * Function loads all images from the path arrays into the cache.
+   * 
+   */
   loadAllImages() {
     const allImages = [
       this.imagesWalking,
