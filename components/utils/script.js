@@ -130,8 +130,8 @@ function toggleMuteIcon() {
  * @param {Element} icon
  * @returns
  */
-
 function unmuteBackgroundMusic(icon) {
+  setLocalStorage("game-mute", false);
   icon.classList.remove("muted");
   icon.src =
     "/assets/img/6.Botones/Control/volume_up_FILL0_wght400_GRAD0_opsz24.svg"; // Replace with the path to your unmute icon
@@ -150,12 +150,26 @@ function unmuteBackgroundMusic(icon) {
  *
  * @param {Element} icon
  */
-
 function muteBackgroundMusic(icon) {
+  setLocalStorage("game-mute", true)
   icon.classList.add("muted");
   icon.src =
     "/assets/img/6.Botones/Control/volume_mute_FILL0_wght400_GRAD0_opsz24.svg"; // Replace with the path to your mute icon
   ocean.worldAudioManager.muteAllSounds();
+}
+
+/**
+ * function checks music status within the local storage if the last game was muted or not
+ * 
+ * @returns boolean
+ */
+function checkingMusicStatus () {
+  let muteStatus = getLocalStorage("game-mute");
+  if (muteStatus) {
+    toggleMuteIcon();
+    return true; 
+  }
+  return false
 }
 
 /**

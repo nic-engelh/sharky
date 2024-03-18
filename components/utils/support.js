@@ -40,7 +40,7 @@ function setLocalStorage(key, value) {
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch (error) {
-    console.error("Fehler beim Speichern im LocalStorage:", error);
+    console.error("An Error occurred while safeing into local storage:", error);
   }
 }
 
@@ -55,7 +55,7 @@ function getLocalStorage(key) {
         let value = localStorage.getItem(key);
         return value ? JSON.parse(value) : null;
       } catch (error) {
-        console.error("Fehler beim Laden aus dem LocalStorage:", error);
+        console.error("An Error occurred while loading from local storage:", error);
         return null;
       }
 }

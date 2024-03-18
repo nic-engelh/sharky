@@ -3,6 +3,7 @@ function init () {
     canvas = document.getElementById('canvas');
     keyboard = new Keyboard();
     ocean = new World(canvas, keyboard);
+    checkingMusicStatus() 
 } 
 /**
  * Event listener waits for keyboard interactions. It will changes the keyboard variables if pressed with true or false if not pressed
@@ -86,10 +87,10 @@ window.addEventListener("click",  (event) => {
     if (pressedButton == "gamepad-button-right"|| pressedButton == "gamepad-button-right-arrow") {
         keyboard.right = true;
     }
-    if (pressedButton == "gamepad-button-attack-range") {
+    if (pressedButton == "gamepad-button-attack-range" || pressedButton == "gamepad-button-attack-range-text") {
         keyboard.d = true;
     }
-    if (pressedButton == "gamepad-button-attack-melee") {
+    if (pressedButton == "gamepad-button-attack-melee" || pressedButton == "gamepad-button-attack-melee-text") {
         keyboard.space = true;
     }
 });
