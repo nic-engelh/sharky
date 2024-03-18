@@ -4,7 +4,10 @@ function init () {
     keyboard = new Keyboard();
     ocean = new World(canvas, keyboard);
 } 
-
+/**
+ * Event listener waits for keyboard interactions. It will changes the keyboard variables if pressed with true or false if not pressed
+ * 
+ */
 window.addEventListener("keydown", (event) => {
     pressedKey = event.code;
     if (pressedKey == "ArrowDown") {
@@ -33,6 +36,10 @@ window.addEventListener("keydown", (event) => {
     }
 } );
 
+/**
+ * Event listener waits for keyboard interactions. It will changes the keyboard variables if pressed with true or false if not pressed
+ * 
+ */
 window.addEventListener("keyup", (event) => {
     pressedKey = event.code;
     if (pressedKey == "ArrowDown") {
@@ -61,6 +68,10 @@ window.addEventListener("keyup", (event) => {
     }
 } );
 
+/**
+ * Eventlistener for the game buttons in mobile version
+ * 
+ */
 window.addEventListener("click",  (event) => {
     pressedButton = event.target.id;
     if (pressedButton == "gamepad-button-up" || pressedButton == "gamepad-button-up-arrow") {
@@ -91,6 +102,10 @@ window.addEventListener("touchend", () => {
     resetKeyboard();
 });
 
+/**
+ * Functions resets the keyboard flags as one would let lose of the keyboard
+ * 
+ */
 function resetKeyboard() {
     for (let key in keyboard) {
         keyboard[key] = false;
