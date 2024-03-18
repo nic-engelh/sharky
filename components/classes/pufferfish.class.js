@@ -47,11 +47,19 @@ class Pufferfish extends MovableObject {
         this.offsetleft = 0;
     }
 
+    /**
+     * Functions starts the automated left movement and starts the animations logic within a intervall
+     * 
+     */
     animate() {
         this.moveLeft();
         setStoppableInterval(this.actionAnimation.bind(this),200);
     }
 
+    /**
+     * Function controlls the objects actions flow. It uses different states like aggressive, dead and Hero is clos to show different animations
+     * 
+     */
     actionAnimation() {
         if (this.heroIsClose) {
             if (!this.isAggressive) this.getsBigger();

@@ -30,16 +30,3 @@ function eraseObjectFromCanvas (array, object) {
     array.splice(index, 1);
 }
 
-
-function loadImagesFromJSON(jsonPath, imageArray) {
-    fetch(jsonPath)
-      .then((response) => response.json())
-      .then((data) => {
-        imageArray.push(...data);
-        ocean.hero.loadImages(imageArray);
-      })
-      .catch((error) =>
-        console.error("Error loading images from JSON:", error)
-      );
-  }
-

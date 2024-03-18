@@ -59,6 +59,12 @@ class StatusBar extends DrawableObject {
         this.offsetleft = 0;
     } 
 
+    /**
+     * Functions sets the percentags of the statusbar completion and chooses the right picture from the images array
+     * 
+     * @param {number} percentage 
+     * @param {Array} images 
+     */
     setPercentage (percentage, images) {
         this.percentage = percentage; 
         let path = images[this.resolveImageIndex()];
@@ -66,6 +72,11 @@ class StatusBar extends DrawableObject {
     }
 
 
+    /**
+     * functions controlls the status bar completition
+     * 
+     * @returns numbers
+     */
     resolveImageIndex() {
         if (this.percentage <= 20 && this.percentage > 0)
             return 1;

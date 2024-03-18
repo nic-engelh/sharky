@@ -127,6 +127,10 @@ class Hero extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Functions starts swim and action animation intervals.
+   * 
+   */
   animate() {
     setStoppableInterval(this.swimAnimation.bind(this), 1000 / 45);
     setStoppableInterval(this.actionAnimation.bind(this), 1000 / 7);
