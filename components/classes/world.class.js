@@ -9,6 +9,7 @@ class World {
   healthStatusBar = new StatusBar("health");
   coinStatusBar = new StatusBar("coin");
   poisonStatusBar = new StatusBar("poison");
+  worldAudioManager = new AudioManager();
   hasWon = false;
   hasLost = false;
 
@@ -19,7 +20,6 @@ class World {
     this.keyboard = keyboard;
     this.setWorld();
     this.checkCollisions();
-    this.worldAudioManager = new AudioManager();
     this.worldAudioManager.setVolumeForAll();
     this.run();
   }
