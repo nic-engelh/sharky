@@ -69,42 +69,60 @@ window.addEventListener("keyup", (event) => {
     }
 } );
 
+// Eventlistener für die Spielbuttons in der Mobilversion
+window.addEventListener("mousedown", (event) => {
+    handleButtonPress(event.target.id, true);
+});
+
+window.addEventListener("mouseup", (event) => {
+    handleButtonPress(event.target.id, false);
+});
+
+window.addEventListener("touchstart", (event) => {
+    handleButtonPress(event.target.id, true);
+});
+
+window.addEventListener("touchend", (event) => {
+    handleButtonPress(event.target.id, false);
+});
+
 /**
- * Eventlistener for the game buttons in mobile version
+ * Funktion, um den Tastaturzustand zu aktualisieren
  * 
+ * @param {string} pressedButton - ID des gedrückten Buttons
+ * @param {boolean} isPressed - Gibt an, ob der Button gedrückt oder losgelassen wurde
  */
-window.addEventListener("click",  (event) => {
-    pressedButton = event.target.id;
-    if (pressedButton == "gamepad-button-up" || pressedButton == "gamepad-button-up-arrow") {
-        keyboard.up = true;
+function handleButtonPress(pressedButton, isPressed) {
+    switch (pressedButton) {
+        case "gamepad-button-up":
+        case "gamepad-button-up-arrow":
+            keyboard.up = isPressed;
+            break;
+        case "gamepad-button-down":
+        case "gamepad-button-down-arrow":
+            keyboard.down = isPressed;
+            break;
+        case "gamepad-button-left":
+        case "gamepad-button-left-arrow":
+            keyboard.left = isPressed;
+            break;
+        case "gamepad-button-right":
+        case "gamepad-button-right-arrow":
+            keyboard.right = isPressed;
+            break;
+        case "gamepad-button-attack-range":
+        case "gamepad-button-attack-range-text":
+            keyboard.d = isPressed;
+            break;
+        case "gamepad-button-attack-melee":
+        case "gamepad-button-attack-melee-text":
+            keyboard.space = isPressed;
+            break;
     }
-    if (pressedButton == "gamepad-button-down"|| pressedButton == "gamepad-button-down-arrow") {
-        keyboard.down = true;
-    }
-    if (pressedButton == "gamepad-button-left"|| pressedButton == "gamepad-button-left-arrow") {
-        keyboard.left = true;
-    }
-    if (pressedButton == "gamepad-button-right"|| pressedButton == "gamepad-button-right-arrow") {
-        keyboard.right = true;
-    }
-    if (pressedButton == "gamepad-button-attack-range" || pressedButton == "gamepad-button-attack-range-text") {
-        keyboard.d = true;
-    }
-    if (pressedButton == "gamepad-button-attack-melee" || pressedButton == "gamepad-button-attack-melee-text") {
-        keyboard.space = true;
-    }
-});
-
-window.addEventListener("mouseup", () => {
-    resetKeyboard();
-});
-
-window.addEventListener("touchend", () => {
-    resetKeyboard();
-});
+}
 
 /**
- * Functions resets the keyboard flags as one would let lose of the keyboard
+ * Funktion zum Zurücksetzen der Tastaturflags, wenn keine Taste gedrückt ist
  * 
  */
 function resetKeyboard() {
@@ -112,6 +130,5 @@ function resetKeyboard() {
         keyboard[key] = false;
     }
 }
-
 
 
