@@ -83,7 +83,6 @@ class AudioManager {
   stopSound(name) {
     try {
       if (this.sounds[name]) {
-        // Überprüfen, ob der Sound gerade abgespielt wird, und ihn nur stoppen, wenn dies der Fall ist
         if (!this.sounds[name].paused) {
           this.sounds[name].pause();
           this.sounds[name].currentTime = 0;
