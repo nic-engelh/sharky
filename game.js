@@ -96,18 +96,22 @@ function handleButtonPress(pressedButton, isPressed) {
     switch (pressedButton) {
         case "gamepad-button-up":
         case "gamepad-button-up-arrow":
+        case "gamepad-button-up-arrow-path":
             keyboard.up = isPressed;
             break;
         case "gamepad-button-down":
         case "gamepad-button-down-arrow":
+        case "gamepad-button-down-arrow-path":
             keyboard.down = isPressed;
             break;
         case "gamepad-button-left":
         case "gamepad-button-left-arrow":
+        case "gamepad-button-left-arrow-path":
             keyboard.left = isPressed;
             break;
         case "gamepad-button-right":
         case "gamepad-button-right-arrow":
+        case "gamepad-button-right-arrow-path":
             keyboard.right = isPressed;
             break;
         case "gamepad-button-attack-range":
