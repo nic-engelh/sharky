@@ -62,21 +62,30 @@ class AudioManager {
    * @param {string} name 
    */
   playSound(name) {
-    if (this.sounds[name]) {
-      this.sounds[name].play();
+    try {
+        if (this.sounds[name]) {
+            this.sounds[name].play();
+        }
+    } catch (error) {
+        console.error("Fehler beim Abspielen des Sounds:", error);
     }
-  }
-  /**
-   * Function stops a certain sound given by the name argument. It pauses the sound from sounds object.
-   * 
-   * @param {string} name 
-   */
-  stopSound(name) {
-    if (this.sounds[name]) {
-      this.sounds[name].pause();
-      this.sounds[name].currentTime = 0;
+}
+
+/**
+ * Funktion stoppt einen bestimmten Sound, der durch den Namen angegeben wird. Sie pausiert den Sound aus dem Sounds-Objekt.
+ * 
+ * @param {string} name 
+ */
+stopSound(name) {
+    try {
+        if (this.sounds[name]) {
+            this.sounds[name].pause();
+            this.sounds[name].currentTime = 0;
+        }
+    } catch (error) {
+        console.error("Fehler beim Stoppen des Sounds:", error);
     }
-  }
+}
 
 
   /**
