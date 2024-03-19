@@ -5,10 +5,10 @@ class AudioManager {
     this.mute = false;
   }
 
-/**
- * Function adds the sounds into an object with certain key.
- * 
- */
+  /**
+   * Function adds the sounds into an object with certain key.
+   *
+   */
   loadSounds() {
     this.sounds["waterflowEffect"] = new Audio(
       "/assets/sounds/underwater-loop-amb-6182.mp3"
@@ -53,46 +53,52 @@ class AudioManager {
     this.sounds["shocked"] = new Audio(
       "/assets/sounds/electric_zap_001-6374.mp3"
     );
-    this.sounds["transform"] = new Audio ("/assets/sounds/balloon-inflate-1-184052.mp3");
+    this.sounds["transform"] = new Audio(
+      "/assets/sounds/balloon-inflate-1-184052.mp3"
+    );
   }
 
   /**
-   * Functions plays a sound with the name as argument. It loads the sound from the sounds object
-   * 
-   * @param {string} name 
+   * Funktion zum Abspielen eines Sounds mit dem übergebenen Namen. Lädt den Sound aus dem Sounds-Objekt.
+   *
+   * @param {string} name - Der Name des Sounds, der abgespielt werden soll.
    */
   playSound(name) {
     try {
-        if (this.sounds[name]) {
-            this.sounds[name].play();
+      if (this.sounds[name]) {
+        if (this.sounds[name].paused) {
+          this.sounds[name].play();
         }
+      }
     } catch (error) {
-        console.error("Fehler beim Abspielen des Sounds:", error);
+      console.error("Fehler beim Abspielen des Sounds:", error);
     }
-}
+  }
 
-/**
- * Funktion stoppt einen bestimmten Sound, der durch den Namen angegeben wird. Sie pausiert den Sound aus dem Sounds-Objekt.
- * 
- * @param {string} name 
- */
-stopSound(name) {
+  /**
+   * Funktion zum Stoppen eines Sounds mit dem übergebenen Namen. Pausiert den Sound aus dem Sounds-Objekt.
+   *
+   * @param {string} name - Der Name des Sounds, der gestoppt werden soll.
+   */
+  stopSound(name) {
     try {
-        if (this.sounds[name]) {
-            this.sounds[name].pause();
-            this.sounds[name].currentTime = 0;
+      if (this.sounds[name]) {
+        // Überprüfen, ob der Sound gerade abgespielt wird, und ihn nur stoppen, wenn dies der Fall ist
+        if (!this.sounds[name].paused) {
+          this.sounds[name].pause();
+          this.sounds[name].currentTime = 0;
         }
+      }
     } catch (error) {
-        console.error("Fehler beim Stoppen des Sounds:", error);
+      console.error("Fehler beim Stoppen des Sounds:", error);
     }
-}
-
+  }
 
   /**
    * Functions sets the volume of the sound according to the given arguments. Number as a float.
-   * 
-   * @param {string} name 
-   * @param {number} volume 
+   *
+   * @param {string} name
+   * @param {number} volume
    */
   setVolume(name, volume) {
     if (this.sounds[name]) {
@@ -102,7 +108,7 @@ stopSound(name) {
 
   /**
    * Function reduces alls sounds in the object to 0.1
-   * 
+   *
    */
   setVolumeForAll() {
     for (const soundName in this.sounds) {
@@ -112,7 +118,7 @@ stopSound(name) {
 
   /**
    * Functions mutes all sounds. It reduces alls sounds in the sounds object to volume 0.0.
-   * 
+   *
    */
   muteAllSounds() {
     for (const soundName in this.sounds) {
