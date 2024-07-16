@@ -40,7 +40,7 @@ let level1 = new Level(
         ),
 
         new BackgroundObject(
-            "/assets/img/3. Background/Layers/5. Water/D1.png",
+            "../../assets/img/3. Background/Layers/5. Water/D1.png",
             0,
             0,
             480,
@@ -112,7 +112,7 @@ let level1 = new Level(
         ),
 
         new BackgroundObject(
-            "/assets/img/3. Background/Layers/5. Water/D1.png",
+            "../../assets/img/3. Background/Layers/5. Water/D1.png",
             719 * 2,
             0,
             480,
@@ -133,7 +133,7 @@ let level1 = new Level(
             720
         ),
         new BackgroundObject(
-            "/assets/img/3. Background/Layers/3.Fondo 1/D1.png",
+            "../../assets/img/3. Background/Layers/3.Fondo 1/D1.png",
             719 * 2,
             80,
             400,
