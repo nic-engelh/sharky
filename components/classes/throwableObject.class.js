@@ -12,9 +12,9 @@ class ThrowableObject extends MovableObject {
   constructor(x, y, poison, direction) {
     super();
     if (poison) 
-      this.loadImage("./assets/img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png");
+      this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png");
     if (!poison)
-      this.loadImage("./assets/img/1.Sharkie/4.Attack/Bubble trap/Bubble.png");
+      this.loadImage("../../assets/img/1.Sharkie/4.Attack/Bubble trap/Bubble.png");
     this.width = 40;
     this.height = 40;
     if (direction) this.x =  ocean.hero.x;
@@ -45,7 +45,7 @@ class ThrowableObject extends MovableObject {
    * 
    */
   changeImage() {
-    this.loadImage('./assets/img/2.Enemy/2 Jelly fish/Dead/Yellow/y1.png');
+    this.loadImage('../../assets/img/2.Enemy/2 Jelly fish/Dead/Yellow/y1.png');
   } 
 
   /**
