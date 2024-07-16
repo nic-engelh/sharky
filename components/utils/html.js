@@ -7,8 +7,8 @@ return /*html*/ `
     90482 Nürnberg</p>
 
 <h2>Kontakt:</h2>
-<p>Telefon: 0174-3846113<br>
-    E-Mail: <a href="mailto:niklas.engelhardt@gmx.de">niklas.engelhardt@gmx.de</a></p>
+<p>Telefon: 0178-3741803<br>
+    E-Mail: <a href="mailto:info@niklasengelhardt.de">info@niklasengelhardt.de</a></p>
 
 <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</h2>
 <p>Niklas Engelhardt<br>
@@ -64,7 +64,7 @@ return /*html*/ `
 </ul>
 <h2 id="m3">Verantwortlicher</h2>
 <p>Niklas, Engelhardt<br> Thusneldastrasse, 25.<br>90482, Nürnberg, Deutschland</p>
-E-Mail-Adresse: <a href="mailto:niklas.engelhardt@bgmx.de">niklas.engelhardt@gmx.de</a>
+E-Mail-Adresse: <a href="mailto:info@niklas-engelhardt.de">info@niklas-engelhardt.de</a>
 
 <h2 id="mOverview">Übersicht der Verarbeitungen</h2>
 <p>Die nachfolgende Übersicht fasst die Arten der verarbeiteten Daten und die Zwecke ihrer Verarbeitung zusammen und

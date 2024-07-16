@@ -134,7 +134,7 @@ function unmuteBackgroundMusic(icon) {
   setLocalStorage("game-mute", false);
   icon.classList.remove("muted");
   icon.src =
-    "/assets/img/6.Botones/Control/volume_up_FILL0_wght400_GRAD0_opsz24.svg"; // Replace with the path to your unmute icon
+    "./assets/img/6.Botones/Control/volume_up_FILL0_wght400_GRAD0_opsz24.svg"; // Replace with the path to your unmute icon
   if (ocean.hero.isEndbossNear()) {
     ocean.worldAudioManager.stopSound("ambient");
     ocean.worldAudioManager.playSound("ambientBoss");
@@ -154,7 +154,7 @@ function muteBackgroundMusic(icon) {
   setLocalStorage("game-mute", true)
   icon.classList.add("muted");
   icon.src =
-    "/assets/img/6.Botones/Control/volume_mute_FILL0_wght400_GRAD0_opsz24.svg"; // Replace with the path to your mute icon
+    "./assets/img/6.Botones/Control/volume_mute_FILL0_wght400_GRAD0_opsz24.svg"; // Replace with the path to your mute icon
   ocean.worldAudioManager.muteAllSounds();
 }
 
