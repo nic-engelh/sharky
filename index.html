@@ -5,34 +5,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SHARKY</title>
-  <script src="/components/classes/keyboard.class.js"></script>
-  <script src="/components/utils/variables.js"></script>
-  <script src="/components/utils/support.js"></script>
+  <script src="./components/classes/keyboard.class.js"></script>
+  <script src="./components/utils/variables.js"></script>
+  <script src="./components/utils/support.js"></script>
   <script src="/components/classes/drawableObject.class.js"></script>
-  <script src="/components/classes/movableObject.class.js"></script>
-  <script src="/components/classes/backgroundObjects.class.js"></script>
-  <script src="/components/classes/throwableObject.class.js"></script>
-  <script src="/components/classes/hero.class.js"></script>
-  <script src="/components/classes/pufferfish.class.js"></script>
-  <script src="/components/classes/jellyfish.class.js"></script>
-  <script src="/components/classes/endboss.class.js"></script>
-  <script src="/components/classes/coin.class.js"></script>
-  <script src="/components/classes/bottle.class.js"></script>
-  <script src="/components/classes/bubble.class.js"></script>
-  <script src="/components/classes/level.class.js"></script>
-  <script src="/components/levels/levelOne.js"></script>
-  <script src="/components/classes/statusBar.class.js"></script>
-  <script src="/components/classes/audioManager.class.js"></script>
-  <script src="/components/classes/world.class.js"></script>
-  <script defer src="/components/utils/script.js"></script>
-  <script defer src="/game.js"></script>
-  <script src="/components/utils/html.js"></script>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/x-icon" href="/assets/img/favicon/shark.png" />
+  <script src="./components/classes/movableObject.class.js"></script>
+  <script src="./components/classes/backgroundObjects.class.js"></script>
+  <script src="./components/classes/throwableObject.class.js"></script>
+  <script src="./components/classes/hero.class.js"></script>
+  <script src="./components/classes/pufferfish.class.js"></script>
+  <script src="./components/classes/jellyfish.class.js"></script>
+  <script src="./components/classes/endboss.class.js"></script>
+  <script src="./components/classes/coin.class.js"></script>
+  <script src="./components/classes/bottle.class.js"></script>
+  <script src="./components/classes/bubble.class.js"></script>
+  <script src="./components/classes/level.class.js"></script>
+  <script src="./components/levels/levelOne.js"></script>
+  <script src="./components/classes/statusBar.class.js"></script>
+  <script src="./components/classes/audioManager.class.js"></script>
+  <script src="./components/classes/world.class.js"></script>
+  <script defer src="./components/utils/script.js"></script>
+  <script defer src="./game.js"></script>
+  <script src="./components/utils/html.js"></script>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="icon" type="image/x-icon" href="./assets/img/favicon/shark.png" />
 </head>
 
 <body>
-  <img id="muteIcon" src="/assets/img/6.Botones/Control/volume_up_FILL0_wght400_GRAD0_opsz24.svg"
+  <img id="muteIcon" src="./assets/img/6.Botones/Control/volume_up_FILL0_wght400_GRAD0_opsz24.svg"
     onclick="toggleMuteIcon()" style="
         position: fixed;
         top: 10px;
@@ -76,20 +76,20 @@
     </div>
   </div>
   <button id="button-impressum" class="tooltip">
-    <img src="/assets/img/6.Botones/Control/notice.png" alt="Impressum & Datenschutzerklärung" />
+    <img src="./assets/img/6.Botones/Control/notice.png" alt="Impressum & Datenschutzerklärung" />
     <span class="tooltiptext">
       Privacy Policy & Legal Notice
     </span>
   </button>
   <button id="button-controls" class="tooltip" >
-    <img src="/assets/img/6.Botones/Control/controller.png" alt="Control Manual"  onclick="openDialog('dialog-instructions-box')"/>
+    <img src="./assets/img/6.Botoes/Control/controller.png" alt="Control Manual"  onclick="openDialog('dialog-instructions-box')"/>
     <span class="tooltiptext">
       Game Controls
     </span>
   </button>
   <dialog id="dialog-device-orientation">
     <div id="dialog-device-orientation-message">
-      <img src="/assets/img/6.Botones/Control/responsive(1).png" alt="Rotate Device Instructions" />
+      <img src="./assets/img/6.Botones/Control/responsive(1).png" alt="Rotate Device Instructions" />
       <p>Please, rotate your device</p>
     </div>
   </dialog>
@@ -98,33 +98,33 @@
       <!-- Impressum und Datenschutzerklärung werden hier eingefügt -->
     </div>
     <button id="dialog-impressum-close-btn" onclick="closeImpressumDialog()">
-      <img src="/assets/img/6.Botones/Control/close.png" alt="Close Dialog">
+      <img src="./assets/img/6.Botones/Control/close.png" alt="Close Dialog">
     </button>
   </dialog>
   <dialog id="dialog-win-box">
     <div id="dialog-win-picture-container">
-      <img src="/assets/img/6.Botones/Tittles/You win/Mesa de trabajo 1.png" alt="You win">
-      <img onclick="reloadPage();" src="/assets/img/6.Botones/Try again/Recurso 18.png" alt="Try again">
+      <img src="./assets/img/6.Botones/Tittles/You win/Mesa de trabajo 1.png" alt="You win">
+      <img onclick="reloadPage();" src="./assets/img/6.Botones/Try again/Recurso 18.png" alt="Try again">
     </div>
   </dialog>
   <dialog id="dialog-lose-box">
     <div id="dialog-lose-picture-container">
-      <img class="animate-size" src="/assets/img/6.Botones/Tittles/Game Over/Recurso 12.png" alt="You lost">
-      <img onclick="reloadPage();" src="/assets/img/6.Botones/Try again/Recurso 18.png" alt="Try again">
+      <img class="animate-size" src="./assets/img/6.Botones/Tittles/Game Over/Recurso 12.png" alt="You lost">
+      <img onclick="reloadPage();" src="./assets/img/6.Botones/Try again/Recurso 18.png" alt="Try again">
     </div>
   </dialog>
   <dialog id="dialog-instructions-box">
     <div id="dialog-instructions-picture-container">
       <div>
-        <img id="img-instructions-move" src="/assets/img/6.Botones/Key/arrow keys.png" alt="Game and control instructions" />
+        <img id="img-instructions-move" src="./assets/img/6.Botones/Key/arrow keys.png" alt="Game and control instructions" />
         <p>Move Shark</p>
       </div>
       <div>
-        <img id="img-instructions-attack1" src="/assets/img/6.Botones/Key/D key.png" alt="Game and control instructions" />
+        <img id="img-instructions-attack1" src="./assets/img/6.Botones/Key/D key.png" alt="Game and control instructions" />
         <p>Bubble Attack</p>
       </div>
       <div>
-        <img id="img-instructions-attack2" src="/assets/img/6.Botones/Key/Space Bar key.png" alt="Game and control instructions" />
+        <img id="img-instructions-attack2" src="./assets/img/6.Botones/Key/Space Bar key.png" alt="Game and control instructions" />
         <p>Fin Attack</p>
       </div>
     </div>
